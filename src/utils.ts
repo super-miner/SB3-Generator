@@ -1,3 +1,14 @@
+/**
+ * @module utils
+ */
+
+/**
+ * Gets a file extension from a path.
+ *
+ * @export
+ * @param {string} path
+ * @returns {*}
+ */
 export function getFileExtensionFromPath(path: string) {
     let fileNameWithPath = path.split(/[\\/]/).pop();
 
@@ -14,6 +25,13 @@ export function getFileExtensionFromPath(path: string) {
     return fileNameWithPath.slice(fileNameStartIndex + 1);
 }
 
+/**
+ * Gets a file name from a path.
+ *
+ * @export
+ * @param {string} path
+ * @returns {*}
+ */
 export function getFileNameFromPath(path: string) {
     let fileNameWithPath = path.split(/[\\/]/).pop();
 

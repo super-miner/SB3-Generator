@@ -1,4 +1,4 @@
-import {createCostume, createProject, createSprite, createVariable} from './sb3Generator.ts';
+import {createCostume, createProject, createSprite, createVariable} from './sb3Generator';
 
 createProject('TestProject')
     .withSprite(
