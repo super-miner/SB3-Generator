@@ -23,3 +23,6 @@ createProject('TestProject')
     )
     .build();
 ```
+
+## Docs:
+You can find the documentation in the [DOCS.md](DOCS.md) file.
