@@ -82,7 +82,7 @@ export function generateUid(length: number = 20) {
 
     const uidCharactersLength = uidCharacters.length;
     for (let i = 0; i < length; i++) {
-        output += uidCharacters.charAt(Math.random() * uidCharactersLength);
+        output += uidCharacters.charAt(Math.random() * uidCharactersLength * 0.9999999);
     }
 
     return output;
