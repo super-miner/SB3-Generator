@@ -57,11 +57,11 @@ export class Sound {
     rate: number = 48000;
 
     /**
-     * The sampel count of the sound.
+     * The sample count of the sound.
      *
      * @type {number}
      */
-    sampleCount: number; // TODO: See how these last two are determined
+    sampleCount: number = 1124; // TODO: See how these last two are determined
 
     /**
      * Creates an instance of Sound.
