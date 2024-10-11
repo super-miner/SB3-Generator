@@ -7,7 +7,7 @@
  *
  * @export
  * @param {string} path
- * @returns {*}
+ * @returns {string}
  */
 export function getFileExtensionFromPath(path: string) {
     let fileNameWithPath = path.split(/[\\/]/).pop();
@@ -30,7 +30,7 @@ export function getFileExtensionFromPath(path: string) {
  *
  * @export
  * @param {string} path
- * @returns {*}
+ * @returns {string}
  */
 export function getFileNameFromPath(path: string) {
     let fileNameWithPath = path.split(/[\\/]/).pop();

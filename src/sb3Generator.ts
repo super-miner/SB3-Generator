@@ -7,6 +7,8 @@ import {Sprite} from './sprite';
 import {Variable} from './variable';
 import {Costume} from './costume';
 import {Sound} from './sound';
+import { List } from './list';
+import { Broadcast } from './broadcast';
 
 /**
  * The characters used to generate uids.
@@ -46,6 +48,28 @@ export function createSprite(name: string) {
  */
 export function createVariable(name: string) {
     return new Variable(name);
+}
+
+/**
+ * Creates a list.
+ *
+ * @export
+ * @param {string} name
+ * @returns {List}
+ */
+export function createList(name: string) {
+    return new List(name);
+}
+
+/**
+ * Creates a broadcast.
+ *
+ * @export
+ * @param {string} name
+ * @returns {Broadcast}
+ */
+export function createBroadcast(name: string) {
+    return new Broadcast(name);
 }
 
 /**
