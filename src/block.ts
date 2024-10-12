@@ -50,14 +50,14 @@ export class Block {
     /**
      * The parameters being inputted into the block.
      *
-     * @type {Object.<string, Array.<number|string|boolean|Array.<number|string|boolean>>>}
+     * @type {Object.<string, Array<number|string|boolean|Array.<number|string|boolean>>>}
      */
     inputs: {[id: string]: (number|string|boolean|(number|string|boolean)[])[]} = {};
 
     /**
      * The parameters being inputted into the block that are not counted as inputs.
      *
-     * @type {Object.<id: string, Array.<string>>}
+     * @type {Object.<string, Array<string>>}
      */
     fields: {[id: string]: string[]} = {};
 

@@ -469,6 +469,8 @@
     * [~createProject(name)](#module_sb3Generator..createProject) ⇒ <code>Project</code>
     * [~createSprite(name)](#module_sb3Generator..createSprite) ⇒ <code>Sprite</code>
     * [~createVariable(name)](#module_sb3Generator..createVariable) ⇒ <code>Variable</code>
+    * [~createList(name)](#module_sb3Generator..createList) ⇒ <code>List</code>
+    * [~createBroadcast(name)](#module_sb3Generator..createBroadcast) ⇒ <code>Broadcast</code>
     * [~createCostume(path)](#module_sb3Generator..createCostume) ⇒ <code>Costume</code>
     * [~createSound(path)](#module_sb3Generator..createSound) ⇒ <code>\*</code>
     * [~generateUid([length])](#module_sb3Generator..generateUid) ⇒ <code>string</code>
@@ -505,6 +507,28 @@
 
 ### sb3Generator~createVariable(name) ⇒ <code>Variable</code>
 <p>Creates a variable.</p>
+
+**Kind**: inner method of [<code>sb3Generator</code>](#module_sb3Generator)  
+
+| Param | Type |
+| --- | --- |
+| name | <code>string</code> | 
+
+<a name="module_sb3Generator..createList"></a>
+
+### sb3Generator~createList(name) ⇒ <code>List</code>
+<p>Creates a list.</p>
+
+**Kind**: inner method of [<code>sb3Generator</code>](#module_sb3Generator)  
+
+| Param | Type |
+| --- | --- |
+| name | <code>string</code> | 
+
+<a name="module_sb3Generator..createBroadcast"></a>
+
+### sb3Generator~createBroadcast(name) ⇒ <code>Broadcast</code>
+<p>Creates a broadcast.</p>
 
 **Kind**: inner method of [<code>sb3Generator</code>](#module_sb3Generator)  
 
@@ -722,7 +746,7 @@
 <a name="module_sprite..Sprite+withDefaultCostume"></a>
 
 #### sprite.withDefaultCostume(defaultCostumeNumber) ⇒ <code>this</code>
-<p>Adds a costume to the sprite and sets it to be the current costume.</p>
+<p>Sets the current costume.</p>
 
 **Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
 
@@ -917,7 +941,7 @@
 <a name="module_sprite..Sprite+withDefaultCostume"></a>
 
 #### sprite.withDefaultCostume(defaultCostumeNumber) ⇒ <code>this</code>
-<p>Adds a costume to the sprite and sets it to be the current costume.</p>
+<p>Sets the current costume.</p>
 
 **Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
 
@@ -1036,12 +1060,12 @@
 ## utils
 
 * [utils](#module_utils)
-    * [~getFileExtensionFromPath(path)](#module_utils..getFileExtensionFromPath) ⇒ <code>\*</code>
-    * [~getFileNameFromPath(path)](#module_utils..getFileNameFromPath) ⇒ <code>\*</code>
+    * [~getFileExtensionFromPath(path)](#module_utils..getFileExtensionFromPath) ⇒ <code>string</code>
+    * [~getFileNameFromPath(path)](#module_utils..getFileNameFromPath) ⇒ <code>string</code>
 
 <a name="module_utils..getFileExtensionFromPath"></a>
 
-### utils~getFileExtensionFromPath(path) ⇒ <code>\*</code>
+### utils~getFileExtensionFromPath(path) ⇒ <code>string</code>
 <p>Gets a file extension from a path.</p>
 
 **Kind**: inner method of [<code>utils</code>](#module_utils)  
@@ -1052,7 +1076,7 @@
 
 <a name="module_utils..getFileNameFromPath"></a>
 
-### utils~getFileNameFromPath(path) ⇒ <code>\*</code>
+### utils~getFileNameFromPath(path) ⇒ <code>string</code>
 <p>Gets a file name from a path.</p>
 
 **Kind**: inner method of [<code>utils</code>](#module_utils)  
