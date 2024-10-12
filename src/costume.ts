@@ -78,7 +78,6 @@ export class Costume {
      */
     constructor(path: string) {
         this._path = path;
-
         this._data = fs.readFileSync(path);
         this.assetId = md5(this._data);
         this.dataFormat = getFileExtensionFromPath(path);
