@@ -2,6 +2,8 @@
  * @module block
  */
 
+import { generateUid } from "./sb3Generator";
+
 /**
  * Represents a scratch block.
  *
@@ -20,9 +22,9 @@ export class Block {
     /**
      * The block that comes before the current block.
      *
-     * @type {Block}
+     * @type {(Block|null)}
      */
-    _lastChildBlock: Block;
+    _lastChildBlock: (Block|null) = null;
 
     /**
      * The opcode (identifier) for the block.
@@ -48,14 +50,14 @@ export class Block {
     /**
      * The parameters being inputted into the block.
      *
-     * @type {Object.<string, Array.<number|string|boolean|Array.<number|string|boolean>>>}
+     * @type {Object.<string, Array<number|string|boolean|Array.<number|string|boolean>>>}
      */
     inputs: {[id: string]: (number|string|boolean|(number|string|boolean)[])[]} = {};
 
     /**
      * The parameters being inputted into the block that are not counted as inputs.
      *
-     * @type {{Object.<id: string, Array.<string>>}
+     * @type {Object.<string, Array<string>>}
      */
     fields: {[id: string]: string[]} = {};
 
@@ -71,7 +73,7 @@ export class Block {
      *
      * @type {boolean}
      */
-    topLevel: boolean = false;
+    topLevel: boolean = true;
 
     /**
      * Creates an instance of Block.
@@ -81,6 +83,7 @@ export class Block {
      */
     constructor(opcode: string) {
         this.opcode = opcode;
+        this._uid = generateUid();
     }
 
     /**

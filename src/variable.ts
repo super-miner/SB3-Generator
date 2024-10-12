@@ -31,7 +31,7 @@ export class Variable {
      *
      * @type {(number|string|boolean)}
      */
-    value: (number|string|boolean);
+    value: (number|string|boolean) = 0;
 
     /**
      * Creates an instance of Variable.

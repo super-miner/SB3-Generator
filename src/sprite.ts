@@ -257,7 +257,7 @@ export class Sprite {
     }*/
 
     /**
-     * Adds a costume to the sprite and sets it to be the current costume.
+     * Sets the current costume.
      *
      * @param {number} defaultCostumeNumber
      * @returns {this}

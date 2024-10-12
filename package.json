@@ -13,12 +13,16 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@babel/preset-env": "^7.25.7",
     "@babel/preset-typescript": "^7.25.7",
+    "@types/jest": "^29.5.13",
     "@types/node": "^22.7.3",
+    "jest": "^29.7.0",
     "jsdoc-babel": "^0.5.0",
     "jsdoc-to-markdown": "^9.0.2",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.6.3"
   },
   "scripts": {
-    "build:doc": "jsdoc2md --files ./src/*.ts --configure ./jsdoc2md.json > ./DOCS.md"
+    "build:doc": "jsdoc2md --files ./src/*.ts --configure ./jsdoc2md.json > ./DOCS.md",
+    "test": "jest"
   }
 }

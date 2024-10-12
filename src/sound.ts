@@ -22,6 +22,13 @@ export class Sound {
     _path: string;
 
     /**
+     * The raw data making up the sound.
+     *
+     * @type {Buffer}
+     */
+    _data: Buffer;
+
+    /**
      * The name of the sound.
      *
      * @type {string}
@@ -57,11 +64,11 @@ export class Sound {
     rate: number = 48000;
 
     /**
-     * The sampel count of the sound.
+     * The sample count of the sound.
      *
      * @type {number}
      */
-    sampleCount: number; // TODO: See how these last two are determined
+    sampleCount: number = 1124; // TODO: See how these last two are determined
 
     /**
      * Creates an instance of Sound.
@@ -71,9 +78,8 @@ export class Sound {
      */
     constructor(path: string) {
         this._path = path;
-
-        const data = fs.readFileSync(path);
-        this.assetId = md5(data);
+        this._data = fs.readFileSync(path);
+        this.assetId = md5(this._data);
         this.dataFormat = getFileExtensionFromPath(path);
         this.name = getFileNameFromPath(path);
         this.md5ext = this.assetId + '.' + this.dataFormat;

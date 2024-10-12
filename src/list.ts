@@ -29,7 +29,7 @@ export class List {
     /**
      * The values in the list.
      *
-     * @type {Array.<number|string|boolean>}
+     * @type {Array<number|string|boolean>}
      */
     values: (number|string|boolean)[] = [];
 
