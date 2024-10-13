@@ -20,9 +20,18 @@ createProject('TestProject')
             )
             .withBlock(
                 createBlock('event_whenflagclicked', [])
-                    .withChildBlock(
+                    .withNextBlock(
                         createBlock('motion_movesteps', [testVariable])
+                    )
+                    .withNextBlock(
+                        createBlock('motion_turnright', ['20'])
+                    )
+                    .withNextBlock(
+                        createBlock('motion_turnleft', [testVariable])
+                    )
+                    .withNextBlock(
+                        createBlock('motion_gotoxy', ['100', testVariable])
                     )
             )
     )
-    .build();
+    .build(true);

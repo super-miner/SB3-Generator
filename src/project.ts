@@ -73,7 +73,7 @@ export class Project {
     }
 
     /** Builds the project into a zip file. */
-    build() {
+    build(debug: boolean = false) {
         if (!fs.existsSync(this.getOutputDirectoryPath())) {
             fs.mkdirSync(this.getOutputDirectoryPath());
         }
@@ -91,10 +91,18 @@ export class Project {
         zip.file('project.json', jsonString);
 
         zip.generateNodeStream({type:'nodebuffer', streamFiles:true})
-            .pipe(fs.createWriteStream(this.getFilePath()))
+            .pipe(fs.createWriteStream(this.getOutputFilePath()))
             .on('finish', () => {
-                console.log('Generated project at "' + this.getFilePath() + '".');
+                console.log('Generated project at "' + this.getOutputFilePath() + '".');
             });
+
+        if (debug) {
+            if (!fs.existsSync(this.getDebugDirectoryPath())) {
+                fs.mkdirSync(this.getDebugDirectoryPath());
+            }
+
+            fs.writeFileSync(this.getDebugJsonFilePath(), jsonString);
+        }
     }
 
     /**
@@ -107,11 +115,29 @@ export class Project {
     }
 
     /**
+     * Produces the path to the output/debug directory.
+     *
+     * @returns {string}
+     */
+    getDebugDirectoryPath(): string {
+        return 'output/debug/';
+    }
+
+    /**
      * Produces the path the the output file.
      *
      * @returns {string}
      */
-    getFilePath(): string {
+    getOutputFilePath(): string {
         return this.getOutputDirectoryPath() + this.name + '.sb3';
+    }
+
+    /**
+     * Produces the path the the debug project.json file.
+     *
+     * @returns {string}
+     */
+    getDebugJsonFilePath(): string {
+        return this.getDebugDirectoryPath() + this.name + '.json';
     }
 }

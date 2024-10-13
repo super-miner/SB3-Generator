@@ -40,12 +40,12 @@
         * [new Block(opcode, inputs)](#new_module_block..Block_new)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
-        * [.withChildBlock(block)](#module_block..Block+withChildBlock) ⇒ <code>this</code>
+        * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
     * [~Block](#module_block..Block) : <code>Block</code>
         * [new Block(opcode, inputs)](#new_module_block..Block_new)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
-        * [.withChildBlock(block)](#module_block..Block+withChildBlock) ⇒ <code>this</code>
+        * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
 
 <a name="module_block..Block"></a>
 
@@ -56,7 +56,7 @@
     * [new Block(opcode, inputs)](#new_module_block..Block_new)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
-    * [.withChildBlock(block)](#module_block..Block+withChildBlock) ⇒ <code>this</code>
+    * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
 
@@ -81,10 +81,10 @@
 <p>Setter for sprite</p>
 
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
-<a name="module_block..Block+withChildBlock"></a>
+<a name="module_block..Block+withNextBlock"></a>
 
-#### block.withChildBlock(block) ⇒ <code>this</code>
-<p>Adds a block as a child of this block.</p>
+#### block.withNextBlock(block) ⇒ <code>Block</code>
+<p>Adds a block as a child of this block (returns the added block).</p>
 
 **Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 
@@ -103,7 +103,7 @@
     * [new Block(opcode, inputs)](#new_module_block..Block_new)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
-    * [.withChildBlock(block)](#module_block..Block+withChildBlock) ⇒ <code>this</code>
+    * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
 
@@ -128,10 +128,10 @@
 <p>Setter for sprite</p>
 
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
-<a name="module_block..Block+withChildBlock"></a>
+<a name="module_block..Block+withNextBlock"></a>
 
-#### block.withChildBlock(block) ⇒ <code>this</code>
-<p>Adds a block as a child of this block.</p>
+#### block.withNextBlock(block) ⇒ <code>Block</code>
+<p>Adds a block as a child of this block (returns the added block).</p>
 
 **Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 
@@ -382,13 +382,17 @@
         * [.withSprite(sprite)](#module_project..Project+withSprite) ⇒ <code>this</code>
         * [.build()](#module_project..Project+build)
         * [.getOutputDirectoryPath()](#module_project..Project+getOutputDirectoryPath) ⇒ <code>string</code>
-        * [.getFilePath()](#module_project..Project+getFilePath) ⇒ <code>string</code>
+        * [.getDebugDirectoryPath()](#module_project..Project+getDebugDirectoryPath) ⇒ <code>string</code>
+        * [.getOutputFilePath()](#module_project..Project+getOutputFilePath) ⇒ <code>string</code>
+        * [.getDebugJsonFilePath()](#module_project..Project+getDebugJsonFilePath) ⇒ <code>string</code>
     * [~Project](#module_project..Project) : <code>Project</code>
         * [new Project(name)](#new_module_project..Project_new)
         * [.withSprite(sprite)](#module_project..Project+withSprite) ⇒ <code>this</code>
         * [.build()](#module_project..Project+build)
         * [.getOutputDirectoryPath()](#module_project..Project+getOutputDirectoryPath) ⇒ <code>string</code>
-        * [.getFilePath()](#module_project..Project+getFilePath) ⇒ <code>string</code>
+        * [.getDebugDirectoryPath()](#module_project..Project+getDebugDirectoryPath) ⇒ <code>string</code>
+        * [.getOutputFilePath()](#module_project..Project+getOutputFilePath) ⇒ <code>string</code>
+        * [.getDebugJsonFilePath()](#module_project..Project+getDebugJsonFilePath) ⇒ <code>string</code>
 
 <a name="module_project..Project"></a>
 
@@ -400,7 +404,9 @@
     * [.withSprite(sprite)](#module_project..Project+withSprite) ⇒ <code>this</code>
     * [.build()](#module_project..Project+build)
     * [.getOutputDirectoryPath()](#module_project..Project+getOutputDirectoryPath) ⇒ <code>string</code>
-    * [.getFilePath()](#module_project..Project+getFilePath) ⇒ <code>string</code>
+    * [.getDebugDirectoryPath()](#module_project..Project+getDebugDirectoryPath) ⇒ <code>string</code>
+    * [.getOutputFilePath()](#module_project..Project+getOutputFilePath) ⇒ <code>string</code>
+    * [.getDebugJsonFilePath()](#module_project..Project+getDebugJsonFilePath) ⇒ <code>string</code>
 
 <a name="new_module_project..Project_new"></a>
 
@@ -435,10 +441,22 @@
 <p>Produces the path to the output directory.</p>
 
 **Kind**: instance method of [<code>Project</code>](#module_project..Project)  
-<a name="module_project..Project+getFilePath"></a>
+<a name="module_project..Project+getDebugDirectoryPath"></a>
 
-#### project.getFilePath() ⇒ <code>string</code>
+#### project.getDebugDirectoryPath() ⇒ <code>string</code>
+<p>Produces the path to the output/debug directory.</p>
+
+**Kind**: instance method of [<code>Project</code>](#module_project..Project)  
+<a name="module_project..Project+getOutputFilePath"></a>
+
+#### project.getOutputFilePath() ⇒ <code>string</code>
 <p>Produces the path the the output file.</p>
+
+**Kind**: instance method of [<code>Project</code>](#module_project..Project)  
+<a name="module_project..Project+getDebugJsonFilePath"></a>
+
+#### project.getDebugJsonFilePath() ⇒ <code>string</code>
+<p>Produces the path the the debug project.json file.</p>
 
 **Kind**: instance method of [<code>Project</code>](#module_project..Project)  
 <a name="module_project..Project"></a>
@@ -453,7 +471,9 @@
     * [.withSprite(sprite)](#module_project..Project+withSprite) ⇒ <code>this</code>
     * [.build()](#module_project..Project+build)
     * [.getOutputDirectoryPath()](#module_project..Project+getOutputDirectoryPath) ⇒ <code>string</code>
-    * [.getFilePath()](#module_project..Project+getFilePath) ⇒ <code>string</code>
+    * [.getDebugDirectoryPath()](#module_project..Project+getDebugDirectoryPath) ⇒ <code>string</code>
+    * [.getOutputFilePath()](#module_project..Project+getOutputFilePath) ⇒ <code>string</code>
+    * [.getDebugJsonFilePath()](#module_project..Project+getDebugJsonFilePath) ⇒ <code>string</code>
 
 <a name="new_module_project..Project_new"></a>
 
@@ -488,10 +508,22 @@
 <p>Produces the path to the output directory.</p>
 
 **Kind**: instance method of [<code>Project</code>](#module_project..Project)  
-<a name="module_project..Project+getFilePath"></a>
+<a name="module_project..Project+getDebugDirectoryPath"></a>
 
-#### project.getFilePath() ⇒ <code>string</code>
+#### project.getDebugDirectoryPath() ⇒ <code>string</code>
+<p>Produces the path to the output/debug directory.</p>
+
+**Kind**: instance method of [<code>Project</code>](#module_project..Project)  
+<a name="module_project..Project+getOutputFilePath"></a>
+
+#### project.getOutputFilePath() ⇒ <code>string</code>
 <p>Produces the path the the output file.</p>
+
+**Kind**: instance method of [<code>Project</code>](#module_project..Project)  
+<a name="module_project..Project+getDebugJsonFilePath"></a>
+
+#### project.getDebugJsonFilePath() ⇒ <code>string</code>
+<p>Produces the path the the debug project.json file.</p>
 
 **Kind**: instance method of [<code>Project</code>](#module_project..Project)  
 <a name="module_sb3Generator"></a>

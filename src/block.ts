@@ -22,13 +22,20 @@ export class Block {
      * @type {string}
      */
     _uid: string;
-    
+
     /**
-     * The block that comes before the current block.
+     * The next block in the sequence.
      *
-     * @type {Array<(Block)>}
+     * @type {(Block|null)}
      */
-    _childBlocks: Block[] = [];
+    _nextBlock: Block|null = null;
+
+    /**
+     * The previous block in the sequence.
+     *
+     * @type {(Block|null)}
+     */
+    _previousBlock: Block|null = null;
 
     /**
      * The sprite that this block is attached to.
@@ -52,13 +59,13 @@ export class Block {
             return;
         }
 
-        this._childBlocks.forEach(block => {
-            block.sprite = sprite;
-        });
-
         this._sprite = sprite;
 
         this._sprite?.withBlock(this);
+
+        if (this._previousBlock != null) {
+            this._previousBlock.sprite = sprite;
+        }
     }
 
     /**
@@ -69,7 +76,7 @@ export class Block {
     opcode: string;
 
     /**
-     * The block that comes after the current block.
+     * The uid of the next block in the sequence.
      *
      * @type {(string|null)}
      */
@@ -138,28 +145,24 @@ export class Block {
     }
 
     /**
-     * Adds a block as a child of this block.
+     * Adds a block as a child of this block (returns the added block).
      *
      * @param {Block} block
-     * @returns {this}
+     * @returns {Block}
      */
-    withChildBlock(block: Block) {
+    withNextBlock(block: Block) {
         block.topLevel = false;
-        block.parent = this._uid;
 
-        if (this._childBlocks.length > 0) {
-            this._childBlocks[this._childBlocks.length - 1].next = block._uid;
-        }
-        else {
-            this.next = block._uid;
-        }
+        this.next = block._uid;
+        this._nextBlock = block;
+        block._previousBlock = this;
+        block.parent = this._uid;
 
         if (this._sprite != null) {
             block.sprite = this._sprite;
         }
 
-        this._childBlocks.push(block);
-        return this;
+        return block;
     }
 
     /**
