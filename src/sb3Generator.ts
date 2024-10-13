@@ -9,13 +9,14 @@ import {Costume} from './costume';
 import {Sound} from './sound';
 import { List } from './list';
 import { Broadcast } from './broadcast';
+import { Block } from './block';
 
 /**
  * The characters used to generate uids.
  *
  * @type {("!#$%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"")}
  */
-const uidCharacters = '!#$%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"';
+const uidCharacters = '!#$%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 /**
  * Creates a project.
@@ -92,6 +93,18 @@ export function createCostume(path: string) {
  */
 export function createSound(path: string) {
     return new Sound(path);
+}
+
+/**
+ * Creates a block.
+ *
+ * @export
+ * @param {string} opcode
+ * @param {Array<(string|Variable)>} inputs
+ * @returns {Block}
+ */
+export function createBlock(opcode: string, inputs: (string|Variable)[]) {
+    return new Block(opcode, inputs);
 }
 
 /**

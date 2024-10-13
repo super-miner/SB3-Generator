@@ -1,5 +1,6 @@
 import { Block } from "../src/block";
-import { generateUid } from "../src/sb3Generator";
+import { InputType } from "../src/inputtype";
+import { createBlock, createSprite, createVariable, generateUid } from "../src/sb3Generator";
 
 beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.0);
@@ -10,23 +11,71 @@ afterEach(() => {
 });
 
 test('Constructor assigning values correctly', () => {
-    const block = new Block('event_whenflagclicked');
-    expect(block._uid).toBe(generateUid());
-    expect(block._lastChildBlock).toBe(null);
-    expect(block.opcode).toBe('event_whenflagclicked');
-    expect(block.next).toBe(null);
-    expect(block.parent).toBe(null);
-    expect(block.inputs).toStrictEqual({});
-    expect(block.fields).toStrictEqual({});
-    expect(block.shadow).toBe(true);
-    expect(block.topLevel).toBe(true);
+    const block1 = new Block('motion_movesteps', ['31']);
+    expect(block1._uid).toBe(generateUid());
+    expect(block1._childBlocks).toStrictEqual([]);
+    expect(block1.opcode).toBe('motion_movesteps');
+    expect(block1.next).toBe(null);
+    expect(block1.parent).toBe(null);
+    expect(block1.inputs).toStrictEqual({
+        'STEPS': [
+            InputType.INCLUDES_LITERAL,
+            [
+                InputType.CUSTOM_LITERAL,
+                '31'
+            ]
+        ]
+    });
+    expect(block1.fields).toStrictEqual({});
+    expect(block1.shadow).toBe(false);
+    expect(block1.topLevel).toBe(true);
+
+    const variable = createVariable('test variable').withValue(124);
+    const block2 = new Block('motion_movesteps', [variable]);
+    expect(block2.inputs).toStrictEqual({
+        'STEPS': [
+            InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
+            [
+                InputType.CUSTOM_VARIABLE | InputType.CUSTOM_LITERAL,
+                variable.name,
+                variable.uid
+            ],
+            [
+                InputType.CUSTOM_LITERAL,
+                ''
+            ]
+        ]
+    });
 });
 
 test('Succesfully adding child', () => {
-    const block1 = new Block('event_whenflagclicked');
-    const block2 = new Block('event_whenflagclicked');
+    const sprite = createSprite('Test Sprite');
+    const block1 = createBlock('event_whenflagclicked', []);
+    const block2 = createBlock('motion_movesteps', ['15']);
+    const block3 = createBlock('motion_movesteps', [createVariable('Amount').withValue(20)]);
+    sprite.withBlock(block1);
     block1.withChildBlock(block2);
-    expect(block1._lastChildBlock).toStrictEqual(block2);
+    block1.withChildBlock(block3);
+    expect(block1._childBlocks).toStrictEqual([block2, block3]);
     expect(block2.parent).toBe(block1._uid);
     expect(block2.topLevel).toBe(false);
+    expect(block2._sprite).toStrictEqual(sprite);
+    expect(block3.parent).toBe(block1._uid);
+    expect(block3.topLevel).toBe(false);
+    expect(block3._sprite).toStrictEqual(sprite);
+});
+
+test('Getting sprite correctly', () => {
+    const sprite = createSprite('Test Sprite');
+    const block = createBlock('event_whenflagclicked', []);
+    sprite.withBlock(block);
+    expect(block.sprite).toBe(sprite);
+});
+
+test('Setting sprite correctly', () => {
+    const sprite = createSprite('Test Sprite');
+    const block = createBlock('event_whenflagclicked', []);
+    block.sprite = sprite;
+    expect(block.sprite).toBe(sprite);
+    expect(sprite._blocks).toStrictEqual([block]);
 });

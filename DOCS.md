@@ -37,11 +37,15 @@
 
 * [block](#module_block)
     * [~Block](#module_block..Block)
-        * [new Block(opcode)](#new_module_block..Block_new)
-        * [.withChildBlock(block)](#module_block..Block+withChildBlock)
+        * [new Block(opcode, inputs)](#new_module_block..Block_new)
+        * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
+        * [.sprite](#module_block..Block+sprite)
+        * [.withChildBlock(block)](#module_block..Block+withChildBlock) ⇒ <code>this</code>
     * [~Block](#module_block..Block) : <code>Block</code>
-        * [new Block(opcode)](#new_module_block..Block_new)
-        * [.withChildBlock(block)](#module_block..Block+withChildBlock)
+        * [new Block(opcode, inputs)](#new_module_block..Block_new)
+        * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
+        * [.sprite](#module_block..Block+sprite)
+        * [.withChildBlock(block)](#module_block..Block+withChildBlock) ⇒ <code>this</code>
 
 <a name="module_block..Block"></a>
 
@@ -49,22 +53,37 @@
 **Kind**: inner class of [<code>block</code>](#module_block)  
 
 * [~Block](#module_block..Block)
-    * [new Block(opcode)](#new_module_block..Block_new)
-    * [.withChildBlock(block)](#module_block..Block+withChildBlock)
+    * [new Block(opcode, inputs)](#new_module_block..Block_new)
+    * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
+    * [.sprite](#module_block..Block+sprite)
+    * [.withChildBlock(block)](#module_block..Block+withChildBlock) ⇒ <code>this</code>
 
 <a name="new_module_block..Block_new"></a>
 
-#### new Block(opcode)
+#### new Block(opcode, inputs)
 <p>Creates an instance of Block.</p>
 
 
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
+| inputs | <code>Array.&lt;(string\|Variable)&gt;</code> | 
 
+<a name="module_block..Block+sprite"></a>
+
+#### block.sprite : <code>Sprite</code>
+<p>Getter for sprite</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+sprite"></a>
+
+#### block.sprite
+<p>Setter for sprite</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+withChildBlock"></a>
 
-#### block.withChildBlock(block)
+#### block.withChildBlock(block) ⇒ <code>this</code>
 <p>Adds a block as a child of this block.</p>
 
 **Kind**: instance method of [<code>Block</code>](#module_block..Block)  
@@ -81,22 +100,37 @@
 **Kind**: inner typedef of [<code>block</code>](#module_block)  
 
 * [~Block](#module_block..Block) : <code>Block</code>
-    * [new Block(opcode)](#new_module_block..Block_new)
-    * [.withChildBlock(block)](#module_block..Block+withChildBlock)
+    * [new Block(opcode, inputs)](#new_module_block..Block_new)
+    * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
+    * [.sprite](#module_block..Block+sprite)
+    * [.withChildBlock(block)](#module_block..Block+withChildBlock) ⇒ <code>this</code>
 
 <a name="new_module_block..Block_new"></a>
 
-#### new Block(opcode)
+#### new Block(opcode, inputs)
 <p>Creates an instance of Block.</p>
 
 
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
+| inputs | <code>Array.&lt;(string\|Variable)&gt;</code> | 
 
+<a name="module_block..Block+sprite"></a>
+
+#### block.sprite : <code>Sprite</code>
+<p>Getter for sprite</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+sprite"></a>
+
+#### block.sprite
+<p>Setter for sprite</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+withChildBlock"></a>
 
-#### block.withChildBlock(block)
+#### block.withChildBlock(block) ⇒ <code>this</code>
 <p>Adds a block as a child of this block.</p>
 
 **Kind**: instance method of [<code>Block</code>](#module_block..Block)  
@@ -473,6 +507,7 @@
     * [~createBroadcast(name)](#module_sb3Generator..createBroadcast) ⇒ <code>Broadcast</code>
     * [~createCostume(path)](#module_sb3Generator..createCostume) ⇒ <code>Costume</code>
     * [~createSound(path)](#module_sb3Generator..createSound) ⇒ <code>\*</code>
+    * [~createBlock(opcode, inputs)](#module_sb3Generator..createBlock) ⇒ <code>Block</code>
     * [~generateUid([length])](#module_sb3Generator..generateUid) ⇒ <code>string</code>
 
 <a name="module_sb3Generator..uidCharacters"></a>
@@ -558,6 +593,18 @@
 | --- | --- |
 | path | <code>string</code> | 
 
+<a name="module_sb3Generator..createBlock"></a>
+
+### sb3Generator~createBlock(opcode, inputs) ⇒ <code>Block</code>
+<p>Creates a block.</p>
+
+**Kind**: inner method of [<code>sb3Generator</code>](#module_sb3Generator)  
+
+| Param | Type |
+| --- | --- |
+| opcode | <code>string</code> | 
+| inputs | <code>Array.&lt;(string\|Variable)&gt;</code> | 
+
 <a name="module_sb3Generator..generateUid"></a>
 
 ### sb3Generator~generateUid([length]) ⇒ <code>string</code>
@@ -631,6 +678,12 @@
         * [.withVideoTransparency(videoTransparency)](#module_sprite..Sprite+withVideoTransparency) ⇒ <code>this</code>
         * [.withVideoState(videoState)](#module_sprite..Sprite+withVideoState) ⇒ <code>this</code>
         * [.withTextToSpeechLanguage(textToSpeechLanguage)](#module_sprite..Sprite+withTextToSpeechLanguage) ⇒ <code>this</code>
+        * [.withPosition(x, y)](#module_sprite..Sprite+withPosition)
+        * [.withSize(size)](#module_sprite..Sprite+withSize)
+        * [.withAngle(angle)](#module_sprite..Sprite+withAngle)
+        * [.asDraggable()](#module_sprite..Sprite+asDraggable)
+        * [.withRotationStyle(rotationStyle)](#module_sprite..Sprite+withRotationStyle)
+        * [.asInvisibleSprite()](#module_sprite..Sprite+asInvisibleSprite)
     * [~Sprite](#module_sprite..Sprite) : <code>Sprite</code>
         * [new Sprite(name)](#new_module_sprite..Sprite_new)
         * [.build(zip)](#module_sprite..Sprite+build)
@@ -648,6 +701,12 @@
         * [.withVideoTransparency(videoTransparency)](#module_sprite..Sprite+withVideoTransparency) ⇒ <code>this</code>
         * [.withVideoState(videoState)](#module_sprite..Sprite+withVideoState) ⇒ <code>this</code>
         * [.withTextToSpeechLanguage(textToSpeechLanguage)](#module_sprite..Sprite+withTextToSpeechLanguage) ⇒ <code>this</code>
+        * [.withPosition(x, y)](#module_sprite..Sprite+withPosition)
+        * [.withSize(size)](#module_sprite..Sprite+withSize)
+        * [.withAngle(angle)](#module_sprite..Sprite+withAngle)
+        * [.asDraggable()](#module_sprite..Sprite+asDraggable)
+        * [.withRotationStyle(rotationStyle)](#module_sprite..Sprite+withRotationStyle)
+        * [.asInvisibleSprite()](#module_sprite..Sprite+asInvisibleSprite)
 
 <a name="module_sprite..Sprite"></a>
 
@@ -671,6 +730,12 @@
     * [.withVideoTransparency(videoTransparency)](#module_sprite..Sprite+withVideoTransparency) ⇒ <code>this</code>
     * [.withVideoState(videoState)](#module_sprite..Sprite+withVideoState) ⇒ <code>this</code>
     * [.withTextToSpeechLanguage(textToSpeechLanguage)](#module_sprite..Sprite+withTextToSpeechLanguage) ⇒ <code>this</code>
+    * [.withPosition(x, y)](#module_sprite..Sprite+withPosition)
+    * [.withSize(size)](#module_sprite..Sprite+withSize)
+    * [.withAngle(angle)](#module_sprite..Sprite+withAngle)
+    * [.asDraggable()](#module_sprite..Sprite+asDraggable)
+    * [.withRotationStyle(rotationStyle)](#module_sprite..Sprite+withRotationStyle)
+    * [.asInvisibleSprite()](#module_sprite..Sprite+asInvisibleSprite)
 
 <a name="new_module_sprite..Sprite_new"></a>
 
@@ -842,6 +907,63 @@
 | --- | --- |
 | textToSpeechLanguage | <code>TextToSpeechLanguage</code> | 
 
+<a name="module_sprite..Sprite+withPosition"></a>
+
+#### sprite.withPosition(x, y)
+<p>Sets the sprite's coordinates.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| x | <code>number</code> | 
+| y | <code>number</code> | 
+
+<a name="module_sprite..Sprite+withSize"></a>
+
+#### sprite.withSize(size)
+<p>Sets the sprite's size in percent.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| size | <code>number</code> | 
+
+<a name="module_sprite..Sprite+withAngle"></a>
+
+#### sprite.withAngle(angle)
+<p>Sets the sprite's angle in degrees.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| angle | <code>number</code> | 
+
+<a name="module_sprite..Sprite+asDraggable"></a>
+
+#### sprite.asDraggable()
+<p>Sets whether the sprite is draggable.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+<a name="module_sprite..Sprite+withRotationStyle"></a>
+
+#### sprite.withRotationStyle(rotationStyle)
+<p>Sets the sprite's rotation style.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| rotationStyle | <code>string</code> | 
+
+<a name="module_sprite..Sprite+asInvisibleSprite"></a>
+
+#### sprite.asInvisibleSprite()
+<p>Sets the sprite to be invisible.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
 <a name="module_sprite..Sprite"></a>
 
 ### sprite~Sprite : <code>Sprite</code>
@@ -866,6 +988,12 @@
     * [.withVideoTransparency(videoTransparency)](#module_sprite..Sprite+withVideoTransparency) ⇒ <code>this</code>
     * [.withVideoState(videoState)](#module_sprite..Sprite+withVideoState) ⇒ <code>this</code>
     * [.withTextToSpeechLanguage(textToSpeechLanguage)](#module_sprite..Sprite+withTextToSpeechLanguage) ⇒ <code>this</code>
+    * [.withPosition(x, y)](#module_sprite..Sprite+withPosition)
+    * [.withSize(size)](#module_sprite..Sprite+withSize)
+    * [.withAngle(angle)](#module_sprite..Sprite+withAngle)
+    * [.asDraggable()](#module_sprite..Sprite+asDraggable)
+    * [.withRotationStyle(rotationStyle)](#module_sprite..Sprite+withRotationStyle)
+    * [.asInvisibleSprite()](#module_sprite..Sprite+asInvisibleSprite)
 
 <a name="new_module_sprite..Sprite_new"></a>
 
@@ -1037,6 +1165,63 @@
 | --- | --- |
 | textToSpeechLanguage | <code>TextToSpeechLanguage</code> | 
 
+<a name="module_sprite..Sprite+withPosition"></a>
+
+#### sprite.withPosition(x, y)
+<p>Sets the sprite's coordinates.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| x | <code>number</code> | 
+| y | <code>number</code> | 
+
+<a name="module_sprite..Sprite+withSize"></a>
+
+#### sprite.withSize(size)
+<p>Sets the sprite's size in percent.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| size | <code>number</code> | 
+
+<a name="module_sprite..Sprite+withAngle"></a>
+
+#### sprite.withAngle(angle)
+<p>Sets the sprite's angle in degrees.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| angle | <code>number</code> | 
+
+<a name="module_sprite..Sprite+asDraggable"></a>
+
+#### sprite.asDraggable()
+<p>Sets whether the sprite is draggable.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+<a name="module_sprite..Sprite+withRotationStyle"></a>
+
+#### sprite.withRotationStyle(rotationStyle)
+<p>Sets the sprite's rotation style.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| rotationStyle | <code>string</code> | 
+
+<a name="module_sprite..Sprite+asInvisibleSprite"></a>
+
+#### sprite.asInvisibleSprite()
+<p>Sets the sprite to be invisible.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
 <a name="module_texttospeech"></a>
 
 ## texttospeech

@@ -130,7 +130,7 @@ export class Sprite {
      *
      * @type {number}
      */
-    layerOrder: number = 0;
+    layerOrder: number = 1;
     
     /**
      * The tempo of the sprite's sounds.
@@ -159,6 +159,55 @@ export class Sprite {
      * @type {(TextToSpeechLanguage | null)}
      */
     textToSpeechLanguage: TextToSpeechLanguage | null = null;
+
+    /**
+     * The x position of the sprite (only needed if not stage).
+     *
+     * @type {number}
+     */
+    x: number = 0;
+
+    /**
+     * The y position of the sprite (only needed if not stage).
+     *
+     * @type {number}
+     */
+    y: number = 0;
+
+    /**
+     * The size of the sprite in percent (only needed if not stage).
+     *
+     * @type {number}
+     */
+    size: number = 100;
+
+    /**
+     * The direction of the sprite in degrees (only needed if not stage).
+     *
+     * @type {number}
+     */
+    direction: number = 90;
+
+    /**
+     * Whether or not the sprite can be dragged (only needed if not stage).
+     *
+     * @type {boolean}
+     */
+    draggable: boolean = false;
+
+    /**
+     * The sprite's rotation style (only needed if not stage).
+     *
+     * @type {string}
+     */
+    rotationStyle: string = 'all around';
+
+    /**
+     * Whether the sprite is visible.
+     *
+     * @type {boolean}
+     */
+    visible: boolean = true;
 
     /**
      * Creates an instance of Sprite.
@@ -204,6 +253,7 @@ export class Sprite {
      */
     asStage() {
         this.isStage = true;
+        this.layerOrder = 0;
         return this;
     }
 
@@ -248,6 +298,7 @@ export class Sprite {
      */
     withBlock(block: Block) {
         this._blocks.push(block);
+        block.sprite = this;
         return this;
     }
 
@@ -307,7 +358,11 @@ export class Sprite {
      * @returns {this}
      */
     withLayerOrder(layerOrder: number) {
-        this.layerOrder = layerOrder;
+        if (this.isStage) {
+            return;
+        }
+
+        this.layerOrder = Math.max(layerOrder, 1);
         return this;
     }
 
@@ -353,5 +408,53 @@ export class Sprite {
     withTextToSpeechLanguage(textToSpeechLanguage: TextToSpeechLanguage) {
         this.textToSpeechLanguage = textToSpeechLanguage;
         return this;
+    }
+
+    /**
+     * Sets the sprite's coordinates.
+     *
+     * @param {number} x
+     * @param {number} y
+     */
+    withPosition(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
+
+    /**
+     * Sets the sprite's size in percent.
+     *
+     * @param {number} size
+     */
+    withSize(size: number) {
+        this.size = size;
+    }
+
+    /**
+     * Sets the sprite's angle in degrees.
+     *
+     * @param {number} angle
+     */
+    withAngle(angle: number) {
+        this.direction = angle;
+    }
+
+    /** Sets whether the sprite is draggable. */
+    asDraggable() {
+        this.draggable = true;
+    }
+
+    /**
+     * Sets the sprite's rotation style.
+     *
+     * @param {string} rotationStyle
+     */
+    withRotationStyle(rotationStyle: string) {
+        this.rotationStyle = rotationStyle;
+    }
+
+    /** Sets the sprite to be invisible. */
+    asInvisibleSprite() {
+        this.visible = false;
     }
 }

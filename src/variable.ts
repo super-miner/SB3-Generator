@@ -13,6 +13,13 @@ import {generateUid} from './sb3Generator';
  */
 export class Variable {
     /**
+     * Whether the variable is a global variable.
+     *
+     * @type {boolean}
+     */
+    _global: boolean = false;
+
+    /**
      * The variable's uid.
      *
      * @type {string}
