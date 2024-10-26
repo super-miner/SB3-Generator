@@ -2,7 +2,7 @@
  * @module block
  */
 
-import { generateUid } from "./sb3Generator";
+import { createBlock, generateUid } from "./sb3Generator";
 import { Variable } from "./variable";
 import { opcodeTable } from "./opcodetable";
 import { InputType } from "./inputtype";
@@ -38,6 +38,13 @@ export class Block {
     _previousBlock: Block|null = null;
 
     /**
+     * This block's referenced blocks.
+     *
+     * @type {Block[]}
+     */
+    _references: Block[] = [];
+
+    /**
      * The sprite that this block is attached to.
      *
      * @type {(Sprite|null)}
@@ -66,6 +73,10 @@ export class Block {
         if (this._previousBlock != null) {
             this._previousBlock.sprite = sprite;
         }
+
+        this._references.forEach(reference => {
+            reference.sprite = sprite;
+        });
     }
 
     /**
@@ -99,9 +110,9 @@ export class Block {
     /**
      * The parameters being inputted into the block that are not counted as inputs.
      *
-     * @type {Object.<string, Array<string>>}
+     * @type {Object.<string, Array<(string|null)>>}
      */
-    fields: {[id: string]: string[]} = {};
+    fields: {[id: string]: (string|null)[]} = {};
 
     /**
      * Whether or not the block has a shadow.
@@ -136,12 +147,20 @@ export class Block {
      *
      * @constructor
      * @param {string} opcode
-     * @param {Array<(string|Variable)>} inputs
+     * @param {Array<(string|Variable|null)>} inputs
+     * @param {Array<string>}
      */
-    constructor(opcode: string, inputs: (string|Variable)[]) {
+    constructor(opcode: string, inputs: (string|Variable|null)[], fields: string[]) {
         this.opcode = opcode;
         this.setInputs(inputs);
+        this.setFields(fields);
         this._uid = generateUid();
+    }
+
+    /** Makes the block into a shadow. */
+    asShadow() {
+        this.shadow = true;
+        this.topLevel = false;
     }
 
     /**
@@ -168,14 +187,44 @@ export class Block {
     /**
      * Sets the inputs for this block.
      *
-     * @param {Array<(string|Variable)>} inputs
+     * @param {Array<(string|Variable|Block)>} inputs
      * @private
      */
-    setInputs(inputs: (string|Variable)[]) {
+    setInputs(inputs: (string|Variable|null)[]) {
         let inputFields = opcodeTable[this.opcode];
 
-        for (let i = 0; i < inputFields.length; i++) {
-            this.setInput(inputFields[i], inputs[i]);
+        for (let i = 0; i < inputFields.inputs.length; i++) {
+            let inputField = inputFields.inputs[i];
+            let input = inputs[i];
+
+            if (inputField.reference != null) {
+                let referencedBlock = createBlock(inputField.reference, [], [typeof input == 'string' ? input : '']);
+                referencedBlock.asShadow();
+
+                this.setInput(inputField.name, typeof input == 'string' ? null : input, referencedBlock);
+
+                this._references.push(referencedBlock);
+            }
+            else {
+                this.setInput(inputField.name, input, null);
+            }
+        }
+    }
+
+    /**
+     * Sets the fields for this block.
+     *
+     * @param {string[]} fields
+     * @private
+     */
+    setFields(fields: string[]) {
+        let fieldFields = opcodeTable[this.opcode];
+
+        for (let i = 0; i < fieldFields.fields.length; i++) {
+            let fieldField = fieldFields.fields[i];
+            let field = fields[i];
+
+            this.setField(fieldField.name, field);
         }
     }
 
@@ -183,34 +232,63 @@ export class Block {
      * Sets the value of an input.
      *
      * @param {string} input
-     * @param {(string|Variable)} to
+     * @param {(string|Variable|null)} to
+     * @param {(Block|null)} block
      * @private
      */
-    setInput(input: string, to: (string|Variable)) {
-        switch(typeof to) {
-            case 'string':
-                this.inputs[input] = [
-                    InputType.INCLUDES_LITERAL,
-                    [
-                        InputType.CUSTOM_LITERAL,
-                        to
-                    ]
-                ];
-                break;
-            default:
-                this.inputs[input] = [
-                    InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
-                    [
-                        InputType.CUSTOM_VARIABLE | InputType.CUSTOM_LITERAL,
-                        to.name,
-                        to.uid
-                    ],
+    setInput(input: string, to: (string|Variable|null), block: (Block|null)) {
+        if (to == null) {
+            this.inputs[input] = [];
+        }
+        else if (typeof to == 'string') {
+            this.inputs[input] = [
+                InputType.INCLUDES_LITERAL,
+                [
+                    InputType.CUSTOM_LITERAL,
+                    to
+                ]
+            ];
+        }
+        else if (to instanceof Variable) {
+            this.inputs[input] = [
+                InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
+                [
+                    InputType.CUSTOM_VARIABLE | InputType.CUSTOM_LITERAL,
+                    to.name,
+                    to.uid
+                ],
+            ];
+
+            if (block == null) {
+                this.inputs[input].push(
                     [
                         InputType.CUSTOM_LITERAL,
                         ''
                     ]
-                ];
-                break;
+                );
+            }
         }
+
+        if (block != null) {
+            if (to == null) {
+                this.inputs[input].push(InputType.INCLUDES_LITERAL);
+            }
+
+            this.inputs[input].push(block._uid);
+        }
+    }
+
+    /**
+     * Sets the value of a field.
+     *
+     * @param {string} field
+     * @param {string} to
+     * @private
+     */
+    setField(field: string, to: string) {
+        this.fields[field] = [
+            to,
+            null
+        ];
     }
 }

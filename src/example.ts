@@ -1,6 +1,7 @@
 import {createBlock, createCostume, createProject, createSprite, createVariable} from './sb3Generator';
 
-const testVariable = createVariable('TestVariable').withValue(10);
+const testVariable = createVariable('TestVariable')
+                        .withValue(10);
 
 createProject('TestProject')
     .withSprite(
@@ -9,9 +10,13 @@ createProject('TestProject')
             .withCostume(
                 createCostume('TestCostume.png')
             )
+            .withVariable(
+                createVariable('IsThisGlobal?')
+                    .withValue('Global?')
+            )
     )
     .withSprite(
-        createSprite('Regular Sprite')
+        createSprite('Test Sprite')
             .withVariable(
                 testVariable
             )
@@ -21,16 +26,10 @@ createProject('TestProject')
             .withBlock(
                 createBlock('event_whenflagclicked', [])
                     .withNextBlock(
-                        createBlock('motion_movesteps', [testVariable])
+                        createBlock('motion_goto', ['_random_'])
                     )
                     .withNextBlock(
-                        createBlock('motion_turnright', ['20'])
-                    )
-                    .withNextBlock(
-                        createBlock('motion_turnleft', [testVariable])
-                    )
-                    .withNextBlock(
-                        createBlock('motion_gotoxy', ['100', testVariable])
+                        createBlock('motion_goto', [testVariable])
                     )
             )
     )

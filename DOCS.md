@@ -37,14 +37,16 @@
 
 * [block](#module_block)
     * [~Block](#module_block..Block)
-        * [new Block(opcode, inputs)](#new_module_block..Block_new)
+        * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
+        * [.asShadow()](#module_block..Block+asShadow)
         * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
     * [~Block](#module_block..Block) : <code>Block</code>
-        * [new Block(opcode, inputs)](#new_module_block..Block_new)
+        * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
+        * [.asShadow()](#module_block..Block+asShadow)
         * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
 
 <a name="module_block..Block"></a>
@@ -53,21 +55,23 @@
 **Kind**: inner class of [<code>block</code>](#module_block)  
 
 * [~Block](#module_block..Block)
-    * [new Block(opcode, inputs)](#new_module_block..Block_new)
+    * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
+    * [.asShadow()](#module_block..Block+asShadow)
     * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
 
-#### new Block(opcode, inputs)
+#### new Block(opcode, inputs, fields)
 <p>Creates an instance of Block.</p>
 
 
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
-| inputs | <code>Array.&lt;(string\|Variable)&gt;</code> | 
+| inputs | <code>Array.&lt;(string\|Variable\|null)&gt;</code> | 
+| fields | <code>Array.&lt;string&gt;</code> | 
 
 <a name="module_block..Block+sprite"></a>
 
@@ -81,6 +85,12 @@
 <p>Setter for sprite</p>
 
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+asShadow"></a>
+
+#### block.asShadow()
+<p>Makes the block into a shadow.</p>
+
+**Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+withNextBlock"></a>
 
 #### block.withNextBlock(block) ⇒ <code>Block</code>
@@ -100,21 +110,23 @@
 **Kind**: inner typedef of [<code>block</code>](#module_block)  
 
 * [~Block](#module_block..Block) : <code>Block</code>
-    * [new Block(opcode, inputs)](#new_module_block..Block_new)
+    * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
+    * [.asShadow()](#module_block..Block+asShadow)
     * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
 
-#### new Block(opcode, inputs)
+#### new Block(opcode, inputs, fields)
 <p>Creates an instance of Block.</p>
 
 
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
-| inputs | <code>Array.&lt;(string\|Variable)&gt;</code> | 
+| inputs | <code>Array.&lt;(string\|Variable\|null)&gt;</code> | 
+| fields | <code>Array.&lt;string&gt;</code> | 
 
 <a name="module_block..Block+sprite"></a>
 
@@ -128,6 +140,12 @@
 <p>Setter for sprite</p>
 
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+asShadow"></a>
+
+#### block.asShadow()
+<p>Makes the block into a shadow.</p>
+
+**Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+withNextBlock"></a>
 
 #### block.withNextBlock(block) ⇒ <code>Block</code>
@@ -539,7 +557,7 @@
     * [~createBroadcast(name)](#module_sb3Generator..createBroadcast) ⇒ <code>Broadcast</code>
     * [~createCostume(path)](#module_sb3Generator..createCostume) ⇒ <code>Costume</code>
     * [~createSound(path)](#module_sb3Generator..createSound) ⇒ <code>\*</code>
-    * [~createBlock(opcode, inputs)](#module_sb3Generator..createBlock) ⇒ <code>Block</code>
+    * [~createBlock(opcode, inputs, fields)](#module_sb3Generator..createBlock) ⇒ <code>Block</code>
     * [~generateUid([length])](#module_sb3Generator..generateUid) ⇒ <code>string</code>
 
 <a name="module_sb3Generator..uidCharacters"></a>
@@ -627,7 +645,7 @@
 
 <a name="module_sb3Generator..createBlock"></a>
 
-### sb3Generator~createBlock(opcode, inputs) ⇒ <code>Block</code>
+### sb3Generator~createBlock(opcode, inputs, fields) ⇒ <code>Block</code>
 <p>Creates a block.</p>
 
 **Kind**: inner method of [<code>sb3Generator</code>](#module_sb3Generator)  
@@ -635,7 +653,8 @@
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
-| inputs | <code>Array.&lt;(string\|Variable)&gt;</code> | 
+| inputs | <code>Array.&lt;(string\|Variable\|Block)&gt;</code> | 
+| fields | <code>Array.&lt;string&gt;</code> | 
 
 <a name="module_sb3Generator..generateUid"></a>
 
