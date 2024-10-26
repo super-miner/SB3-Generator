@@ -3,7 +3,7 @@ import {createBlock, createCostume, createProject, createSprite, createVariable}
 const testVariable = createVariable('TestVariable')
                         .withValue(10);
 
-createProject('TestProject')
+createProject('Test Project')
     .withSprite(
         createSprite('Stage')
             .asStage()

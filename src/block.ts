@@ -152,9 +152,9 @@ export class Block {
      */
     constructor(opcode: string, inputs: (string|Variable|null)[], fields: string[]) {
         this.opcode = opcode;
+        this._uid = generateUid();
         this.setInputs(inputs);
         this.setFields(fields);
-        this._uid = generateUid();
     }
 
     /** Makes the block into a shadow. */
@@ -197,6 +197,10 @@ export class Block {
             let inputField = inputFields.inputs[i];
             let input = inputs[i];
 
+            if (inputField.validValues != null && input != null && typeof input == 'string' && !inputField.validValues.includes(input)) {
+                console.log('WARN: Invalid value for input ' + inputField.name + ' in ' + this.opcode + '. ' + inputField.name + ' can only accept ["' + inputField.validValues.join('","') + '"], given "' + input + '". (block uid: ' + this._uid + ')');
+            }
+
             if (inputField.reference != null) {
                 let referencedBlock = createBlock(inputField.reference, [], [typeof input == 'string' ? input : '']);
                 referencedBlock.asShadow();
@@ -223,6 +227,10 @@ export class Block {
         for (let i = 0; i < fieldFields.fields.length; i++) {
             let fieldField = fieldFields.fields[i];
             let field = fields[i];
+
+            if (fieldField.validValues != null && field != null && typeof field == 'string' && !fieldField.validValues.includes(field)) {
+                console.log('WARN: Invalid value for field ' + fieldField.name + ' in ' + this.opcode + '. ' + fieldField.name + ' can only accept ["' + fieldField.validValues.join('","') + '"], given "' + field + '". (block uid: ' + this._uid + ')');
+            }
 
             this.setField(fieldField.name, field);
         }
