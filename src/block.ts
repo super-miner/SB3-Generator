@@ -89,6 +89,7 @@ export class Block {
     set parentBlock(block: (Block|null)) {
         this._parentBlock = block;
         this.parent = block == null ? null : block._uid;
+        this.topLevel = false;
     }
 
     /**
@@ -201,10 +202,10 @@ export class Block {
      *
      * @constructor
      * @param {string} opcode
-     * @param {Array<(string|Variable|null)>} inputs
+     * @param {Array<(string|Variable|Block|null)>} inputs
      * @param {Array<string>}
      */
-    constructor(opcode: string, inputs: (string|Variable|null)[], fields: string[]) {
+    constructor(opcode: string, inputs: (string|Variable|Block|null)[], fields: string[]) {
         this.opcode = opcode;
         this._uid = generateUid();
         this.setInputs(inputs);
@@ -230,8 +231,6 @@ export class Block {
      * @returns {Block}
      */
     withNextBlock(block: Block) {
-        block.topLevel = false;
-
         this.nextBlock = block;
         block.previousBlock = this;
         block.parentBlock = this;
@@ -246,10 +245,10 @@ export class Block {
     /**
      * Sets the inputs for this block.
      *
-     * @param {Array<(string|Variable|Block)>} inputs
+     * @param {Array<(string|Variable|Block|null)>} inputs
      * @private
      */
-    setInputs(inputs: (string|Variable|null)[]) {
+    setInputs(inputs: (string|Variable|Block|null)[]) {
         let inputFields = opcodeTable[this.opcode];
 
         for (let i = 0; i < inputFields.inputs.length; i++) {
@@ -299,11 +298,11 @@ export class Block {
      * Sets the value of an input.
      *
      * @param {string} input
-     * @param {(string|Variable|null)} to
+     * @param {(string|Variable|Block|null)} to
      * @param {(Block|null)} block
      * @private
      */
-    setInput(input: string, to: (string|Variable|null), block: (Block|null)) {
+    setInput(input: string, to: (string|Variable|Block|null), block: (Block|null)) {
         if (to == null) {
             this.inputs[input] = [];
         }
@@ -323,7 +322,7 @@ export class Block {
                     InputType.CUSTOM_VARIABLE | InputType.CUSTOM_LITERAL,
                     to.name,
                     to.uid
-                ],
+                ]
             ];
 
             if (block == null) {
@@ -334,6 +333,19 @@ export class Block {
                     ]
                 );
             }
+        }
+        else {
+            this.inputs[input] = [
+                InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
+                to._uid,
+                [
+                    InputType.CUSTOM_LITERAL,
+                    ''
+                ]
+            ];
+
+            to.parentBlock = this;
+            this._references.push(to);
         }
 
         if (block != null) {

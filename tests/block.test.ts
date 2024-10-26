@@ -53,6 +53,23 @@ test('Creating block with variable input correctly', () => {
     expect(block.fields).toStrictEqual({});
 });
 
+test('Creating block with block input correctly', () => {
+    const block2 = new Block('motion_yposition', [], []);
+    const block1 = new Block('motion_movesteps', [block2], []);
+    expect(block1.inputs).toStrictEqual({
+        'STEPS': [
+            InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
+            block2._uid,
+            [
+                InputType.CUSTOM_LITERAL,
+                ''
+            ]
+        ]
+    });
+    expect(block1.fields).toStrictEqual({});
+    expect(block2.parentBlock).toStrictEqual(block1);
+});
+
 test('Creating block with field correctly', () => {
     const block = new Block('motion_setrotationstyle', [], ['left-right']);
 
@@ -126,4 +143,5 @@ test ('Setting parentBlock correctly', () => {
     block1.parentBlock = block2;
     expect(block1._parentBlock).toStrictEqual(block2);
     expect(block1.parent).toBe(block2._uid);
+    expect(block1.topLevel).toBe(false);
 });

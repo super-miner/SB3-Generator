@@ -31,6 +31,11 @@ createProject('Test Project')
                     .withNextBlock(
                         createBlock('motion_goto', [testVariable])
                     )
+                    .withNextBlock(
+                        createBlock('motion_movesteps', [
+                            createBlock('motion_yposition')
+                        ])
+                    )
             )
     )
     .build(true);

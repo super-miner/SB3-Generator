@@ -125,6 +125,18 @@ export const opcodeTable: {[id: string]: FieldData} = {
             {name: 'STYLE', validValues: ['left-right', 'don\'t rotate', 'all around']}
         ]
     },
+    'motion_xposition': {
+        inputs: [],
+        fields: []
+    },
+    'motion_yposition': {
+        inputs: [],
+        fields: []
+    },
+    'motion_direction': {
+        inputs: [],
+        fields: []
+    },
     'event_whenflagclicked': {
         inputs: [], 
         fields: []

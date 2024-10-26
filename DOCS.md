@@ -88,7 +88,7 @@
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
-| inputs | <code>Array.&lt;(string\|Variable\|null)&gt;</code> | 
+| inputs | <code>Array.&lt;(string\|Variable\|Block\|null)&gt;</code> | 
 | fields | <code>Array.&lt;string&gt;</code> | 
 
 <a name="module_block..Block+nextBlock"></a>
@@ -188,7 +188,7 @@
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
-| inputs | <code>Array.&lt;(string\|Variable\|null)&gt;</code> | 
+| inputs | <code>Array.&lt;(string\|Variable\|Block\|null)&gt;</code> | 
 | fields | <code>Array.&lt;string&gt;</code> | 
 
 <a name="module_block..Block+nextBlock"></a>
@@ -755,7 +755,7 @@
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
-| inputs | <code>Array.&lt;(string\|Variable\|Block)&gt;</code> | 
+| inputs | <code>Array.&lt;(string\|Variable\|Block\|null)&gt;</code> | 
 | fields | <code>Array.&lt;string&gt;</code> | 
 
 <a name="module_sb3Generator..generateUid"></a>
