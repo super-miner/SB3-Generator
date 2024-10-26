@@ -42,6 +42,8 @@
         * [.nextBlock](#module_block..Block+nextBlock)
         * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
         * [.previousBlock](#module_block..Block+previousBlock)
+        * [.parentBlock](#module_block..Block+parentBlock) : <code>Block</code>
+        * [.parentBlock](#module_block..Block+parentBlock)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
         * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
@@ -52,6 +54,8 @@
         * [.nextBlock](#module_block..Block+nextBlock)
         * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
         * [.previousBlock](#module_block..Block+previousBlock)
+        * [.parentBlock](#module_block..Block+parentBlock) : <code>Block</code>
+        * [.parentBlock](#module_block..Block+parentBlock)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
         * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
@@ -68,6 +72,8 @@
     * [.nextBlock](#module_block..Block+nextBlock)
     * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
     * [.previousBlock](#module_block..Block+previousBlock)
+    * [.parentBlock](#module_block..Block+parentBlock) : <code>Block</code>
+    * [.parentBlock](#module_block..Block+parentBlock)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
     * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
@@ -109,6 +115,19 @@
 
 #### block.previousBlock
 <p>Setter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+parentBlock"></a>
+
+#### block.parentBlock : <code>Block</code>
+<p>Getter for parent block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+parentBlock"></a>
+
+#### block.parentBlock
+<p>Setter for parent block.</p>
 
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+sprite"></a>
@@ -153,6 +172,8 @@
     * [.nextBlock](#module_block..Block+nextBlock)
     * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
     * [.previousBlock](#module_block..Block+previousBlock)
+    * [.parentBlock](#module_block..Block+parentBlock) : <code>Block</code>
+    * [.parentBlock](#module_block..Block+parentBlock)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
     * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
@@ -194,6 +215,19 @@
 
 #### block.previousBlock
 <p>Setter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+parentBlock"></a>
+
+#### block.parentBlock : <code>Block</code>
+<p>Getter for parent block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+parentBlock"></a>
+
+#### block.parentBlock
+<p>Setter for parent block.</p>
 
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+sprite"></a>

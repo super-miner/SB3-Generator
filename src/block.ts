@@ -69,6 +69,29 @@ export class Block {
     }
 
     /**
+     * This block's parent in block form.
+     *
+     * @type {(Block|null)}
+     */
+    _parentBlock: Block|null = null;
+
+    /**
+     * Getter for parent block.
+     *
+     * @readonly
+     * @type {Block}
+     */
+    get parentBlock() {
+        return this._parentBlock;
+    }
+
+    /** Setter for parent block. */
+    set parentBlock(block: (Block|null)) {
+        this._parentBlock = block;
+        this.parent = block == null ? null : block._uid;
+    }
+
+    /**
      * This block's referenced blocks.
      *
      * @type {Block[]}
@@ -211,7 +234,7 @@ export class Block {
 
         this.nextBlock = block;
         block.previousBlock = this;
-        block.parent = this._uid;
+        block.parentBlock = this;
 
         if (this._sprite != null) {
             block.sprite = this._sprite;

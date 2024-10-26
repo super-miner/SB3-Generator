@@ -111,3 +111,19 @@ test('Setting sprite correctly', () => {
     expect(block.sprite).toBe(sprite);
     expect(sprite._blocks).toStrictEqual([block]);
 });
+
+test ('Setting nextBlock correctly', () => {
+    const block1 = createBlock('motion_movesteps', ['10']);
+    const block2 = createBlock('motion_movesteps', ['20']);
+    block1.nextBlock = block2;
+    expect(block1._nextBlock).toStrictEqual(block2);
+    expect(block1.next).toBe(block2._uid);
+});
+
+test ('Setting parentBlock correctly', () => {
+    const block1 = createBlock('motion_movesteps', ['10']);
+    const block2 = createBlock('motion_movesteps', ['20']);
+    block1.parentBlock = block2;
+    expect(block1._parentBlock).toStrictEqual(block2);
+    expect(block1.parent).toBe(block2._uid);
+});
