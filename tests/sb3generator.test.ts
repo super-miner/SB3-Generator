@@ -35,7 +35,7 @@ test('Creates sound correctly', () => {
 });
 
 test('Creates block correctly', () => {
-    expect(createBlock('motion_movesteps', ['15'])).toEqual(new Block('motion_movesteps', ['15']));
+    expect(createBlock('motion_movesteps', ['15'], [])).toEqual(new Block('motion_movesteps', ['15'], []));
 });
 
 test('Generates Uid correctly', () => {

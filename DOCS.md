@@ -38,15 +38,23 @@
 * [block](#module_block)
     * [~Block](#module_block..Block)
         * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
+        * [.nextBlock](#module_block..Block+nextBlock) : <code>Block</code> \| <code>null</code>
+        * [.nextBlock](#module_block..Block+nextBlock)
+        * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
+        * [.previousBlock](#module_block..Block+previousBlock)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
-        * [.asShadow()](#module_block..Block+asShadow)
+        * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
         * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
     * [~Block](#module_block..Block) : <code>Block</code>
         * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
+        * [.nextBlock](#module_block..Block+nextBlock) : <code>Block</code> \| <code>null</code>
+        * [.nextBlock](#module_block..Block+nextBlock)
+        * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
+        * [.previousBlock](#module_block..Block+previousBlock)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
-        * [.asShadow()](#module_block..Block+asShadow)
+        * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
         * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
 
 <a name="module_block..Block"></a>
@@ -56,9 +64,13 @@
 
 * [~Block](#module_block..Block)
     * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
+    * [.nextBlock](#module_block..Block+nextBlock) : <code>Block</code> \| <code>null</code>
+    * [.nextBlock](#module_block..Block+nextBlock)
+    * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
+    * [.previousBlock](#module_block..Block+previousBlock)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
-    * [.asShadow()](#module_block..Block+asShadow)
+    * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
     * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
@@ -73,6 +85,32 @@
 | inputs | <code>Array.&lt;(string\|Variable\|null)&gt;</code> | 
 | fields | <code>Array.&lt;string&gt;</code> | 
 
+<a name="module_block..Block+nextBlock"></a>
+
+#### block.nextBlock : <code>Block</code> \| <code>null</code>
+<p>Getter for next block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+nextBlock"></a>
+
+#### block.nextBlock
+<p>Setter for next block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+previousBlock"></a>
+
+#### block.previousBlock : <code>Block</code> \| <code>null</code>
+<p>Getter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+previousBlock"></a>
+
+#### block.previousBlock
+<p>Setter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+sprite"></a>
 
 #### block.sprite : <code>Sprite</code>
@@ -87,7 +125,7 @@
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+asShadow"></a>
 
-#### block.asShadow()
+#### block.asShadow() ⇒ <code>this</code>
 <p>Makes the block into a shadow.</p>
 
 **Kind**: instance method of [<code>Block</code>](#module_block..Block)  
@@ -111,9 +149,13 @@
 
 * [~Block](#module_block..Block) : <code>Block</code>
     * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
+    * [.nextBlock](#module_block..Block+nextBlock) : <code>Block</code> \| <code>null</code>
+    * [.nextBlock](#module_block..Block+nextBlock)
+    * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
+    * [.previousBlock](#module_block..Block+previousBlock)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
-    * [.asShadow()](#module_block..Block+asShadow)
+    * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
     * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
@@ -128,6 +170,32 @@
 | inputs | <code>Array.&lt;(string\|Variable\|null)&gt;</code> | 
 | fields | <code>Array.&lt;string&gt;</code> | 
 
+<a name="module_block..Block+nextBlock"></a>
+
+#### block.nextBlock : <code>Block</code> \| <code>null</code>
+<p>Getter for next block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+nextBlock"></a>
+
+#### block.nextBlock
+<p>Setter for next block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+previousBlock"></a>
+
+#### block.previousBlock : <code>Block</code> \| <code>null</code>
+<p>Getter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+previousBlock"></a>
+
+#### block.previousBlock
+<p>Setter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+sprite"></a>
 
 #### block.sprite : <code>Sprite</code>
@@ -142,7 +210,7 @@
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+asShadow"></a>
 
-#### block.asShadow()
+#### block.asShadow() ⇒ <code>this</code>
 <p>Makes the block into a shadow.</p>
 
 **Kind**: instance method of [<code>Block</code>](#module_block..Block)  

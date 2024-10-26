@@ -31,11 +31,42 @@ export class Block {
     _nextBlock: Block|null = null;
 
     /**
+     * Getter for next block.
+     *
+     * @readonly
+     * @type {Block|null}
+     */
+    get nextBlock() {
+        return this._nextBlock;
+    }
+
+    /** Setter for next block. */
+    set nextBlock(block: Block|null) {
+        this._nextBlock = block;
+        this.next = block == null ? null : block._uid;
+    }
+
+    /**
      * The previous block in the sequence.
      *
      * @type {(Block|null)}
      */
     _previousBlock: Block|null = null;
+
+    /**
+     * Getter for previous block.
+     *
+     * @readonly
+     * @type {Block|null}
+     */
+    get previousBlock() {
+        return this._previousBlock;
+    }
+
+    /** Setter for previous block. */
+    set previousBlock(block: Block|null) {
+        this._previousBlock = block;
+    }
 
     /**
      * This block's referenced blocks.
@@ -157,10 +188,16 @@ export class Block {
         this.setFields(fields);
     }
 
-    /** Makes the block into a shadow. */
+    /**
+     * Makes the block into a shadow.
+     *
+     * @returns {this}
+     */
     asShadow() {
         this.shadow = true;
         this.topLevel = false;
+
+        return this;
     }
 
     /**
@@ -172,9 +209,8 @@ export class Block {
     withNextBlock(block: Block) {
         block.topLevel = false;
 
-        this.next = block._uid;
-        this._nextBlock = block;
-        block._previousBlock = this;
+        this.nextBlock = block;
+        block.previousBlock = this;
         block.parent = this._uid;
 
         if (this._sprite != null) {
