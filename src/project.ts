@@ -6,7 +6,7 @@ import fs from 'fs';
 import JSZip from 'jszip';
 import {Sprite} from './sprite';
 import {Metadata} from './metadata';
-import {ToBeImplemented} from './tobeimplemented';
+import {ToBeImplemented} from './toBeImplemented';
 
 /**
  * Represents a .sb3 project.

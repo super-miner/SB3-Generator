@@ -26,15 +26,7 @@ createProject('Test Project')
             .withBlock(
                 createBlock('event_whenflagclicked', [])
                     .withNextBlock(
-                        createBlock('motion_goto', ['_random_'])
-                    )
-                    .withNextBlock(
-                        createBlock('motion_goto', [testVariable])
-                    )
-                    .withNextBlock(
-                        createBlock('motion_movesteps', [
-                            createBlock('motion_yposition')
-                        ])
+                        createBlock('looks_goforwardbackwardlayers', ['2'], ['forward'])
                     )
             )
     )

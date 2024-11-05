@@ -7,7 +7,6 @@ import { Variable } from "./variable";
 import { Field, FieldData, Input, opcodeTable } from "./opcodeTable";
 import { InputType } from "./inputType";
 import { Sprite } from "./sprite";
-import { BitMaskType } from "./bitMaskType";
 
 /**
  * Represents a scratch block.
@@ -315,7 +314,7 @@ export class Block {
             this.inputs[input.name] = [
                 InputType.INCLUDES_LITERAL,
                 [
-                    input.bitMaskType == BitMaskType.STRING ? InputType.INCLUDES_VARIABLE | InputType.CUSTOM_VARIABLE : InputType.CUSTOM_LITERAL,
+                    input.bitMaskType as number,
                     to
                 ]
             ];
@@ -333,7 +332,7 @@ export class Block {
             if (block == null) {
                 this.inputs[input.name].push(
                     [
-                        input.bitMaskType == BitMaskType.STRING ? InputType.INCLUDES_VARIABLE | InputType.CUSTOM_VARIABLE : InputType.CUSTOM_LITERAL,
+                        input.bitMaskType as number,
                         ''
                     ]
                 );
@@ -344,7 +343,7 @@ export class Block {
                 InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
                 to._uid,
                 [
-                    input.bitMaskType == BitMaskType.STRING ? InputType.INCLUDES_VARIABLE | InputType.CUSTOM_VARIABLE : InputType.CUSTOM_LITERAL,
+                    input.bitMaskType as number,
                     ''
                 ]
             ];

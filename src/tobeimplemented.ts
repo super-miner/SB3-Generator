@@ -1,5 +1,5 @@
 /**
- * @module tobeimplemented
+ * @module toBeImplemented
  */
 
 /**
