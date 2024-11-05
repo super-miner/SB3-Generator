@@ -142,7 +142,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'looks_sayforsecs': {
         inputs: [
-            {name: 'MESSAGE', bitMaskType: BitMaskType.REGULAR, reference: null, validValues: null},
+            {name: 'MESSAGE', bitMaskType: BitMaskType.STRING, reference: null, validValues: null},
             {name: 'SECS', bitMaskType: BitMaskType.REGULAR, reference: null, validValues: null}
         ],
         fields: [],

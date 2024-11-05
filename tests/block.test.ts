@@ -89,6 +89,77 @@ test('Creating block with dropdown correctly', () => {
     expect(block._references).toStrictEqual([dropdownBlock]);
 });
 
+test('Creating block with string input field correctly', () => {
+    const block = new Block('looks_sayforsecs', ['Hello World!', '1'], []);
+    
+    expect(block.inputs).toStrictEqual({
+        'MESSAGE': [
+            1,
+            [
+                10,
+                'Hello World!'
+            ]
+        ],
+        'SECS': [
+            1,
+            [
+                4,
+                '1'
+            ]
+        ]
+    });
+});
+
+test('Creating block with string input field containing variable correctly', () => {
+    const variable = createVariable('test variable').withValue(124);
+    const block = new Block('looks_sayforsecs', [variable, '1'], []);
+    
+    expect(block.inputs).toStrictEqual({
+        'MESSAGE': [
+            3,
+            [
+                12,
+                'test variable',
+                variable.uid
+            ],
+            [
+                10,
+                ''
+            ]
+        ],
+        'SECS': [
+            1,
+            [
+                4,
+                '1'
+            ]
+        ]
+    });
+});
+
+test('Creating block with string input field containing block correctly', () => {
+    const containedBlock = new Block('motion_xposition', [], []);
+    const block = new Block('looks_sayforsecs', [containedBlock, '1'], []);
+    
+    expect(block.inputs).toStrictEqual({
+        'MESSAGE': [
+            3,
+            containedBlock._uid,
+            [
+                10,
+                ''
+            ]
+        ],
+        'SECS': [
+            1,
+            [
+                4,
+                '1'
+            ]
+        ]
+    });
+});
+
 test('Succesfully adding children', () => {
     const sprite = createSprite('Test Sprite');
     const block1 = createBlock('event_whenflagclicked', []);

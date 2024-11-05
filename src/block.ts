@@ -333,7 +333,7 @@ export class Block {
             if (block == null) {
                 this.inputs[input.name].push(
                     [
-                        InputType.CUSTOM_LITERAL,
+                        input.bitMaskType == BitMaskType.STRING ? InputType.INCLUDES_VARIABLE | InputType.CUSTOM_VARIABLE : InputType.CUSTOM_LITERAL,
                         ''
                     ]
                 );
@@ -344,7 +344,7 @@ export class Block {
                 InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
                 to._uid,
                 [
-                    InputType.CUSTOM_LITERAL,
+                    input.bitMaskType == BitMaskType.STRING ? InputType.INCLUDES_VARIABLE | InputType.CUSTOM_VARIABLE : InputType.CUSTOM_LITERAL,
                     ''
                 ]
             ];
