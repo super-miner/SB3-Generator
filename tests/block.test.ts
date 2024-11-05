@@ -1,5 +1,5 @@
 import { Block } from "../src/block";
-import { InputType } from "../src/inputtype";
+import { InputType } from "../src/inputType";
 import { createBlock, createSprite, createVariable, generateUid } from "../src/sb3Generator";
 
 beforeEach(() => {

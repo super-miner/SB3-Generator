@@ -4,9 +4,10 @@
 
 import { createBlock, generateUid } from "./sb3Generator";
 import { Variable } from "./variable";
-import { opcodeTable } from "./opcodetable";
-import { InputType } from "./inputtype";
+import { Field, FieldData, Input, opcodeTable } from "./opcodeTable";
+import { InputType } from "./inputType";
 import { Sprite } from "./sprite";
+import { BitMaskType } from "./bitMaskType";
 
 /**
  * Represents a scratch block.
@@ -135,6 +136,13 @@ export class Block {
     }
 
     /**
+     * The field data for this block.
+     *
+     * @type {FieldData}
+     */
+    _fieldData: FieldData;
+
+    /**
      * The opcode (identifier) for the block.
      *
      * @type {string}
@@ -207,6 +215,7 @@ export class Block {
      */
     constructor(opcode: string, inputs: (string|Variable|Block|null)[], fields: string[]) {
         this.opcode = opcode;
+        this._fieldData = opcodeTable[opcode];
         this._uid = generateUid();
         this.setInputs(inputs);
         this.setFields(fields);
@@ -249,10 +258,8 @@ export class Block {
      * @private
      */
     setInputs(inputs: (string|Variable|Block|null)[]) {
-        let inputFields = opcodeTable[this.opcode];
-
-        for (let i = 0; i < inputFields.inputs.length; i++) {
-            let inputField = inputFields.inputs[i];
+        for (let i = 0; i < this._fieldData.inputs.length; i++) {
+            let inputField = this._fieldData.inputs[i];
             let input = inputs[i];
 
             if (inputField.validValues != null && input != null && typeof input == 'string' && !inputField.validValues.includes(input)) {
@@ -263,12 +270,12 @@ export class Block {
                 let referencedBlock = createBlock(inputField.reference, [], [typeof input == 'string' ? input : '']);
                 referencedBlock.asShadow();
 
-                this.setInput(inputField.name, typeof input == 'string' ? null : input, referencedBlock);
+                this.setInput(inputField, typeof input == 'string' ? null : input, referencedBlock);
 
                 this._references.push(referencedBlock);
             }
             else {
-                this.setInput(inputField.name, input, null);
+                this.setInput(inputField, input, null);
             }
         }
     }
@@ -280,43 +287,41 @@ export class Block {
      * @private
      */
     setFields(fields: string[]) {
-        let fieldFields = opcodeTable[this.opcode];
-
-        for (let i = 0; i < fieldFields.fields.length; i++) {
-            let fieldField = fieldFields.fields[i];
+        for (let i = 0; i < this._fieldData.fields.length; i++) {
+            let fieldField = this._fieldData.fields[i];
             let field = fields[i];
 
             if (fieldField.validValues != null && field != null && typeof field == 'string' && !fieldField.validValues.includes(field)) {
                 console.log('WARN: Invalid value for field ' + fieldField.name + ' in ' + this.opcode + '. ' + fieldField.name + ' can only accept ["' + fieldField.validValues.join('","') + '"], given "' + field + '". (block uid: ' + this._uid + ')');
             }
 
-            this.setField(fieldField.name, field);
+            this.setField(fieldField, field);
         }
     }
 
     /**
      * Sets the value of an input.
      *
-     * @param {string} input
+     * @param {Input} input
      * @param {(string|Variable|Block|null)} to
      * @param {(Block|null)} block
      * @private
      */
-    setInput(input: string, to: (string|Variable|Block|null), block: (Block|null)) {
+    setInput(input: Input, to: (string|Variable|Block|null), block: (Block|null)) {
         if (to == null) {
-            this.inputs[input] = [];
+            this.inputs[input.name] = [];
         }
         else if (typeof to == 'string') {
-            this.inputs[input] = [
+            this.inputs[input.name] = [
                 InputType.INCLUDES_LITERAL,
                 [
-                    InputType.CUSTOM_LITERAL,
+                    input.bitMaskType == BitMaskType.STRING ? InputType.INCLUDES_VARIABLE | InputType.CUSTOM_VARIABLE : InputType.CUSTOM_LITERAL,
                     to
                 ]
             ];
         }
         else if (to instanceof Variable) {
-            this.inputs[input] = [
+            this.inputs[input.name] = [
                 InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
                 [
                     InputType.CUSTOM_VARIABLE | InputType.CUSTOM_LITERAL,
@@ -326,7 +331,7 @@ export class Block {
             ];
 
             if (block == null) {
-                this.inputs[input].push(
+                this.inputs[input.name].push(
                     [
                         InputType.CUSTOM_LITERAL,
                         ''
@@ -335,7 +340,7 @@ export class Block {
             }
         }
         else {
-            this.inputs[input] = [
+            this.inputs[input.name] = [
                 InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
                 to._uid,
                 [
@@ -350,22 +355,22 @@ export class Block {
 
         if (block != null) {
             if (to == null) {
-                this.inputs[input].push(InputType.INCLUDES_LITERAL);
+                this.inputs[input.name].push(InputType.INCLUDES_LITERAL);
             }
 
-            this.inputs[input].push(block._uid);
+            this.inputs[input.name].push(block._uid);
         }
     }
 
     /**
      * Sets the value of a field.
      *
-     * @param {string} field
+     * @param {Field} field
      * @param {string} to
      * @private
      */
-    setField(field: string, to: string) {
-        this.fields[field] = [
+    setField(field: Field, to: string) {
+        this.fields[field.name] = [
             to,
             null
         ];
