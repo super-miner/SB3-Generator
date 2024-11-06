@@ -26,7 +26,13 @@ createProject('Test Project')
             .withBlock(
                 createBlock('event_whenflagclicked', [])
                     .withNextBlock(
-                        createBlock('looks_goforwardbackwardlayers', ['2'], ['forward'])
+                        createBlock('control_if_else', [
+                            createBlock('looks_goforwardbackwardlayers', ['10'], ['backward']),
+                            createBlock('control_stop', [], ['other scripts in sprite'])
+                                .withNextBlock(
+                                    createBlock('looks_goforwardbackwardlayers', ['10'], ['backward'])
+                                )
+                        ])
                     )
             )
     )

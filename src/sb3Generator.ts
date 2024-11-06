@@ -10,6 +10,7 @@ import {Sound} from './sound';
 import { List } from './list';
 import { Broadcast } from './broadcast';
 import { Block } from './block';
+import { Mutation } from './mutation';
 
 /**
  * The characters used to generate uids.
@@ -89,10 +90,14 @@ export function createCostume(path: string) {
  *
  * @export
  * @param {string} path
- * @returns {*}
+ * @returns {Sound}
  */
 export function createSound(path: string) {
     return new Sound(path);
+}
+
+export function createMutation(children: Mutation[] = [], hasnext: boolean = false) {
+    return new Mutation(children, hasnext);
 }
 
 /**

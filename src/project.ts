@@ -85,6 +85,10 @@ export class Project {
         });
 
         let jsonString: string = JSON.stringify(this, (key, value) => {
+            if (key == 'mutation' && value == null) { // Scratch will ALWAYS check if a block has a mutation and throw an error if mutation = null.
+                return undefined;
+            }
+
             return key[0] == '_' ? undefined : value;
         });
 

@@ -1,5 +1,6 @@
 import { Block } from "../src/block";
 import { InputType } from "../src/inputType";
+import { opcodeTable } from "../src/opcodeTable";
 import { createBlock, createBroadcast, createSprite, createVariable, generateUid } from "../src/sb3Generator";
 
 beforeEach(() => {
@@ -93,6 +94,31 @@ test('Creating block with broadcast in field correctly', () => {
             broadcast.uid
         ]
     });
+});
+
+test('Setting field data correctly', () => {
+    const block1 = new Block('control_stop', [], ['other scripts in sprite']);
+    const block2 = new Block('motion_movesteps', ['10'], []);
+    block1.withNextBlock(block2);
+
+    expect(block1.mutation?.hasnext).toBe(true);
+
+    block1.fieldData = opcodeTable['motion_movesteps'];
+    expect(block1.mutation).toBe(null);
+});
+
+test('Correctly getting top of substack with one block', () => {
+    const block = new Block('motion_movesteps', ['10'], []);
+    
+    expect(block.substackTop()).toStrictEqual(block);
+});
+
+test('Correctly getting top of substack with multiple blocks', () => {
+    const block1 = new Block('motion_movesteps', ['10'], []);
+    const block2 = new Block('motion_setrotationstyle', [], ['left-right']);
+    block1.withNextBlock(block2);
+    
+    expect(block2.substackTop()).toStrictEqual(block1);
 });
 
 test('Creating block with dropdown correctly', () => {

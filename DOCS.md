@@ -13,6 +13,8 @@
 <dd></dd>
 <dt><a href="#module_metadata">metadata</a></dt>
 <dd></dd>
+<dt><a href="#module_Mutation">Mutation</a></dt>
+<dd></dd>
 <dt><a href="#module_project">project</a></dt>
 <dd></dd>
 <dt><a href="#module_sb3Generator">sb3Generator</a></dt>
@@ -46,8 +48,10 @@
         * [.parentBlock](#module_block..Block+parentBlock)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
+        * [.fieldData](#module_block..Block+fieldData) : <code>FieldData</code>
         * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
         * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
+        * [.substackTop()](#module_block..Block+substackTop) ⇒ <code>Block</code>
     * [~Block](#module_block..Block) : <code>Block</code>
         * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
         * [.nextBlock](#module_block..Block+nextBlock) : <code>Block</code> \| <code>null</code>
@@ -58,8 +62,10 @@
         * [.parentBlock](#module_block..Block+parentBlock)
         * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
         * [.sprite](#module_block..Block+sprite)
+        * [.fieldData](#module_block..Block+fieldData) : <code>FieldData</code>
         * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
         * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
+        * [.substackTop()](#module_block..Block+substackTop) ⇒ <code>Block</code>
 
 <a name="module_block..Block"></a>
 
@@ -76,8 +82,10 @@
     * [.parentBlock](#module_block..Block+parentBlock)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
+    * [.fieldData](#module_block..Block+fieldData) : <code>FieldData</code>
     * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
     * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
+    * [.substackTop()](#module_block..Block+substackTop) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
 
@@ -142,6 +150,12 @@
 <p>Setter for sprite</p>
 
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+fieldData"></a>
+
+#### block.fieldData : <code>FieldData</code>
+<p>The field data for this block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+asShadow"></a>
 
 #### block.asShadow() ⇒ <code>this</code>
@@ -159,6 +173,12 @@
 | --- | --- |
 | block | <code>Block</code> | 
 
+<a name="module_block..Block+substackTop"></a>
+
+#### block.substackTop() ⇒ <code>Block</code>
+<p>Gets the block at the top of this block's substack.</p>
+
+**Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block"></a>
 
 ### block~Block : <code>Block</code>
@@ -176,8 +196,10 @@
     * [.parentBlock](#module_block..Block+parentBlock)
     * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
     * [.sprite](#module_block..Block+sprite)
+    * [.fieldData](#module_block..Block+fieldData) : <code>FieldData</code>
     * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
     * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
+    * [.substackTop()](#module_block..Block+substackTop) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
 
@@ -242,6 +264,12 @@
 <p>Setter for sprite</p>
 
 **Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+fieldData"></a>
+
+#### block.fieldData : <code>FieldData</code>
+<p>The field data for this block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block+asShadow"></a>
 
 #### block.asShadow() ⇒ <code>this</code>
@@ -259,6 +287,12 @@
 | --- | --- |
 | block | <code>Block</code> | 
 
+<a name="module_block..Block+substackTop"></a>
+
+#### block.substackTop() ⇒ <code>Block</code>
+<p>Gets the block at the top of this block's substack.</p>
+
+**Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 <a name="module_blockComment"></a>
 
 ## blockComment
@@ -492,6 +526,48 @@
 | vm | <code>string</code> | 
 | agent | <code>string</code> | 
 
+<a name="module_Mutation"></a>
+
+## Mutation
+
+* [Mutation](#module_Mutation)
+    * [~Mutation](#module_Mutation..Mutation)
+        * [new Mutation(children, hasnext)](#new_module_Mutation..Mutation_new)
+    * [~Mutation](#module_Mutation..Mutation) : <code>Mutation</code>
+        * [new Mutation(children, hasnext)](#new_module_Mutation..Mutation_new)
+
+<a name="module_Mutation..Mutation"></a>
+
+### Mutation~Mutation
+**Kind**: inner class of [<code>Mutation</code>](#module_Mutation)  
+<a name="new_module_Mutation..Mutation_new"></a>
+
+#### new Mutation(children, hasnext)
+<p>Creates an instance of Mutation.</p>
+
+
+| Param | Type |
+| --- | --- |
+| children | <code>Array.&lt;Mutation&gt;</code> | 
+| hasnext | <code>boolean</code> | 
+
+<a name="module_Mutation..Mutation"></a>
+
+### Mutation~Mutation : <code>Mutation</code>
+<p>A container for mutation data.</p>
+
+**Kind**: inner typedef of [<code>Mutation</code>](#module_Mutation)  
+<a name="new_module_Mutation..Mutation_new"></a>
+
+#### new Mutation(children, hasnext)
+<p>Creates an instance of Mutation.</p>
+
+
+| Param | Type |
+| --- | --- |
+| children | <code>Array.&lt;Mutation&gt;</code> | 
+| hasnext | <code>boolean</code> | 
+
 <a name="module_project"></a>
 
 ## project
@@ -658,7 +734,7 @@
     * [~createList(name)](#module_sb3Generator..createList) ⇒ <code>List</code>
     * [~createBroadcast(name)](#module_sb3Generator..createBroadcast) ⇒ <code>Broadcast</code>
     * [~createCostume(path)](#module_sb3Generator..createCostume) ⇒ <code>Costume</code>
-    * [~createSound(path)](#module_sb3Generator..createSound) ⇒ <code>\*</code>
+    * [~createSound(path)](#module_sb3Generator..createSound) ⇒ <code>Sound</code>
     * [~createBlock(opcode, inputs, fields)](#module_sb3Generator..createBlock) ⇒ <code>Block</code>
     * [~generateUid([length])](#module_sb3Generator..generateUid) ⇒ <code>string</code>
 
@@ -736,7 +812,7 @@
 
 <a name="module_sb3Generator..createSound"></a>
 
-### sb3Generator~createSound(path) ⇒ <code>\*</code>
+### sb3Generator~createSound(path) ⇒ <code>Sound</code>
 <p>Creates a sound.</p>
 
 **Kind**: inner method of [<code>sb3Generator</code>](#module_sb3Generator)  

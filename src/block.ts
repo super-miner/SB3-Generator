@@ -2,12 +2,15 @@
  * @module block
  */
 
-import { createBlock, generateUid } from "./sb3Generator";
+import { createBlock, createMutation, generateUid } from "./sb3Generator";
 import { Variable } from "./variable";
 import { Field, FieldData, Input, opcodeTable } from "./opcodeTable";
 import { InputType } from "./inputType";
 import { Sprite } from "./sprite";
 import { Broadcast } from "./broadcast";
+import { InputFieldType } from "./inputFieldType";
+import { Mutation } from "./mutation";
+import { MutationType } from "./mutationType";
 
 /**
  * Represents a scratch block.
@@ -142,6 +145,23 @@ export class Block {
      */
     _fieldData: FieldData;
 
+    get fieldData() {
+        return this._fieldData;
+    }
+
+    set fieldData(fieldData: FieldData) {
+        this._fieldData = fieldData;
+
+        switch (this._fieldData.mutationType) {
+            case MutationType.NONE:
+                this.mutation = null;
+                break;
+            case MutationType.MUTATION:
+                this.mutation = createMutation();
+                break;
+        }
+    }
+
     /**
      * The opcode (identifier) for the block.
      *
@@ -206,6 +226,13 @@ export class Block {
     y: number = 0;
 
     /**
+     * This block's mutation.
+     *
+     * @type {(Mutation|null)}
+     */
+    mutation: (Mutation|null) = null;
+
+    /**
      * Creates an instance of Block.
      *
      * @constructor
@@ -215,7 +242,8 @@ export class Block {
      */
     constructor(opcode: string, inputs: (string|Variable|Block|null)[], fields: (string|Broadcast)[]) {
         this.opcode = opcode;
-        this._fieldData = opcodeTable[opcode];
+        this.fieldData = opcodeTable[opcode];
+        this._fieldData = this.fieldData; // Needed to make vscode happy.
         this._uid = generateUid();
         this.setInputs(inputs);
         this.setFields(fields);
@@ -248,7 +276,25 @@ export class Block {
             block.sprite = this._sprite;
         }
 
+        if (this.mutation != null && this.fieldData.mutationType == MutationType.MUTATION) {
+            this.mutation.hasnext = true;
+        }
+
         return block;
+    }
+
+    /**
+     * Gets the block at the top of this block's substack.
+     *
+     * @returns {Block}
+     */
+    substackTop() : Block { // TODO: Needs testing.
+        if (this.previousBlock != null && this.parentBlock) {
+            return this.parentBlock.substackTop();
+        }
+        else {
+            return this;
+        }
     }
 
     /**
@@ -315,7 +361,7 @@ export class Block {
             this.inputs[input.name] = [
                 InputType.INCLUDES_LITERAL,
                 [
-                    input.bitMaskType as number,
+                    input.inputFieldType as number,
                     to
                 ]
             ];
@@ -333,23 +379,30 @@ export class Block {
             if (block == null) {
                 this.inputs[input.name].push(
                     [
-                        input.bitMaskType as number,
+                        input.inputFieldType as number,
                         ''
                     ]
                 );
             }
         }
         else {
+            let substackTop = to.substackTop();
+
             this.inputs[input.name] = [
                 InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
-                to._uid,
-                [
-                    input.bitMaskType as number,
-                    ''
-                ]
+                substackTop._uid,
             ];
 
-            to.parentBlock = this;
+            if (input.inputFieldType != InputFieldType.BLOCK) {
+                this.inputs[input.name].push(
+                    [
+                        input.inputFieldType as number,
+                        ''
+                    ]
+                );
+            }
+
+            substackTop.parentBlock = this;
             this._references.push(to);
         }
 
