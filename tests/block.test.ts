@@ -1,6 +1,6 @@
 import { Block } from "../src/block";
 import { InputType } from "../src/inputType";
-import { createBlock, createSprite, createVariable, generateUid } from "../src/sb3Generator";
+import { createBlock, createBroadcast, createSprite, createVariable, generateUid } from "../src/sb3Generator";
 
 beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.0);
@@ -78,6 +78,19 @@ test('Creating block with field correctly', () => {
         'STYLE': [
             'left-right',
             null
+        ]
+    });
+});
+
+test('Creating block with broadcast in field correctly', () => {
+    const broadcast = createBroadcast('Test Broadcast');
+    const block = new Block('event_whenbroadcastreceived', [], [broadcast]);
+
+    expect(block.inputs).toStrictEqual({});
+    expect(block.fields).toStrictEqual({
+        'BROADCAST_OPTION': [
+            'Test Broadcast',
+            broadcast.uid
         ]
     });
 });

@@ -7,6 +7,7 @@ import { Variable } from "./variable";
 import { Field, FieldData, Input, opcodeTable } from "./opcodeTable";
 import { InputType } from "./inputType";
 import { Sprite } from "./sprite";
+import { Broadcast } from "./broadcast";
 
 /**
  * Represents a scratch block.
@@ -210,9 +211,9 @@ export class Block {
      * @constructor
      * @param {string} opcode
      * @param {Array<(string|Variable|Block|null)>} inputs
-     * @param {Array<string>}
+     * @param {Array<(string|Broadcast)>}
      */
-    constructor(opcode: string, inputs: (string|Variable|Block|null)[], fields: string[]) {
+    constructor(opcode: string, inputs: (string|Variable|Block|null)[], fields: (string|Broadcast)[]) {
         this.opcode = opcode;
         this._fieldData = opcodeTable[opcode];
         this._uid = generateUid();
@@ -282,10 +283,10 @@ export class Block {
     /**
      * Sets the fields for this block.
      *
-     * @param {string[]} fields
+     * @param {Array<(string|Broadcast)>} fields
      * @private
      */
-    setFields(fields: string[]) {
+    setFields(fields: (string|Broadcast)[]) {
         for (let i = 0; i < this._fieldData.fields.length; i++) {
             let fieldField = this._fieldData.fields[i];
             let field = fields[i];
@@ -365,13 +366,21 @@ export class Block {
      * Sets the value of a field.
      *
      * @param {Field} field
-     * @param {string} to
+     * @param {(string|Broadcast)} to
      * @private
      */
-    setField(field: Field, to: string) {
-        this.fields[field.name] = [
-            to,
-            null
-        ];
+    setField(field: Field, to: (string|Broadcast)) {
+        if (typeof to == 'string') {
+            this.fields[field.name] = [
+                to,
+                null
+            ];
+        }
+        else {
+            this.fields[field.name] = [
+                to.name,
+                to.uid
+            ];
+        }
     }
 }

@@ -101,10 +101,10 @@ export function createSound(path: string) {
  * @export
  * @param {string} opcode
  * @param {Array<(string|Variable|Block|null)>} inputs
- * @param {Array<string>} fields
+ * @param {Array<(string|Broadcast)>} fields
  * @returns {Block}
  */
-export function createBlock(opcode: string, inputs: (string|Variable|Block|null)[] = [], fields: string[] = []) {
+export function createBlock(opcode: string, inputs: (string|Variable|Block|null)[] = [], fields: (string|Broadcast)[] = []) {
     return new Block(opcode, inputs, fields);
 }
 

@@ -21,9 +21,9 @@
 <dd></dd>
 <dt><a href="#module_sprite">sprite</a></dt>
 <dd></dd>
-<dt><a href="#module_texttospeech">texttospeech</a></dt>
+<dt><a href="#module_textToSpeech">textToSpeech</a></dt>
 <dd></dd>
-<dt><a href="#module_tobeimplemented">tobeimplemented</a></dt>
+<dt><a href="#module_toBeImplemented">toBeImplemented</a></dt>
 <dd></dd>
 <dt><a href="#module_utils">utils</a></dt>
 <dd></dd>
@@ -89,7 +89,7 @@
 | --- | --- |
 | opcode | <code>string</code> | 
 | inputs | <code>Array.&lt;(string\|Variable\|Block\|null)&gt;</code> | 
-| fields | <code>Array.&lt;string&gt;</code> | 
+| fields | <code>Array.&lt;(string\|Broadcast)&gt;</code> | 
 
 <a name="module_block..Block+nextBlock"></a>
 
@@ -189,7 +189,7 @@
 | --- | --- |
 | opcode | <code>string</code> | 
 | inputs | <code>Array.&lt;(string\|Variable\|Block\|null)&gt;</code> | 
-| fields | <code>Array.&lt;string&gt;</code> | 
+| fields | <code>Array.&lt;(string\|Broadcast)&gt;</code> | 
 
 <a name="module_block..Block+nextBlock"></a>
 
@@ -756,7 +756,7 @@
 | --- | --- |
 | opcode | <code>string</code> | 
 | inputs | <code>Array.&lt;(string\|Variable\|Block\|null)&gt;</code> | 
-| fields | <code>Array.&lt;string&gt;</code> | 
+| fields | <code>Array.&lt;(string\|Broadcast)&gt;</code> | 
 
 <a name="module_sb3Generator..generateUid"></a>
 
@@ -1375,24 +1375,24 @@
 <p>Sets the sprite to be invisible.</p>
 
 **Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
-<a name="module_texttospeech"></a>
+<a name="module_textToSpeech"></a>
 
-## texttospeech
-<a name="module_texttospeech..TextToSpeechLanguage"></a>
+## textToSpeech
+<a name="module_textToSpeech..TextToSpeechLanguage"></a>
 
-### texttospeech~TextToSpeechLanguage : <code>TextToSpeechLanguage</code>
+### textToSpeech~TextToSpeechLanguage : <code>TextToSpeechLanguage</code>
 <p>Represents a TTS language.</p>
 
-**Kind**: inner typedef of [<code>texttospeech</code>](#module_texttospeech)  
-<a name="module_tobeimplemented"></a>
+**Kind**: inner typedef of [<code>textToSpeech</code>](#module_textToSpeech)  
+<a name="module_toBeImplemented"></a>
 
-## tobeimplemented
-<a name="module_tobeimplemented..ToBeImplemented"></a>
+## toBeImplemented
+<a name="module_toBeImplemented..ToBeImplemented"></a>
 
-### tobeimplemented~ToBeImplemented : <code>ToBeImplemented</code>
+### toBeImplemented~ToBeImplemented : <code>ToBeImplemented</code>
 <p>Represents a placeholder for a class that has not been implemented.</p>
 
-**Kind**: inner typedef of [<code>tobeimplemented</code>](#module_tobeimplemented)  
+**Kind**: inner typedef of [<code>toBeImplemented</code>](#module_toBeImplemented)  
 <a name="module_utils"></a>
 
 ## utils

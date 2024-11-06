@@ -268,12 +268,55 @@ export const opcodeTable: {[id: string]: FieldData} = {
         inputs: [],
         fields: []
     },
+    // TODO: Implement sound blocks
+    'event_whenflagclicked': {
+        inputs: [], 
+        fields: []
+    },
+    'event_whenkeypressed': {
+        inputs: [],
+        fields: [
+            {name: 'KEY_OPTION', validValues: ['space', 'up arrow', 'down arrow', ' right arrow', ' left arrow', 'any', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
+        ]
+    },
+    'event_whenthisspriteclicked': {
+        inputs: [],
+        fields: []
+    },
+    'event_whenbackdropswitchesto': {
+        inputs: [],
+        fields: [
+            {name: 'BACKDROP', validValues: null}
+        ]
+    },
+    'event_whengreaterthan': {
+        inputs: [
+            {name: 'VALUE', bitMaskType: BitMaskType.ANY, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'WHENGREATERTHANMENU', validValues: ['LOUDNESS', 'TIMER']}
+        ]
+    },
+    'event_whenbroadcastreceived': {
+        inputs: [],
+        fields: [
+            {name: 'BROADCAST_OPTION', validValues: null}
+        ]
+    },
+    'event_broadcast': {
+        inputs: [
+            {name: 'BROADCAST_INPUT', bitMaskType: BitMaskType.BROADCAST, reference: null, validValues: null}
+        ],
+        fields: []
+    },
+    'event_broadcastandwait': {
+        inputs: [
+            {name: 'BROADCAST_INPUT', bitMaskType: BitMaskType.BROADCAST, reference: null, validValues: null}
+        ],
+        fields: []
+    },
     '': {
         inputs: [],
         fields: []
     },
-    'event_whenflagclicked': {
-        inputs: [], 
-        fields: []
-    }
 };

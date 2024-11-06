@@ -1,5 +1,6 @@
 export enum BitMaskType {
-    ANY = 4,
+    ANY    = 4,
+    NUMBER = 7,
     STRING = 10,
-    NUMBER = 7
+    BROADCAST = 11
 }
