@@ -592,9 +592,146 @@ export const opcodeTable: {[id: string]: FieldData} = {
         fields: [],
         mutationType: MutationType.NONE
     },
-    '': {
-        inputs: [],
+    'operator_add': {
+        inputs: [
+            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
         fields: [],
         mutationType: MutationType.NONE
     },
+    'operator_subtract': {
+        inputs: [
+            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_multiply': {
+        inputs: [
+            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_divide': {
+        inputs: [
+            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_random': {
+        inputs: [
+            {name: 'FROM', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
+            {name: 'TO', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_gt': {
+        inputs: [
+            {name: 'OPERAND1', inputFieldType: InputFieldType.STRING, reference: null, validValues: null},
+            {name: 'OPERAND2', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_lt': {
+        inputs: [
+            {name: 'OPERAND1', inputFieldType: InputFieldType.STRING, reference: null, validValues: null},
+            {name: 'OPERAND2', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_equals': {
+        inputs: [
+            {name: 'OPERAND1', inputFieldType: InputFieldType.STRING, reference: null, validValues: null},
+            {name: 'OPERAND2', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_and': {
+        inputs: [
+            {name: 'OPERAND1', inputFieldType: InputFieldType.BLOCK, reference: null, validValues: null},
+            {name: 'OPERAND2', inputFieldType: InputFieldType.BLOCK, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_or': {
+        inputs: [
+            {name: 'OPERAND1', inputFieldType: InputFieldType.BLOCK, reference: null, validValues: null},
+            {name: 'OPERAND2', inputFieldType: InputFieldType.BLOCK, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_not': {
+        inputs: [
+            {name: 'OPERAND', inputFieldType: InputFieldType.BLOCK, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_join': {
+        inputs: [
+            {name: 'STRING1', inputFieldType: InputFieldType.STRING, reference: null, validValues: null},
+            {name: 'STRING2', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_letter_of': {
+        inputs: [
+            {name: 'LETTER', inputFieldType: InputFieldType.INTEGER, reference: null, validValues: null},
+            {name: 'STRING', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_length': {
+        inputs: [
+            {name: 'STRING', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_contains': {
+        inputs: [
+            {name: 'STRING1', inputFieldType: InputFieldType.STRING, reference: null, validValues: null},
+            {name: 'STRING2', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_mod': {
+        inputs: [
+            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_round': {
+        inputs: [
+            {name: 'NUM', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'operator_mathop': {
+        inputs: [
+            {name: 'NUM', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'OPERATOR', validValues: ['abs', 'floor', 'ceiling', 'sqrt', 'sin', 'cos', 'tan', 'acos', 'asin', 'atan', 'ln', 'log', 'e ^', '10 ^']}
+        ],
+        mutationType: MutationType.NONE
+    }
 };
