@@ -453,6 +453,145 @@ export const opcodeTable: {[id: string]: FieldData} = {
         fields: [],
         mutationType: MutationType.NONE
     },
+    'sensing_touchingobject': {
+        inputs: [
+            {name: 'TOUCHINGOBJECTMENU', inputFieldType: InputFieldType.MENU, reference: 'sensing_touchingobjectmenu', validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_touchingobjectmenu': {
+        inputs: [],
+        fields: [
+            {name: 'TOUCHINGOBJECTMENU', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sensing_touchingcolor': {
+        inputs: [
+            {name: 'COLOR', inputFieldType: InputFieldType.COLOR, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_coloristouchingcolor': {
+        inputs: [
+            {name: 'COLOR', inputFieldType: InputFieldType.COLOR, reference: null, validValues: null},
+            {name: 'COLOR2', inputFieldType: InputFieldType.COLOR, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_distanceto': {
+        inputs: [
+            {name: 'DISTANCETOMENU', inputFieldType: InputFieldType.MENU, reference: 'sensing_distancetomenu', validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_distancetomenu': {
+        inputs: [],
+        fields: [
+            {name: 'DISTANCETOMENU', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sensing_askandwait': {
+        inputs: [
+            {name: 'QUESTION', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_answer': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_keypressed': {
+        inputs: [
+            {name: 'KEY_OPTION', inputFieldType: InputFieldType.MENU, reference: 'sensing_keyoptions', validValues: ['space', 'up arrow', 'down arrow', ' right arrow', ' left arrow', 'any', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_keyoptions': {
+        inputs: [],
+        fields: [
+            {name: 'KEY_OPTION', validValues: ['space', 'up arrow', 'down arrow', ' right arrow', ' left arrow', 'any', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sensing_mousedown': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_mousex': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_mousey': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_setdragmode': {
+        inputs: [],
+        fields: [
+            {name: 'DRAG_MODE', validValues: ['draggable', 'not draggable']}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sensing_loudness': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_timer': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_resettimer': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_of': {
+        inputs: [
+            {name: 'OBJECT', inputFieldType: InputFieldType.MENU, reference: 'sensing_of_object_menu', validValues: null}
+        ],
+        fields: [
+            {name: 'PROPERTY', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sensing_of_object_menu': {
+        inputs: [],
+        fields: [
+            {name: 'OBJECT', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sensing_current': {
+        inputs: [],
+        fields: [
+            {name: 'CURRENTMENU', validValues: ['YEAR', 'MONTH', 'DATE', 'DAYOFWEEK', 'HOUR', 'MINUTE', 'SECOND']}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sensing_dayssince2000': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sensing_username': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
     '': {
         inputs: [],
         fields: [],

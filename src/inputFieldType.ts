@@ -5,6 +5,7 @@ export enum InputFieldType {
     POSITIVE_NUMBER = 5,
     INTEGER         = 6,
     NUMBER          = 7,
+    COLOR           = 9,
     STRING          = 10,
     BROADCAST       = 11
 }
