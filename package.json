@@ -22,7 +22,8 @@
     "typescript": "^5.6.3"
   },
   "scripts": {
-    "build:doc": "jsdoc2md --files ./src/*.ts --configure ./jsdoc2md.json > ./DOCS.md",
-    "test": "jest"
+    "docs": "jsdoc2md --files ./src/*.ts --configure ./jsdoc2md.json > ./DOCS.md",
+    "test": "jest --detectOpenHandles --forceExit",
+    "example": "tsx src/example"
   }
 }

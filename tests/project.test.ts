@@ -36,5 +36,5 @@ test('Correct output directory path', () => {
 
 test('Correct output file path', () => {
     const project = new Project('Test Project');
-    expect(project.getFilePath()).toBe('output/Test Project.sb3');
+    expect(project.getOutputFilePath()).toBe('output/Test Project.sb3');
 });

@@ -13,6 +13,8 @@
 <dd></dd>
 <dt><a href="#module_metadata">metadata</a></dt>
 <dd></dd>
+<dt><a href="#module_Mutation">Mutation</a></dt>
+<dd></dd>
 <dt><a href="#module_project">project</a></dt>
 <dd></dd>
 <dt><a href="#module_sb3Generator">sb3Generator</a></dt>
@@ -21,9 +23,9 @@
 <dd></dd>
 <dt><a href="#module_sprite">sprite</a></dt>
 <dd></dd>
-<dt><a href="#module_texttospeech">texttospeech</a></dt>
+<dt><a href="#module_textToSpeech">textToSpeech</a></dt>
 <dd></dd>
-<dt><a href="#module_tobeimplemented">tobeimplemented</a></dt>
+<dt><a href="#module_toBeImplemented">toBeImplemented</a></dt>
 <dd></dd>
 <dt><a href="#module_utils">utils</a></dt>
 <dd></dd>
@@ -37,11 +39,33 @@
 
 * [block](#module_block)
     * [~Block](#module_block..Block)
-        * [new Block(opcode)](#new_module_block..Block_new)
-        * [.withChildBlock(block)](#module_block..Block+withChildBlock)
+        * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
+        * [.nextBlock](#module_block..Block+nextBlock) : <code>Block</code> \| <code>null</code>
+        * [.nextBlock](#module_block..Block+nextBlock)
+        * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
+        * [.previousBlock](#module_block..Block+previousBlock)
+        * [.parentBlock](#module_block..Block+parentBlock) : <code>Block</code>
+        * [.parentBlock](#module_block..Block+parentBlock)
+        * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
+        * [.sprite](#module_block..Block+sprite)
+        * [.fieldData](#module_block..Block+fieldData) : <code>FieldData</code>
+        * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
+        * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
+        * [.substackTop()](#module_block..Block+substackTop) ⇒ <code>Block</code>
     * [~Block](#module_block..Block) : <code>Block</code>
-        * [new Block(opcode)](#new_module_block..Block_new)
-        * [.withChildBlock(block)](#module_block..Block+withChildBlock)
+        * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
+        * [.nextBlock](#module_block..Block+nextBlock) : <code>Block</code> \| <code>null</code>
+        * [.nextBlock](#module_block..Block+nextBlock)
+        * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
+        * [.previousBlock](#module_block..Block+previousBlock)
+        * [.parentBlock](#module_block..Block+parentBlock) : <code>Block</code>
+        * [.parentBlock](#module_block..Block+parentBlock)
+        * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
+        * [.sprite](#module_block..Block+sprite)
+        * [.fieldData](#module_block..Block+fieldData) : <code>FieldData</code>
+        * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
+        * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
+        * [.substackTop()](#module_block..Block+substackTop) ⇒ <code>Block</code>
 
 <a name="module_block..Block"></a>
 
@@ -49,23 +73,99 @@
 **Kind**: inner class of [<code>block</code>](#module_block)  
 
 * [~Block](#module_block..Block)
-    * [new Block(opcode)](#new_module_block..Block_new)
-    * [.withChildBlock(block)](#module_block..Block+withChildBlock)
+    * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
+    * [.nextBlock](#module_block..Block+nextBlock) : <code>Block</code> \| <code>null</code>
+    * [.nextBlock](#module_block..Block+nextBlock)
+    * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
+    * [.previousBlock](#module_block..Block+previousBlock)
+    * [.parentBlock](#module_block..Block+parentBlock) : <code>Block</code>
+    * [.parentBlock](#module_block..Block+parentBlock)
+    * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
+    * [.sprite](#module_block..Block+sprite)
+    * [.fieldData](#module_block..Block+fieldData) : <code>FieldData</code>
+    * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
+    * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
+    * [.substackTop()](#module_block..Block+substackTop) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
 
-#### new Block(opcode)
+#### new Block(opcode, inputs, fields)
 <p>Creates an instance of Block.</p>
 
 
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
+| inputs | <code>Array.&lt;(string\|Variable\|Block\|null)&gt;</code> | 
+| fields | <code>Array.&lt;(string\|Broadcast)&gt;</code> | 
 
-<a name="module_block..Block+withChildBlock"></a>
+<a name="module_block..Block+nextBlock"></a>
 
-#### block.withChildBlock(block)
-<p>Adds a block as a child of this block.</p>
+#### block.nextBlock : <code>Block</code> \| <code>null</code>
+<p>Getter for next block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+nextBlock"></a>
+
+#### block.nextBlock
+<p>Setter for next block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+previousBlock"></a>
+
+#### block.previousBlock : <code>Block</code> \| <code>null</code>
+<p>Getter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+previousBlock"></a>
+
+#### block.previousBlock
+<p>Setter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+parentBlock"></a>
+
+#### block.parentBlock : <code>Block</code>
+<p>Getter for parent block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+parentBlock"></a>
+
+#### block.parentBlock
+<p>Setter for parent block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+sprite"></a>
+
+#### block.sprite : <code>Sprite</code>
+<p>Getter for sprite</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+sprite"></a>
+
+#### block.sprite
+<p>Setter for sprite</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+fieldData"></a>
+
+#### block.fieldData : <code>FieldData</code>
+<p>The field data for this block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+asShadow"></a>
+
+#### block.asShadow() ⇒ <code>this</code>
+<p>Makes the block into a shadow.</p>
+
+**Kind**: instance method of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+withNextBlock"></a>
+
+#### block.withNextBlock(block) ⇒ <code>Block</code>
+<p>Adds a block as a child of this block (returns the added block).</p>
 
 **Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 
@@ -73,6 +173,12 @@
 | --- | --- |
 | block | <code>Block</code> | 
 
+<a name="module_block..Block+substackTop"></a>
+
+#### block.substackTop() ⇒ <code>Block</code>
+<p>Gets the block at the top of this block's substack.</p>
+
+**Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 <a name="module_block..Block"></a>
 
 ### block~Block : <code>Block</code>
@@ -81,23 +187,99 @@
 **Kind**: inner typedef of [<code>block</code>](#module_block)  
 
 * [~Block](#module_block..Block) : <code>Block</code>
-    * [new Block(opcode)](#new_module_block..Block_new)
-    * [.withChildBlock(block)](#module_block..Block+withChildBlock)
+    * [new Block(opcode, inputs, fields)](#new_module_block..Block_new)
+    * [.nextBlock](#module_block..Block+nextBlock) : <code>Block</code> \| <code>null</code>
+    * [.nextBlock](#module_block..Block+nextBlock)
+    * [.previousBlock](#module_block..Block+previousBlock) : <code>Block</code> \| <code>null</code>
+    * [.previousBlock](#module_block..Block+previousBlock)
+    * [.parentBlock](#module_block..Block+parentBlock) : <code>Block</code>
+    * [.parentBlock](#module_block..Block+parentBlock)
+    * [.sprite](#module_block..Block+sprite) : <code>Sprite</code>
+    * [.sprite](#module_block..Block+sprite)
+    * [.fieldData](#module_block..Block+fieldData) : <code>FieldData</code>
+    * [.asShadow()](#module_block..Block+asShadow) ⇒ <code>this</code>
+    * [.withNextBlock(block)](#module_block..Block+withNextBlock) ⇒ <code>Block</code>
+    * [.substackTop()](#module_block..Block+substackTop) ⇒ <code>Block</code>
 
 <a name="new_module_block..Block_new"></a>
 
-#### new Block(opcode)
+#### new Block(opcode, inputs, fields)
 <p>Creates an instance of Block.</p>
 
 
 | Param | Type |
 | --- | --- |
 | opcode | <code>string</code> | 
+| inputs | <code>Array.&lt;(string\|Variable\|Block\|null)&gt;</code> | 
+| fields | <code>Array.&lt;(string\|Broadcast)&gt;</code> | 
 
-<a name="module_block..Block+withChildBlock"></a>
+<a name="module_block..Block+nextBlock"></a>
 
-#### block.withChildBlock(block)
-<p>Adds a block as a child of this block.</p>
+#### block.nextBlock : <code>Block</code> \| <code>null</code>
+<p>Getter for next block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+nextBlock"></a>
+
+#### block.nextBlock
+<p>Setter for next block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+previousBlock"></a>
+
+#### block.previousBlock : <code>Block</code> \| <code>null</code>
+<p>Getter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+previousBlock"></a>
+
+#### block.previousBlock
+<p>Setter for previous block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+parentBlock"></a>
+
+#### block.parentBlock : <code>Block</code>
+<p>Getter for parent block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+**Read only**: true  
+<a name="module_block..Block+parentBlock"></a>
+
+#### block.parentBlock
+<p>Setter for parent block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+sprite"></a>
+
+#### block.sprite : <code>Sprite</code>
+<p>Getter for sprite</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+sprite"></a>
+
+#### block.sprite
+<p>Setter for sprite</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+fieldData"></a>
+
+#### block.fieldData : <code>FieldData</code>
+<p>The field data for this block.</p>
+
+**Kind**: instance property of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+asShadow"></a>
+
+#### block.asShadow() ⇒ <code>this</code>
+<p>Makes the block into a shadow.</p>
+
+**Kind**: instance method of [<code>Block</code>](#module_block..Block)  
+<a name="module_block..Block+withNextBlock"></a>
+
+#### block.withNextBlock(block) ⇒ <code>Block</code>
+<p>Adds a block as a child of this block (returns the added block).</p>
 
 **Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 
@@ -105,6 +287,12 @@
 | --- | --- |
 | block | <code>Block</code> | 
 
+<a name="module_block..Block+substackTop"></a>
+
+#### block.substackTop() ⇒ <code>Block</code>
+<p>Gets the block at the top of this block's substack.</p>
+
+**Kind**: instance method of [<code>Block</code>](#module_block..Block)  
 <a name="module_blockComment"></a>
 
 ## blockComment
@@ -338,6 +526,48 @@
 | vm | <code>string</code> | 
 | agent | <code>string</code> | 
 
+<a name="module_Mutation"></a>
+
+## Mutation
+
+* [Mutation](#module_Mutation)
+    * [~Mutation](#module_Mutation..Mutation)
+        * [new Mutation(children, hasnext)](#new_module_Mutation..Mutation_new)
+    * [~Mutation](#module_Mutation..Mutation) : <code>Mutation</code>
+        * [new Mutation(children, hasnext)](#new_module_Mutation..Mutation_new)
+
+<a name="module_Mutation..Mutation"></a>
+
+### Mutation~Mutation
+**Kind**: inner class of [<code>Mutation</code>](#module_Mutation)  
+<a name="new_module_Mutation..Mutation_new"></a>
+
+#### new Mutation(children, hasnext)
+<p>Creates an instance of Mutation.</p>
+
+
+| Param | Type |
+| --- | --- |
+| children | <code>Array.&lt;Mutation&gt;</code> | 
+| hasnext | <code>boolean</code> | 
+
+<a name="module_Mutation..Mutation"></a>
+
+### Mutation~Mutation : <code>Mutation</code>
+<p>A container for mutation data.</p>
+
+**Kind**: inner typedef of [<code>Mutation</code>](#module_Mutation)  
+<a name="new_module_Mutation..Mutation_new"></a>
+
+#### new Mutation(children, hasnext)
+<p>Creates an instance of Mutation.</p>
+
+
+| Param | Type |
+| --- | --- |
+| children | <code>Array.&lt;Mutation&gt;</code> | 
+| hasnext | <code>boolean</code> | 
+
 <a name="module_project"></a>
 
 ## project
@@ -348,13 +578,17 @@
         * [.withSprite(sprite)](#module_project..Project+withSprite) ⇒ <code>this</code>
         * [.build()](#module_project..Project+build)
         * [.getOutputDirectoryPath()](#module_project..Project+getOutputDirectoryPath) ⇒ <code>string</code>
-        * [.getFilePath()](#module_project..Project+getFilePath) ⇒ <code>string</code>
+        * [.getDebugDirectoryPath()](#module_project..Project+getDebugDirectoryPath) ⇒ <code>string</code>
+        * [.getOutputFilePath()](#module_project..Project+getOutputFilePath) ⇒ <code>string</code>
+        * [.getDebugJsonFilePath()](#module_project..Project+getDebugJsonFilePath) ⇒ <code>string</code>
     * [~Project](#module_project..Project) : <code>Project</code>
         * [new Project(name)](#new_module_project..Project_new)
         * [.withSprite(sprite)](#module_project..Project+withSprite) ⇒ <code>this</code>
         * [.build()](#module_project..Project+build)
         * [.getOutputDirectoryPath()](#module_project..Project+getOutputDirectoryPath) ⇒ <code>string</code>
-        * [.getFilePath()](#module_project..Project+getFilePath) ⇒ <code>string</code>
+        * [.getDebugDirectoryPath()](#module_project..Project+getDebugDirectoryPath) ⇒ <code>string</code>
+        * [.getOutputFilePath()](#module_project..Project+getOutputFilePath) ⇒ <code>string</code>
+        * [.getDebugJsonFilePath()](#module_project..Project+getDebugJsonFilePath) ⇒ <code>string</code>
 
 <a name="module_project..Project"></a>
 
@@ -366,7 +600,9 @@
     * [.withSprite(sprite)](#module_project..Project+withSprite) ⇒ <code>this</code>
     * [.build()](#module_project..Project+build)
     * [.getOutputDirectoryPath()](#module_project..Project+getOutputDirectoryPath) ⇒ <code>string</code>
-    * [.getFilePath()](#module_project..Project+getFilePath) ⇒ <code>string</code>
+    * [.getDebugDirectoryPath()](#module_project..Project+getDebugDirectoryPath) ⇒ <code>string</code>
+    * [.getOutputFilePath()](#module_project..Project+getOutputFilePath) ⇒ <code>string</code>
+    * [.getDebugJsonFilePath()](#module_project..Project+getDebugJsonFilePath) ⇒ <code>string</code>
 
 <a name="new_module_project..Project_new"></a>
 
@@ -401,10 +637,22 @@
 <p>Produces the path to the output directory.</p>
 
 **Kind**: instance method of [<code>Project</code>](#module_project..Project)  
-<a name="module_project..Project+getFilePath"></a>
+<a name="module_project..Project+getDebugDirectoryPath"></a>
 
-#### project.getFilePath() ⇒ <code>string</code>
+#### project.getDebugDirectoryPath() ⇒ <code>string</code>
+<p>Produces the path to the output/debug directory.</p>
+
+**Kind**: instance method of [<code>Project</code>](#module_project..Project)  
+<a name="module_project..Project+getOutputFilePath"></a>
+
+#### project.getOutputFilePath() ⇒ <code>string</code>
 <p>Produces the path the the output file.</p>
+
+**Kind**: instance method of [<code>Project</code>](#module_project..Project)  
+<a name="module_project..Project+getDebugJsonFilePath"></a>
+
+#### project.getDebugJsonFilePath() ⇒ <code>string</code>
+<p>Produces the path the the debug project.json file.</p>
 
 **Kind**: instance method of [<code>Project</code>](#module_project..Project)  
 <a name="module_project..Project"></a>
@@ -419,7 +667,9 @@
     * [.withSprite(sprite)](#module_project..Project+withSprite) ⇒ <code>this</code>
     * [.build()](#module_project..Project+build)
     * [.getOutputDirectoryPath()](#module_project..Project+getOutputDirectoryPath) ⇒ <code>string</code>
-    * [.getFilePath()](#module_project..Project+getFilePath) ⇒ <code>string</code>
+    * [.getDebugDirectoryPath()](#module_project..Project+getDebugDirectoryPath) ⇒ <code>string</code>
+    * [.getOutputFilePath()](#module_project..Project+getOutputFilePath) ⇒ <code>string</code>
+    * [.getDebugJsonFilePath()](#module_project..Project+getDebugJsonFilePath) ⇒ <code>string</code>
 
 <a name="new_module_project..Project_new"></a>
 
@@ -454,10 +704,22 @@
 <p>Produces the path to the output directory.</p>
 
 **Kind**: instance method of [<code>Project</code>](#module_project..Project)  
-<a name="module_project..Project+getFilePath"></a>
+<a name="module_project..Project+getDebugDirectoryPath"></a>
 
-#### project.getFilePath() ⇒ <code>string</code>
+#### project.getDebugDirectoryPath() ⇒ <code>string</code>
+<p>Produces the path to the output/debug directory.</p>
+
+**Kind**: instance method of [<code>Project</code>](#module_project..Project)  
+<a name="module_project..Project+getOutputFilePath"></a>
+
+#### project.getOutputFilePath() ⇒ <code>string</code>
 <p>Produces the path the the output file.</p>
+
+**Kind**: instance method of [<code>Project</code>](#module_project..Project)  
+<a name="module_project..Project+getDebugJsonFilePath"></a>
+
+#### project.getDebugJsonFilePath() ⇒ <code>string</code>
+<p>Produces the path the the debug project.json file.</p>
 
 **Kind**: instance method of [<code>Project</code>](#module_project..Project)  
 <a name="module_sb3Generator"></a>
@@ -472,7 +734,8 @@
     * [~createList(name)](#module_sb3Generator..createList) ⇒ <code>List</code>
     * [~createBroadcast(name)](#module_sb3Generator..createBroadcast) ⇒ <code>Broadcast</code>
     * [~createCostume(path)](#module_sb3Generator..createCostume) ⇒ <code>Costume</code>
-    * [~createSound(path)](#module_sb3Generator..createSound) ⇒ <code>\*</code>
+    * [~createSound(path)](#module_sb3Generator..createSound) ⇒ <code>Sound</code>
+    * [~createBlock(opcode, inputs, fields)](#module_sb3Generator..createBlock) ⇒ <code>Block</code>
     * [~generateUid([length])](#module_sb3Generator..generateUid) ⇒ <code>string</code>
 
 <a name="module_sb3Generator..uidCharacters"></a>
@@ -549,7 +812,7 @@
 
 <a name="module_sb3Generator..createSound"></a>
 
-### sb3Generator~createSound(path) ⇒ <code>\*</code>
+### sb3Generator~createSound(path) ⇒ <code>Sound</code>
 <p>Creates a sound.</p>
 
 **Kind**: inner method of [<code>sb3Generator</code>](#module_sb3Generator)  
@@ -557,6 +820,19 @@
 | Param | Type |
 | --- | --- |
 | path | <code>string</code> | 
+
+<a name="module_sb3Generator..createBlock"></a>
+
+### sb3Generator~createBlock(opcode, inputs, fields) ⇒ <code>Block</code>
+<p>Creates a block.</p>
+
+**Kind**: inner method of [<code>sb3Generator</code>](#module_sb3Generator)  
+
+| Param | Type |
+| --- | --- |
+| opcode | <code>string</code> | 
+| inputs | <code>Array.&lt;(string\|Variable\|Block\|null)&gt;</code> | 
+| fields | <code>Array.&lt;(string\|Broadcast)&gt;</code> | 
 
 <a name="module_sb3Generator..generateUid"></a>
 
@@ -631,6 +907,12 @@
         * [.withVideoTransparency(videoTransparency)](#module_sprite..Sprite+withVideoTransparency) ⇒ <code>this</code>
         * [.withVideoState(videoState)](#module_sprite..Sprite+withVideoState) ⇒ <code>this</code>
         * [.withTextToSpeechLanguage(textToSpeechLanguage)](#module_sprite..Sprite+withTextToSpeechLanguage) ⇒ <code>this</code>
+        * [.withPosition(x, y)](#module_sprite..Sprite+withPosition)
+        * [.withSize(size)](#module_sprite..Sprite+withSize)
+        * [.withAngle(angle)](#module_sprite..Sprite+withAngle)
+        * [.asDraggable()](#module_sprite..Sprite+asDraggable)
+        * [.withRotationStyle(rotationStyle)](#module_sprite..Sprite+withRotationStyle)
+        * [.asInvisibleSprite()](#module_sprite..Sprite+asInvisibleSprite)
     * [~Sprite](#module_sprite..Sprite) : <code>Sprite</code>
         * [new Sprite(name)](#new_module_sprite..Sprite_new)
         * [.build(zip)](#module_sprite..Sprite+build)
@@ -648,6 +930,12 @@
         * [.withVideoTransparency(videoTransparency)](#module_sprite..Sprite+withVideoTransparency) ⇒ <code>this</code>
         * [.withVideoState(videoState)](#module_sprite..Sprite+withVideoState) ⇒ <code>this</code>
         * [.withTextToSpeechLanguage(textToSpeechLanguage)](#module_sprite..Sprite+withTextToSpeechLanguage) ⇒ <code>this</code>
+        * [.withPosition(x, y)](#module_sprite..Sprite+withPosition)
+        * [.withSize(size)](#module_sprite..Sprite+withSize)
+        * [.withAngle(angle)](#module_sprite..Sprite+withAngle)
+        * [.asDraggable()](#module_sprite..Sprite+asDraggable)
+        * [.withRotationStyle(rotationStyle)](#module_sprite..Sprite+withRotationStyle)
+        * [.asInvisibleSprite()](#module_sprite..Sprite+asInvisibleSprite)
 
 <a name="module_sprite..Sprite"></a>
 
@@ -671,6 +959,12 @@
     * [.withVideoTransparency(videoTransparency)](#module_sprite..Sprite+withVideoTransparency) ⇒ <code>this</code>
     * [.withVideoState(videoState)](#module_sprite..Sprite+withVideoState) ⇒ <code>this</code>
     * [.withTextToSpeechLanguage(textToSpeechLanguage)](#module_sprite..Sprite+withTextToSpeechLanguage) ⇒ <code>this</code>
+    * [.withPosition(x, y)](#module_sprite..Sprite+withPosition)
+    * [.withSize(size)](#module_sprite..Sprite+withSize)
+    * [.withAngle(angle)](#module_sprite..Sprite+withAngle)
+    * [.asDraggable()](#module_sprite..Sprite+asDraggable)
+    * [.withRotationStyle(rotationStyle)](#module_sprite..Sprite+withRotationStyle)
+    * [.asInvisibleSprite()](#module_sprite..Sprite+asInvisibleSprite)
 
 <a name="new_module_sprite..Sprite_new"></a>
 
@@ -842,6 +1136,63 @@
 | --- | --- |
 | textToSpeechLanguage | <code>TextToSpeechLanguage</code> | 
 
+<a name="module_sprite..Sprite+withPosition"></a>
+
+#### sprite.withPosition(x, y)
+<p>Sets the sprite's coordinates.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| x | <code>number</code> | 
+| y | <code>number</code> | 
+
+<a name="module_sprite..Sprite+withSize"></a>
+
+#### sprite.withSize(size)
+<p>Sets the sprite's size in percent.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| size | <code>number</code> | 
+
+<a name="module_sprite..Sprite+withAngle"></a>
+
+#### sprite.withAngle(angle)
+<p>Sets the sprite's angle in degrees.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| angle | <code>number</code> | 
+
+<a name="module_sprite..Sprite+asDraggable"></a>
+
+#### sprite.asDraggable()
+<p>Sets whether the sprite is draggable.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+<a name="module_sprite..Sprite+withRotationStyle"></a>
+
+#### sprite.withRotationStyle(rotationStyle)
+<p>Sets the sprite's rotation style.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| rotationStyle | <code>string</code> | 
+
+<a name="module_sprite..Sprite+asInvisibleSprite"></a>
+
+#### sprite.asInvisibleSprite()
+<p>Sets the sprite to be invisible.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
 <a name="module_sprite..Sprite"></a>
 
 ### sprite~Sprite : <code>Sprite</code>
@@ -866,6 +1217,12 @@
     * [.withVideoTransparency(videoTransparency)](#module_sprite..Sprite+withVideoTransparency) ⇒ <code>this</code>
     * [.withVideoState(videoState)](#module_sprite..Sprite+withVideoState) ⇒ <code>this</code>
     * [.withTextToSpeechLanguage(textToSpeechLanguage)](#module_sprite..Sprite+withTextToSpeechLanguage) ⇒ <code>this</code>
+    * [.withPosition(x, y)](#module_sprite..Sprite+withPosition)
+    * [.withSize(size)](#module_sprite..Sprite+withSize)
+    * [.withAngle(angle)](#module_sprite..Sprite+withAngle)
+    * [.asDraggable()](#module_sprite..Sprite+asDraggable)
+    * [.withRotationStyle(rotationStyle)](#module_sprite..Sprite+withRotationStyle)
+    * [.asInvisibleSprite()](#module_sprite..Sprite+asInvisibleSprite)
 
 <a name="new_module_sprite..Sprite_new"></a>
 
@@ -1037,24 +1394,81 @@
 | --- | --- |
 | textToSpeechLanguage | <code>TextToSpeechLanguage</code> | 
 
-<a name="module_texttospeech"></a>
+<a name="module_sprite..Sprite+withPosition"></a>
 
-## texttospeech
-<a name="module_texttospeech..TextToSpeechLanguage"></a>
+#### sprite.withPosition(x, y)
+<p>Sets the sprite's coordinates.</p>
 
-### texttospeech~TextToSpeechLanguage : <code>TextToSpeechLanguage</code>
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| x | <code>number</code> | 
+| y | <code>number</code> | 
+
+<a name="module_sprite..Sprite+withSize"></a>
+
+#### sprite.withSize(size)
+<p>Sets the sprite's size in percent.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| size | <code>number</code> | 
+
+<a name="module_sprite..Sprite+withAngle"></a>
+
+#### sprite.withAngle(angle)
+<p>Sets the sprite's angle in degrees.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| angle | <code>number</code> | 
+
+<a name="module_sprite..Sprite+asDraggable"></a>
+
+#### sprite.asDraggable()
+<p>Sets whether the sprite is draggable.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+<a name="module_sprite..Sprite+withRotationStyle"></a>
+
+#### sprite.withRotationStyle(rotationStyle)
+<p>Sets the sprite's rotation style.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+
+| Param | Type |
+| --- | --- |
+| rotationStyle | <code>string</code> | 
+
+<a name="module_sprite..Sprite+asInvisibleSprite"></a>
+
+#### sprite.asInvisibleSprite()
+<p>Sets the sprite to be invisible.</p>
+
+**Kind**: instance method of [<code>Sprite</code>](#module_sprite..Sprite)  
+<a name="module_textToSpeech"></a>
+
+## textToSpeech
+<a name="module_textToSpeech..TextToSpeechLanguage"></a>
+
+### textToSpeech~TextToSpeechLanguage : <code>TextToSpeechLanguage</code>
 <p>Represents a TTS language.</p>
 
-**Kind**: inner typedef of [<code>texttospeech</code>](#module_texttospeech)  
-<a name="module_tobeimplemented"></a>
+**Kind**: inner typedef of [<code>textToSpeech</code>](#module_textToSpeech)  
+<a name="module_toBeImplemented"></a>
 
-## tobeimplemented
-<a name="module_tobeimplemented..ToBeImplemented"></a>
+## toBeImplemented
+<a name="module_toBeImplemented..ToBeImplemented"></a>
 
-### tobeimplemented~ToBeImplemented : <code>ToBeImplemented</code>
+### toBeImplemented~ToBeImplemented : <code>ToBeImplemented</code>
 <p>Represents a placeholder for a class that has not been implemented.</p>
 
-**Kind**: inner typedef of [<code>tobeimplemented</code>](#module_tobeimplemented)  
+**Kind**: inner typedef of [<code>toBeImplemented</code>](#module_toBeImplemented)  
 <a name="module_utils"></a>
 
 ## utils

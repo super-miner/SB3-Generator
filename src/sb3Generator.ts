@@ -9,13 +9,15 @@ import {Costume} from './costume';
 import {Sound} from './sound';
 import { List } from './list';
 import { Broadcast } from './broadcast';
+import { Block } from './block';
+import { Mutation } from './mutation';
 
 /**
  * The characters used to generate uids.
  *
  * @type {("!#$%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"")}
  */
-const uidCharacters = '!#$%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"';
+const uidCharacters = '!#$%()*+,-./:;=?@[]^`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 /**
  * Creates a project.
@@ -24,8 +26,8 @@ const uidCharacters = '!#$%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcde
  * @param {string} name
  * @returns {Project}
  */
-export function createProject(name: string) {
-    return new Project(name);
+export function createProject(name: string, outputDirectory: string = 'output') {
+    return new Project(name, outputDirectory);
 }
 
 /**
@@ -88,10 +90,35 @@ export function createCostume(path: string) {
  *
  * @export
  * @param {string} path
- * @returns {*}
+ * @returns {Sound}
  */
 export function createSound(path: string) {
     return new Sound(path);
+}
+
+/**
+ * Creates a mutation.
+ *
+ * @export
+ * @param {Mutation[]} [children=[]]
+ * @param {boolean} [hasnext=false]
+ * @returns {*}
+ */
+export function createMutation(children: Mutation[] = [], hasnext: boolean = false) {
+    return new Mutation(children, hasnext);
+}
+
+/**
+ * Creates a block.
+ *
+ * @export
+ * @param {string} opcode
+ * @param {Array<(string|Variable|Block|null)>} inputs
+ * @param {Array<(string|Broadcast|Variable|List)>} fields
+ * @returns {Block}
+ */
+export function createBlock(opcode: string, inputs: (string|Variable|Block|null)[] = [], fields: (string|Broadcast|Variable|List)[] = []) {
+    return new Block(opcode, inputs, fields);
 }
 
 /**
