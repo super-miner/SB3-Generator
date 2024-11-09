@@ -2,6 +2,7 @@
   "type": "module",
   "dependencies": {
     "archiver": "^7.0.1",
+    "deasync": "^0.1.30",
     "js-md5": "^0.8.3",
     "jszip": "^3.10.1",
     "music-metadata": "^10.5.1",
