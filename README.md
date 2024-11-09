@@ -2,7 +2,7 @@
 SB3 Generator is a node library that generates `.sb3` ([Scratch 3](https://scratch.mit.edu)) project files.
 
 > [!Note]
-> SB3 Generator currently has no support for custom blocks, sounds, and extensions, you can help fix this by [contributing](CONTRIBUTING.md).
+> SB3 Generator currently has no support for custom blocks and extensions, you can help fix this by [contributing](CONTRIBUTING.md).
 
 ## Example:
 Here is an example of how you can use this library to generate a simple project.
