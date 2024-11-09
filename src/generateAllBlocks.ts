@@ -92,6 +92,8 @@ export function createAllBlocksProject(outputDirectory: string) {
 
             let currentBlock = createBlock(key, inputs, fields);
 
+            console.log(key + ': ' + currentBlock._uid);
+
             sprite.withBlock(
                 currentBlock,
                 0,

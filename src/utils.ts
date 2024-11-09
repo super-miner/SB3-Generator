@@ -2,9 +2,8 @@
  * @module utils
  */
 
-import {IAudioMetadata} from 'music-metadata';
-import {resolve} from 'path';
-import {createSyncFn} from 'synckit';
+import {IAudioMetadata, parseFile} from 'music-metadata';
+import {runLoopOnce} from 'deasync';
 
 /**
  * Gets a file extension from a path.
@@ -57,12 +56,24 @@ export function getFileNameFromPath(path: string) {
  *
  * @export
  * @param {string} path
- * @returns {IAudioMetadata}
+ * @returns {IAudioMetadata|null}
  */
-export function getAudioMetadataSync(path: string) {
-    return _getAudioMetadataSync(path) as unknown as IAudioMetadata;
-}
+export function getAudioMetadataSync(path: string): IAudioMetadata|null {
+    let done = false;
+    let metadata = null;
 
-const _getAudioMetadataSync = createSyncFn(resolve('src/audioMetadataWorker.ts'), {
-    tsRunner: 'tsx'
-});
+    parseFile(path).then(_metadata => {
+        metadata = _metadata;
+        done = true;
+    })
+    .catch(error => {
+        console.log('WARN: Failed reading audio metadata from the file ' + path + ', produces the error ' + error);
+        done = true;
+    });
+
+    while (!done) {
+        runLoopOnce();
+    }
+
+    return metadata;
+}
