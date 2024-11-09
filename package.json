@@ -4,6 +4,7 @@
     "archiver": "^7.0.1",
     "js-md5": "^0.8.3",
     "jszip": "^3.10.1",
+    "music-metadata": "^10.5.1",
     "tsx": "^4.19.1"
   },
   "devDependencies": {
