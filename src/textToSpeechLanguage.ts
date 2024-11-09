@@ -1,5 +1,5 @@
 /**
- * @module textToSpeech
+ * @module textToSpeechLanguage
  */
 
 /**

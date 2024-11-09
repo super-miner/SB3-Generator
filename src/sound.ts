@@ -5,7 +5,6 @@
 import {md5} from 'js-md5';
 import fs from 'fs';
 import {getAudioMetadataSync, getFileExtensionFromPath, getFileNameFromPath} from './utils';
-import {parseFile} from 'music-metadata';
 
 /**
  * Represents a scratch sound.
@@ -87,10 +86,8 @@ export class Sound {
 
         const metadata = getAudioMetadataSync(path); // TODO: test this
         if (metadata != null) {
-            if (metadata.format.sampleRate) {
-                this.rate = metadata.format.sampleRate;
-                if (metadata.format.duration) this.sampleCount = metadata.format.sampleRate * metadata.format.duration;
-            }
+            if (metadata.format.sampleRate) this.rate = metadata.format.sampleRate;
+            if (metadata.format.numberOfSamples) this.sampleCount = metadata.format.numberOfSamples;
         }
     }
 }

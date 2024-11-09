@@ -10,6 +10,6 @@ test('Constructor assigning values correctly', () => {
     expect(sound.dataFormat).toBe('wav');
     expect(sound.assetId).toBe(md5(sound._data));
     expect(sound.md5ext).toBe(md5(sound._data) + '.wav');
-    expect(sound.rate).toBe(48000);
-    expect(sound.sampleCount).toBe(1124);
+    expect(sound.rate).toBe(44100);
+    expect(sound.sampleCount).toBe(28672);
 });
