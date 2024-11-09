@@ -313,7 +313,74 @@ export const opcodeTable: {[id: string]: FieldData} = {
         fields: [],
         mutationType: MutationType.NONE
     },
-    // TODO: Implement sound blocks
+    'sound_playuntildone': {
+        inputs: [
+            {name: 'SOUND_MENU', inputFieldType: InputFieldType.MENU, reference: 'sound_sounds_menu', validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sound_sounds_menu': {
+        inputs: [],
+        fields: [
+            {name: 'SOUND_MENU', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sound_play': {
+        inputs: [
+            {name: 'SOUND_MENU', inputFieldType: InputFieldType.MENU, reference: 'sound_sounds_menu', validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sound_stopallsounds': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sound_changeeffectby': {
+        inputs: [
+            {name: 'VALUE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'EFFECT', validValues: ['PITCH', 'PAN']}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sound_seteffectto': {
+        inputs: [
+            {name: 'VALUE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'EFFECT', validValues: ['PITCH', 'PAN']}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'sound_cleareffects': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sound_changevolumeby': {
+        inputs: [
+            {name: 'VOLUME', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sound_setvolumeto': {
+        inputs: [
+            {name: 'VOLUME', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'sound_volume': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
     'event_whenflagclicked': {
         inputs: [], 
         fields: [],

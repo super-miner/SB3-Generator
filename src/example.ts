@@ -1,4 +1,4 @@
-import {createBlock, createCostume, createProject, createSprite, createVariable} from './sb3Generator';
+import {createBlock, createCostume, createProject, createSound, createSprite, createVariable} from './sb3Generator';
 
 const testVariable = createVariable('TestVariable')
                         .withValue(10);
@@ -22,6 +22,9 @@ createProject('Test Project')
             )
             .withCostume(
                 createCostume('TestCostume.png')
+            )
+            .withSound(
+                createSound('TestSound.wav')
             )
             .withBlock(
                 createBlock('event_whenflagclicked', [])
