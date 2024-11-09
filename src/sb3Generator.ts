@@ -17,7 +17,7 @@ import { Mutation } from './mutation';
  *
  * @type {("!#$%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"")}
  */
-const uidCharacters = '!#$%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const uidCharacters = '!#$%()*+,-./:;=?@[]^`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 /**
  * Creates a project.
@@ -26,8 +26,8 @@ const uidCharacters = '!#$%()*+,-./:;=?@[]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZabcde
  * @param {string} name
  * @returns {Project}
  */
-export function createProject(name: string) {
-    return new Project(name);
+export function createProject(name: string, outputDirectory: string = 'output') {
+    return new Project(name, outputDirectory);
 }
 
 /**
@@ -114,10 +114,10 @@ export function createMutation(children: Mutation[] = [], hasnext: boolean = fal
  * @export
  * @param {string} opcode
  * @param {Array<(string|Variable|Block|null)>} inputs
- * @param {Array<(string|Broadcast|Variable)>} fields
+ * @param {Array<(string|Broadcast|Variable|List)>} fields
  * @returns {Block}
  */
-export function createBlock(opcode: string, inputs: (string|Variable|Block|null)[] = [], fields: (string|Broadcast|Variable)[] = []) {
+export function createBlock(opcode: string, inputs: (string|Variable|Block|null)[] = [], fields: (string|Broadcast|Variable|List)[] = []) {
     return new Block(opcode, inputs, fields);
 }
 

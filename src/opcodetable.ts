@@ -743,6 +743,15 @@ export const opcodeTable: {[id: string]: FieldData} = {
         ],
         mutationType: MutationType.NONE
     },
+    'data_changevariableby': {
+        inputs: [
+            {name: 'VALUE', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'VARIABLE', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
     'data_showvariable': {
         inputs: [],
         fields: [

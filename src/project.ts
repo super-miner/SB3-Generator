@@ -7,6 +7,7 @@ import JSZip from 'jszip';
 import {Sprite} from './sprite';
 import {Metadata} from './metadata';
 import {ToBeImplemented} from './toBeImplemented';
+import { createAllBlocksProject } from './generateAllBlocks';
 
 /**
  * Represents a .sb3 project.
@@ -16,6 +17,13 @@ import {ToBeImplemented} from './toBeImplemented';
  * @typedef {Project}
  */
 export class Project {
+    /**
+     * The directory to place the project file in.
+     *
+     * @type {string}
+     */
+    _outputDirectory: string = 'output';
+
     /**
      * The project's name.
      *
@@ -56,9 +64,11 @@ export class Project {
      *
      * @constructor
      * @param {string} name
+     * @param {string} [outputDirectory='output']
      */
-    constructor(name: string) {
+    constructor(name: string, outputDirectory: string = 'output') {
         this.name = name;
+        this._outputDirectory = outputDirectory;
     }
 
     /**
@@ -72,7 +82,11 @@ export class Project {
         return this;
     }
 
-    /** Builds the project into a zip file. */
+    /**
+     * Builds the project into a zip file.
+     *
+     * @param {boolean} [debug=false]
+     */
     build(debug: boolean = false) {
         if (!fs.existsSync(this.getOutputDirectoryPath())) {
             fs.mkdirSync(this.getOutputDirectoryPath());
@@ -105,7 +119,11 @@ export class Project {
                 fs.mkdirSync(this.getDebugDirectoryPath());
             }
 
+            // Dump the project json file.
             fs.writeFileSync(this.getDebugJsonFilePath(), jsonString);
+
+            // Creates a project containing all of the blocks.
+            if (this.name != 'All Blocks Project') createAllBlocksProject(this.getDebugAllBlocksDirectory()).build(true);
         }
     }
 
@@ -115,7 +133,7 @@ export class Project {
      * @returns {string}
      */
     getOutputDirectoryPath(): string {
-        return 'output/';
+        return this._outputDirectory + '/';
     }
 
     /**
@@ -124,7 +142,7 @@ export class Project {
      * @returns {string}
      */
     getDebugDirectoryPath(): string {
-        return 'output/debug/';
+        return this._outputDirectory + '/debug/';
     }
 
     /**
@@ -137,11 +155,20 @@ export class Project {
     }
 
     /**
-     * Produces the path the the debug project.json file.
+     * Produces the path to the debug project.json file.
      *
      * @returns {string}
      */
     getDebugJsonFilePath(): string {
         return this.getDebugDirectoryPath() + this.name + '.json';
+    }
+
+    /**
+     * Produces the path the the all blocks project file.
+     *
+     * @returns {string}
+     */
+    getDebugAllBlocksDirectory(): string {
+        return this._outputDirectory + '/debug';
     }
 }

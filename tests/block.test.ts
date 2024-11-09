@@ -1,7 +1,7 @@
 import { Block } from "../src/block";
 import { InputType } from "../src/inputType";
 import { opcodeTable } from "../src/opcodeTable";
-import { createBlock, createBroadcast, createSprite, createVariable, generateUid } from "../src/sb3Generator";
+import { createBlock, createBroadcast, createList, createSprite, createVariable, generateUid } from "../src/sb3Generator";
 
 beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.0);
@@ -105,6 +105,19 @@ test('Creating block with variable in field correctly', () => {
         'VARIABLE': [
             'Test Variable',
             variable.uid
+        ]
+    });
+});
+
+test('Creating block with list in field correctly', () => {
+    const list = createList('Test List');
+    const block = new Block('data_showlist', [], [list]);
+
+    expect(block.inputs).toStrictEqual({});
+    expect(block.fields).toStrictEqual({
+        'LIST': [
+            'Test List',
+            list.uid
         ]
     });
 });

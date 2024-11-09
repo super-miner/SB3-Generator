@@ -291,14 +291,18 @@ export class Sprite {
     }
 
     /**
-     * Adds a top levle block to the sprite.
+     * Adds a top level block to the sprite.
      *
      * @param {Block} block
+     * @param {number} [x=0]
+     * @param {number} [y=0]
      * @returns {this}
      */
-    withBlock(block: Block) {
+    withBlock(block: Block, x: number = 0, y: number = 0) {
         this._blocks.push(block);
         block.sprite = this;
+        block.x = x;
+        block.y = y;
         return this;
     }
 
