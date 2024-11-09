@@ -238,9 +238,9 @@ export class Block {
      * @constructor
      * @param {string} opcode
      * @param {Array<(string|Variable|Block|null)>} inputs
-     * @param {Array<(string|Broadcast)>}
+     * @param {Array<(string|Broadcast|Varaible)>} fields
      */
-    constructor(opcode: string, inputs: (string|Variable|Block|null)[], fields: (string|Broadcast)[]) {
+    constructor(opcode: string, inputs: (string|Variable|Block|null)[], fields: (string|Broadcast|Variable)[]) {
         this.opcode = opcode;
         this.fieldData = opcodeTable[opcode];
         this._fieldData = this.fieldData; // Needed to make vscode happy.
@@ -288,7 +288,7 @@ export class Block {
      *
      * @returns {Block}
      */
-    substackTop() : Block { // TODO: Needs testing.
+    substackTop() : Block {
         if (this.previousBlock != null && this.parentBlock) {
             return this.parentBlock.substackTop();
         }
@@ -329,10 +329,10 @@ export class Block {
     /**
      * Sets the fields for this block.
      *
-     * @param {Array<(string|Broadcast)>} fields
+     * @param {Array<(string|Broadcast|Variable)>} fields
      * @private
      */
-    setFields(fields: (string|Broadcast)[]) {
+    setFields(fields: (string|Broadcast|Variable)[]) {
         for (let i = 0; i < this._fieldData.fields.length; i++) {
             let fieldField = this._fieldData.fields[i];
             let field = fields[i];
@@ -419,14 +419,20 @@ export class Block {
      * Sets the value of a field.
      *
      * @param {Field} field
-     * @param {(string|Broadcast)} to
+     * @param {(string|Broadcast|Varaible)} to
      * @private
      */
-    setField(field: Field, to: (string|Broadcast)) {
+    setField(field: Field, to: (string|Broadcast|Variable)) {
         if (typeof to == 'string') {
             this.fields[field.name] = [
                 to,
                 null
+            ];
+        }
+        else if (to instanceof Broadcast) {
+            this.fields[field.name] = [
+                to.name,
+                to.uid
             ];
         }
         else {

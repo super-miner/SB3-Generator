@@ -733,5 +733,126 @@ export const opcodeTable: {[id: string]: FieldData} = {
             {name: 'OPERATOR', validValues: ['abs', 'floor', 'ceiling', 'sqrt', 'sin', 'cos', 'tan', 'acos', 'asin', 'atan', 'ln', 'log', 'e ^', '10 ^']}
         ],
         mutationType: MutationType.NONE
-    }
+    },
+    'data_setvariableto': {
+        inputs: [
+            {name: 'VALUE', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'VARIABLE', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_showvariable': {
+        inputs: [],
+        fields: [
+            {name: 'VARIABLE', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_hidevariable': {
+        inputs: [],
+        fields: [
+            {name: 'VARIABLE', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_addtolist': {
+        inputs: [
+            {name: 'ITEM', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_deleteoflist': {
+        inputs: [
+            {name: 'INDEX', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_deletealloflist': {
+        inputs: [],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_insertatlist': {
+        inputs: [
+            {name: 'ITEM', inputFieldType: InputFieldType.STRING, reference: null, validValues: null},
+            {name: 'INDEX', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_replaceitemoflist': {
+        inputs: [
+            {name: 'INDEX', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null},
+            {name: 'ITEM', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_itemoflist': {
+        inputs: [
+            {name: 'INDEX', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_itemnumoflist': {
+        inputs: [
+            {name: 'ITEM', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_lengthoflist': {
+        inputs: [],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_listcontainsitem': {
+        inputs: [
+            {name: 'ITEM', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
+        ],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_showlist': {
+        inputs: [],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    'data_hidelist': {
+        inputs: [],
+        fields: [
+            {name: 'LIST', validValues: null}
+        ],
+        mutationType: MutationType.NONE
+    },
+    '': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
 };

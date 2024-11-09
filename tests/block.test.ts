@@ -96,6 +96,19 @@ test('Creating block with broadcast in field correctly', () => {
     });
 });
 
+test('Creating block with variable in field correctly', () => {
+    const variable = createVariable('Test Variable');
+    const block = new Block('data_showvariable', [], [variable]);
+
+    expect(block.inputs).toStrictEqual({});
+    expect(block.fields).toStrictEqual({
+        'VARIABLE': [
+            'Test Variable',
+            variable.uid
+        ]
+    });
+});
+
 test('Setting field data correctly', () => {
     const block1 = new Block('control_stop', [], ['other scripts in sprite']);
     const block2 = new Block('motion_movesteps', ['10'], []);

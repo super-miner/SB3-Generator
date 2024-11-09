@@ -96,6 +96,14 @@ export function createSound(path: string) {
     return new Sound(path);
 }
 
+/**
+ * Creates a mutation.
+ *
+ * @export
+ * @param {Mutation[]} [children=[]]
+ * @param {boolean} [hasnext=false]
+ * @returns {*}
+ */
 export function createMutation(children: Mutation[] = [], hasnext: boolean = false) {
     return new Mutation(children, hasnext);
 }
@@ -106,10 +114,10 @@ export function createMutation(children: Mutation[] = [], hasnext: boolean = fal
  * @export
  * @param {string} opcode
  * @param {Array<(string|Variable|Block|null)>} inputs
- * @param {Array<(string|Broadcast)>} fields
+ * @param {Array<(string|Broadcast|Variable)>} fields
  * @returns {Block}
  */
-export function createBlock(opcode: string, inputs: (string|Variable|Block|null)[] = [], fields: (string|Broadcast)[] = []) {
+export function createBlock(opcode: string, inputs: (string|Variable|Block|null)[] = [], fields: (string|Broadcast|Variable)[] = []) {
     return new Block(opcode, inputs, fields);
 }
 
