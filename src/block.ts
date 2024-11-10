@@ -324,14 +324,19 @@ export class Block {
 
                 const prototype = inputs[0] as Block;
 
+                if (prototype.opcode != 'procedures_prototype') {
+                    console.log('WARN: procedures_call expects its first parameter to have opcode "procedures_prototype", not "' + prototype.opcode + '".');
+                    return;
+                }
+
                 assert(prototype.mutation instanceof Procedure);
 
                 this.mutation = prototype.mutation;
 
                 for (let i = 1; i < inputs.length; i++) {
                     const blockInput: Input = {
-                        name: prototype.mutation._argumentids[i],
-                        inputFieldType: prototype.mutation._argumenttypes[i],
+                        name: prototype.mutation._argumentids[i - 1],
+                        inputFieldType: prototype.mutation._argumenttypes[i - 1],
                         reference: null,
                         validValues: null
                     };
