@@ -156,9 +156,9 @@ export class Sprite {
     /**
      * The sprite's TTS language.
      *
-     * @type {(TextToSpeechLanguage | null)}
+     * @type {(string|null)}
      */
-    textToSpeechLanguage: TextToSpeechLanguage | null = null;
+    textToSpeechLanguage: string|null = 'en';
 
     /**
      * The x position of the sprite (only needed if not stage).
