@@ -10,7 +10,7 @@ import {Block} from './block';
 import {BlockComment} from './blockComment';
 import {Costume} from './costume';
 import {Sound} from './sound';
-import {TextToSpeechLanguage} from './textToSpeechLanguage';
+import { Project } from './project';
 
 /**
  * Represents a sprite.
@@ -223,8 +223,9 @@ export class Sprite {
      * Builds the sprite.
      *
      * @param {JSZip} zip
+     * @param {Project} project
      */
-    build(zip: JSZip) {
+    build(zip: JSZip, project: Project) {
         this._variables.forEach(variable => {
             this.variables[variable.uid] = [variable.name, variable.value];
         });
@@ -239,6 +240,10 @@ export class Sprite {
 
         this._blocks.forEach(block => {
             this.blocks[block._uid] = block;
+
+            if (block._fieldData.extension != null) {
+                project.withExtension(block._fieldData.extension);
+            }
         });
 
         this.costumes.forEach(costume => {
@@ -410,10 +415,10 @@ export class Sprite {
     /**
      * Sets the sprite's TTS language.
      *
-     * @param {TextToSpeechLanguage} textToSpeechLanguage
+     * @param {string} textToSpeechLanguage
      * @returns {this}
      */
-    withTextToSpeechLanguage(textToSpeechLanguage: TextToSpeechLanguage) {
+    withTextToSpeechLanguage(textToSpeechLanguage: string) {
         this.textToSpeechLanguage = textToSpeechLanguage;
         return this;
     }
