@@ -48,9 +48,9 @@ export class Project {
     /**
      * The projects extensions.
      *
-     * @type {ToBeImplemented[]}
+     * @type {string[]}
      */
-    extensions: ToBeImplemented[] = [];
+    extensions: string[] = [];
 
     /**
      * The project's metadata.
@@ -83,6 +83,19 @@ export class Project {
     }
 
     /**
+     * Adds an extension to the project.
+     *
+     * @param {string} extension
+     * @returns {this}
+     */
+    withExtension(extension: string) {
+        if (!this.extensions.includes(extension)) {
+            this.extensions.push(extension);
+        }
+        return this;
+    }
+
+    /**
      * Builds the project into a zip file.
      *
      * @param {boolean} [debug=false]
@@ -95,7 +108,7 @@ export class Project {
         let zip: JSZip = new JSZip();
 
         this.targets.forEach(sprite => {
-            sprite.build(zip);
+            sprite.build(zip, this);
         });
 
         let jsonString: string = JSON.stringify(this, (key, value) => {
