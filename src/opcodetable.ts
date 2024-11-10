@@ -494,7 +494,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
         fields: [
             {name: 'STOP_OPTION', validValues: ['all', 'this script', 'other scripts in sprite']}
         ],
-        mutationType: MutationType.MUTATION
+        mutationType: MutationType.HAS_CHILDREN
     },
     'control_start_as_clone': {
         inputs: [],
@@ -925,6 +925,33 @@ export const opcodeTable: {[id: string]: FieldData} = {
             {name: 'LIST', validValues: null}
         ],
         mutationType: MutationType.NONE
+    },
+    'procedures_definition': {
+        inputs: [
+            {name: 'custom_block', inputFieldType: InputFieldType.MENU, reference: null, validValues: null}
+        ],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'procedures_prototype': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.PROCEDURE_PROTOTYPE
+    },
+    'argument_reporter_string_number': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'argument_reporter_boolean': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.NONE
+    },
+    'procedures_call': {
+        inputs: [],
+        fields: [],
+        mutationType: MutationType.PROCEDURE_CALL
     },
     '': {
         inputs: [],

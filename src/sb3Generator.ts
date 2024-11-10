@@ -97,18 +97,6 @@ export function createSound(path: string) {
 }
 
 /**
- * Creates a mutation.
- *
- * @export
- * @param {Mutation[]} [children=[]]
- * @param {boolean} [hasnext=false]
- * @returns {*}
- */
-export function createMutation(children: Mutation[] = [], hasnext: boolean = false) {
-    return new Mutation(children, hasnext);
-}
-
-/**
  * Creates a block.
  *
  * @export
