@@ -43,7 +43,7 @@ export function createAllBlocksProject(outputDirectory: string) {
     let y = 0;
     let skipNext = false;
     Object.keys(opcodeTable).forEach(key => {
-        if (skipNext || key == '') {
+        if (skipNext || key == '' || key.includes('procedures') || key.includes('argument')) {
             skipNext = false;
         }
         else {
@@ -101,6 +101,24 @@ export function createAllBlocksProject(outputDirectory: string) {
             y += 80;
         }
     });
+
+    const customBlockPrototype = createBlock('procedures_prototype', [
+        'true',
+        'Test Function',
+        createBlock('argument_reporter_string_number', [], ['String or Number']),
+        createBlock('argument_reporter_boolean', [], ['Boolean']),
+        'Label'
+    ]);
+
+    sprite.withBlock(createBlock('procedures_definition', [customBlockPrototype]), 0, y);
+
+    y += 80;
+
+    sprite.withBlock(
+        createBlock('procedures_call', [customBlockPrototype, '', conditionBlock]),
+        0,
+        y
+    );
 
     return project;
 }

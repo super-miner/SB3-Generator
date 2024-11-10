@@ -10,7 +10,7 @@ import {Block} from './block';
 import {BlockComment} from './blockComment';
 import {Costume} from './costume';
 import {Sound} from './sound';
-import {TextToSpeechLanguage} from './textToSpeachLanguage';
+import {TextToSpeechLanguage} from './textToSpeechLanguage';
 
 /**
  * Represents a sprite.

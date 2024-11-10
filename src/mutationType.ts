@@ -1,4 +1,6 @@
 export enum MutationType {
     NONE,
-    MUTATION
+    HAS_CHILDREN,
+    PROCEDURE_PROTOTYPE,
+    PROCEDURE_CALL
 }
