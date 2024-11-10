@@ -7,16 +7,8 @@ createProject('Test Project')
             .withCostume(
                 createCostume('TestCostume.png')
             )
-            .withBlock(
-                createBlock('procedures_definition', [
-                    createBlock('procedures_prototype', [
-                        'true',
-                        'Test Function',
-                        createBlock('argument_reporter_string_number', [], ['String or Number']),
-                        createBlock('argument_reporter_boolean', [], ['Boolean']),
-                        'Label'
-                    ])
-                ])
+            .withSound(
+                createSound('TestSound.wav')
             )
     )
     .build(true);

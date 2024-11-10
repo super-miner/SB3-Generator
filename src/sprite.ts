@@ -244,6 +244,10 @@ export class Sprite {
         this.costumes.forEach(costume => {
             zip.file(costume.md5ext, costume._data);
         });
+
+        this.sounds.forEach(sound => {
+            zip.file(sound.md5ext, sound._data);
+        });
     }
 
     /**
