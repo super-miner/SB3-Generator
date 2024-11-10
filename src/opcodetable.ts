@@ -928,7 +928,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'procedures_definition': {
         inputs: [
-            {name: 'custom_block', inputFieldType: InputFieldType.MENU, reference: null, validValues: null}
+            {name: 'custom_block', inputFieldType: InputFieldType.BLOCK, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE
@@ -940,12 +940,16 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'argument_reporter_string_number': {
         inputs: [],
-        fields: [],
+        fields: [
+            {name: 'VALUE', validValues: null}
+        ],
         mutationType: MutationType.NONE
     },
     'argument_reporter_boolean': {
         inputs: [],
-        fields: [],
+        fields: [
+            {name: 'VALUE', validValues: null}
+        ],
         mutationType: MutationType.NONE
     },
     'procedures_call': {

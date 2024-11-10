@@ -162,8 +162,9 @@ export class Block {
                 this.mutation = new HasChildren([], false);
                 break;
             case MutationType.PROCEDURE_PROTOTYPE:
+                this.asShadow(); // The lack of break here is purposeful.
             case MutationType.PROCEDURE_CALL:
-                this.mutation = new Procedure([], true);
+                this.mutation = new Procedure([], 'true');
         }
     }
 
@@ -328,19 +329,19 @@ export class Block {
                 this.mutation = prototype.mutation;
 
                 for (let i = 1; i < inputs.length; i++) {
-                    const input: Input = {
-                        name: prototype.mutation._argumentIds[i],
-                        inputFieldType: prototype.mutation._argumentTypes[i],
+                    const blockInput: Input = {
+                        name: prototype.mutation._argumentids[i],
+                        inputFieldType: prototype.mutation._argumenttypes[i],
                         reference: null,
                         validValues: null
                     };
 
-                    this.setInput(input, inputs[i], null);
+                    this.setInput(blockInput, inputs[i], null);
                 }
             }
             else {
                 if (inputs.length == 0) {
-                    this.mutation.warp = true;
+                    this.mutation.warp = 'true';
                     return;
                 }
 
@@ -349,7 +350,7 @@ export class Block {
                     return;
                 }
 
-                this.mutation.warp = inputs[0] == 'true';
+                this.mutation.warp = inputs[0];
 
                 for (let i = 1; i < inputs.length; i++) {
                     const input = inputs[i];
@@ -360,6 +361,20 @@ export class Block {
                     }
 
                     this.mutation.withArgument(input);
+
+                    if (input instanceof Block) {
+                        input.asShadow();
+                        input.parentBlock = this;
+                        
+                        const blockInput: Input = {
+                            name: this.mutation._argumentids[this.mutation._argumentids.length - 1],
+                            inputFieldType: InputFieldType.MENU,
+                            reference: null,
+                            validValues: null
+                        };
+    
+                        this.setInput(blockInput, null, input);
+                    }
                 }
             }
         }
@@ -377,8 +392,6 @@ export class Block {
                     referencedBlock.asShadow();
 
                     this.setInput(inputField, typeof input == 'string' ? null : input, referencedBlock);
-
-                    this._references.push(referencedBlock);
                 }
                 else {
                     this.setInput(inputField, input, null);
@@ -450,7 +463,7 @@ export class Block {
             let substackTop = to.substackTop();
 
             this.inputs[input.name] = [
-                InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
+                InputType.INCLUDES_LITERAL,
                 substackTop._uid,
             ];
 
@@ -473,6 +486,8 @@ export class Block {
             }
 
             this.inputs[input.name].push(block._uid);
+
+            this._references.push(block);
         }
     }
 
