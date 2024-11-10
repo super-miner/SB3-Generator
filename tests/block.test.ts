@@ -1,5 +1,6 @@
 import { Block } from "../src/block";
 import { InputType } from "../src/inputType";
+import { HasChildren, Procedure } from "../src/mutation";
 import { opcodeTable } from "../src/opcodeTable";
 import { createBlock, createBroadcast, createList, createSprite, createVariable, generateUid } from "../src/sb3Generator";
 
@@ -59,7 +60,7 @@ test('Creating block with block input correctly', () => {
     const block1 = new Block('motion_movesteps', [block2], []);
     expect(block1.inputs).toStrictEqual({
         'STEPS': [
-            InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
+            InputType.INCLUDES_LITERAL,
             block2._uid,
             [
                 InputType.CUSTOM_LITERAL,
@@ -127,7 +128,7 @@ test('Setting field data correctly', () => {
     const block2 = new Block('motion_movesteps', ['10'], []);
     block1.withNextBlock(block2);
 
-    expect(block1.mutation?.hasnext).toBe(true);
+    expect((block1.mutation as HasChildren)?.hasnext).toBe(true);
 
     block1.fieldData = opcodeTable['motion_movesteps'];
     expect(block1.mutation).toBe(null);
@@ -208,7 +209,7 @@ test('Creating block with string input field containing block correctly', () => 
     
     expect(block.inputs).toStrictEqual({
         'MESSAGE': [
-            3,
+            1,
             containedBlock._uid,
             [
                 10,
@@ -223,6 +224,169 @@ test('Creating block with string input field containing block correctly', () => 
             ]
         ]
     });
+});
+
+test('Creating custom block argument correctly', () => {
+    const stringArgument = new Block('argument_reporter_string_number', [], ['String or Number']);
+
+    expect(stringArgument.fields).toStrictEqual({
+        "VALUE": [
+            "String or Number",
+            null
+        ]
+    });
+});
+
+test('Creating custom block prototype with string input correctly', () => {
+    const stringArgument = new Block('argument_reporter_string_number', [], ['String or Number']);
+
+    const blockPrototype = new Block('procedures_prototype', [
+        'false',
+        'Test Function',
+        stringArgument,
+        'Label'
+    ], []);
+
+    expect(blockPrototype.inputs).toStrictEqual({
+        "!!!!!!!!!!!!!!!!!!!!": [
+            1,
+            stringArgument._uid
+        ]
+    });
+    expect(blockPrototype.shadow).toBe(true);
+    expect((blockPrototype.mutation as Procedure).proccode).toBe('Test Function %s Label');
+    expect((blockPrototype.mutation as Procedure).argumentids).toBe('["!!!!!!!!!!!!!!!!!!!!"]');
+    expect((blockPrototype.mutation as Procedure).argumentnames).toBe('["String or Number"]');
+    expect((blockPrototype.mutation as Procedure).argumentdefaults).toBe('[""]');
+    expect((blockPrototype.mutation as Procedure).warp).toBe('false');
+    expect(stringArgument.parent).toBe(blockPrototype._uid);
+});
+
+test('Creating custom block prototype with boolean input correctly', () => {
+    const booleanArgument = new Block('argument_reporter_boolean', [], ['Boolean']);
+
+    const blockPrototype = new Block('procedures_prototype', [
+        'false',
+        'Test Function',
+        booleanArgument,
+        'Label'
+    ], []);
+
+    expect(blockPrototype.inputs).toStrictEqual({
+        "!!!!!!!!!!!!!!!!!!!!": [
+            1,
+            booleanArgument._uid
+        ]
+    });
+    expect(blockPrototype.shadow).toBe(true);
+    expect((blockPrototype.mutation as Procedure).proccode).toBe('Test Function %b Label');
+    expect((blockPrototype.mutation as Procedure).argumentids).toBe('["!!!!!!!!!!!!!!!!!!!!"]');
+    expect((blockPrototype.mutation as Procedure).argumentnames).toBe('["Boolean"]');
+    expect((blockPrototype.mutation as Procedure).argumentdefaults).toBe('["false"]');
+});
+
+test('Creating custom block properly', () => {
+    const stringArgument = new Block('argument_reporter_string_number', [], ['String or Number']);
+
+    const blockPrototype = new Block('procedures_prototype', [
+        'false',
+        'Test Function',
+        stringArgument,
+        'Label'
+    ], []);
+
+    const blockDefinition = new Block('procedures_definition', [blockPrototype], []);
+
+    expect(blockDefinition.inputs).toStrictEqual({
+        "custom_block": [
+            1,
+            blockPrototype._uid
+        ]
+    });
+    expect(blockDefinition.next).toBe(null);
+    expect(blockDefinition.parent).toBe(null);
+    expect(blockDefinition.shadow).toBe(false);
+    expect(blockPrototype.parent).toBe(blockDefinition._uid);
+});
+
+test('Calling custom block with literal properly', () => {
+    const stringArgument = new Block('argument_reporter_string_number', [], ['String or Number']);
+
+    const blockPrototype = new Block('procedures_prototype', [
+        'false',
+        'Test Function',
+        stringArgument,
+        'Label'
+    ], []);
+
+    const blockCall = new Block('procedures_call', [blockPrototype, 'Hello World!'], []);
+
+    expect(blockCall.inputs).toStrictEqual({
+        '!!!!!!!!!!!!!!!!!!!!': [
+            1,
+            [
+                10,
+                'Hello World!'
+            ]
+        ]
+    });
+});
+
+test('Calling custom block with variable properly', () => {
+    const variable = createVariable('Test Variable');
+
+    const stringArgument = new Block('argument_reporter_string_number', [], ['String or Number']);
+
+    const blockPrototype = new Block('procedures_prototype', [
+        'false',
+        'Test Function',
+        stringArgument,
+        'Label'
+    ], []);
+
+    const blockCall = new Block('procedures_call', [blockPrototype, variable], []);
+
+    expect(blockCall.inputs).toStrictEqual({
+        '!!!!!!!!!!!!!!!!!!!!': [
+            3,
+            [
+                12,
+                "Test Variable",
+                variable.uid
+            ],
+            [
+                10,
+                ""
+            ]
+        ]
+    });
+});
+
+test('Calling custom block with block properly', () => {
+    const block = createBlock('sensing_timer');
+
+    const stringArgument = new Block('argument_reporter_string_number', [], ['String or Number']);
+
+    const blockPrototype = new Block('procedures_prototype', [
+        'false',
+        'Test Function',
+        stringArgument,
+        'Label'
+    ], []);
+
+    const blockCall = new Block('procedures_call', [blockPrototype, block], []);
+
+    expect(blockCall.inputs).toStrictEqual({
+        '!!!!!!!!!!!!!!!!!!!!': [
+            1,
+            block._uid,
+            [
+                10,
+                ""
+            ]
+        ]
+    });
+    expect(block.parent).toBe(blockCall._uid);
 });
 
 test('Succesfully adding children', () => {
@@ -265,7 +429,7 @@ test('Setting sprite correctly', () => {
     expect(sprite._blocks).toStrictEqual([block]);
 });
 
-test ('Setting nextBlock correctly', () => {
+test('Setting nextBlock correctly', () => {
     const block1 = createBlock('motion_movesteps', ['10']);
     const block2 = createBlock('motion_movesteps', ['20']);
     block1.nextBlock = block2;
@@ -273,7 +437,7 @@ test ('Setting nextBlock correctly', () => {
     expect(block1.next).toBe(block2._uid);
 });
 
-test ('Setting parentBlock correctly', () => {
+test('Setting parentBlock correctly', () => {
     const block1 = createBlock('motion_movesteps', ['10']);
     const block2 = createBlock('motion_movesteps', ['20']);
     block1.parentBlock = block2;

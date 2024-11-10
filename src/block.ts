@@ -2,16 +2,17 @@
  * @module block
  */
 
-import { createBlock, createMutation, generateUid } from "./sb3Generator";
+import { createBlock, generateUid } from "./sb3Generator";
 import { Variable } from "./variable";
 import { Field, FieldData, Input, opcodeTable } from "./opcodeTable";
 import { InputType } from "./inputType";
 import { Sprite } from "./sprite";
 import { Broadcast } from "./broadcast";
 import { InputFieldType } from "./inputFieldType";
-import { Mutation } from "./mutation";
+import { HasChildren, Mutation, Procedure } from "./mutation";
 import { MutationType } from "./mutationType";
 import { List } from "./list";
+import assert from "assert";
 
 /**
  * Represents a scratch block.
@@ -157,9 +158,13 @@ export class Block {
             case MutationType.NONE:
                 this.mutation = null;
                 break;
-            case MutationType.MUTATION:
-                this.mutation = createMutation();
+            case MutationType.HAS_CHILDREN:
+                this.mutation = new HasChildren([], false);
                 break;
+            case MutationType.PROCEDURE_PROTOTYPE:
+                this.asShadow(); // The lack of break here is purposeful.
+            case MutationType.PROCEDURE_CALL:
+                this.mutation = new Procedure([], 'true');
         }
     }
 
@@ -277,7 +282,7 @@ export class Block {
             block.sprite = this._sprite;
         }
 
-        if (this.mutation != null && this.fieldData.mutationType == MutationType.MUTATION) {
+        if (this.mutation != null && this.mutation instanceof HasChildren) {
             this.mutation.hasnext = true;
         }
 
@@ -305,24 +310,97 @@ export class Block {
      * @private
      */
     setInputs(inputs: (string|Variable|Block|null)[]) {
-        for (let i = 0; i < this._fieldData.inputs.length; i++) {
-            let inputField = this._fieldData.inputs[i];
-            let input = inputs[i];
+        if (this.mutation instanceof Procedure) {
+            if (this._fieldData.mutationType == MutationType.PROCEDURE_CALL) {
+                if (inputs.length == 0) {
+                    console.log('WARN: Could not create call to custom block as the custom block is not specified.');
+                    return;
+                }
 
-            if (inputField.validValues != null && input != null && typeof input == 'string' && !inputField.validValues.includes(input)) {
-                console.log('WARN: Invalid value for input ' + inputField.name + ' in ' + this.opcode + '. ' + inputField.name + ' can only accept ["' + inputField.validValues.join('","') + '"], given "' + input + '". (block uid: ' + this._uid + ')');
-            }
+                if (!(inputs[0] instanceof Block)) {
+                    console.log('WARN: procedures_call expects a block as its first parameter.');
+                    return;
+                }
 
-            if (inputField.reference != null) {
-                let referencedBlock = createBlock(inputField.reference, [], [typeof input == 'string' ? input : '']);
-                referencedBlock.asShadow();
+                const prototype = inputs[0] as Block;
 
-                this.setInput(inputField, typeof input == 'string' ? null : input, referencedBlock);
+                if (prototype.opcode != 'procedures_prototype') {
+                    console.log('WARN: procedures_call expects its first parameter to have opcode "procedures_prototype", not "' + prototype.opcode + '".');
+                    return;
+                }
 
-                this._references.push(referencedBlock);
+                assert(prototype.mutation instanceof Procedure);
+
+                this.mutation = prototype.mutation;
+
+                for (let i = 1; i < inputs.length; i++) {
+                    const blockInput: Input = {
+                        name: prototype.mutation._argumentids[i - 1],
+                        inputFieldType: prototype.mutation._argumenttypes[i - 1],
+                        reference: null,
+                        validValues: null
+                    };
+
+                    this.setInput(blockInput, inputs[i], null);
+                }
             }
             else {
-                this.setInput(inputField, input, null);
+                if (inputs.length == 0) {
+                    this.mutation.warp = 'true';
+                    return;
+                }
+
+                if (!(inputs[0] == 'true' || inputs[0] == 'false')) { // TODO: Make this function able to take in boolean.
+                    console.log('WARN: procedures_prototype expects "true" or "false" as its first parameter.');
+                    return;
+                }
+
+                this.mutation.warp = inputs[0];
+
+                for (let i = 1; i < inputs.length; i++) {
+                    const input = inputs[i];
+
+                    if (!(input instanceof Block || typeof input == 'string')) {
+                        console.log('WARN: procedures_prototype\'s expects all parameters to be strings or blocks.');
+                        return;
+                    }
+
+                    this.mutation.withArgument(input);
+
+                    if (input instanceof Block) {
+                        input.asShadow();
+                        input.parentBlock = this;
+                        
+                        const blockInput: Input = {
+                            name: this.mutation._argumentids[this.mutation._argumentids.length - 1],
+                            inputFieldType: InputFieldType.MENU,
+                            reference: null,
+                            validValues: null
+                        };
+    
+                        this.setInput(blockInput, null, input);
+                    }
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < this._fieldData.inputs.length; i++) {
+                let inputField = this._fieldData.inputs[i];
+                let input = inputs[i];
+
+                if (inputField.validValues != null && input != null && typeof input == 'string' && !inputField.validValues.includes(input)) {
+                    console.log('WARN: Invalid value for input ' + inputField.name + ' in ' + this.opcode + '. ' + inputField.name + ' can only accept ["' + inputField.validValues.join('","') + '"], given "' + input + '". (block uid: ' + this._uid + ')');
+                }
+
+                if (inputField.reference != null) {
+                    let referencedBlock = createBlock(inputField.reference, [], [typeof input == 'string' ? input : '']);
+                    referencedBlock.asShadow();
+
+                    this.setInput(inputField, typeof input == 'string' ? null : input, referencedBlock);
+                }
+                else {
+                    this.setInput(inputField, input, null);
+                }
             }
         }
     }
@@ -390,7 +468,7 @@ export class Block {
             let substackTop = to.substackTop();
 
             this.inputs[input.name] = [
-                InputType.INCLUDES_VARIABLE | InputType.INCLUDES_LITERAL,
+                InputType.INCLUDES_LITERAL,
                 substackTop._uid,
             ];
 
@@ -413,6 +491,8 @@ export class Block {
             }
 
             this.inputs[input.name].push(block._uid);
+
+            this._references.push(block);
         }
     }
 
