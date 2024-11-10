@@ -41,12 +41,9 @@ export function createAllBlocksProject(outputDirectory: string) {
     sprite.withList(list);
     
     let y = 0;
-    let skipNext = false;
+    let referencedBlocks: string[] = [];
     Object.keys(opcodeTable).forEach(key => {
-        if (skipNext || key == '' || key.includes('procedures') || key.includes('argument')) {
-            skipNext = false;
-        }
-        else {
+        if (!(key == '' || key.includes('procedures') || key.includes('argument') || referencedBlocks.includes(key))) {
             let block = opcodeTable[key];
             const finalY = y;
 
@@ -55,7 +52,7 @@ export function createAllBlocksProject(outputDirectory: string) {
 
             block.inputs.forEach(input => {
                 if (input.reference && input.reference != null) {
-                    skipNext = true;
+                    referencedBlocks.push(input.reference);
                 }
 
                 if (input.inputFieldType == InputFieldType.BLOCK) {
@@ -67,7 +64,7 @@ export function createAllBlocksProject(outputDirectory: string) {
                         inputs.push(conditionBlock);
                     }
                 }
-                else if (input.name.includes('COLOR')) {
+                else if (input.inputFieldType == InputFieldType.COLOR) {
                     inputs.push('#000000');
                 }
                 else {
