@@ -428,46 +428,62 @@ export class Sprite {
      *
      * @param {number} x
      * @param {number} y
+     * @returns {this}
      */
     withPosition(x: number, y: number) {
         this.x = x;
         this.y = y;
+        return this;
     }
 
     /**
      * Sets the sprite's size in percent.
      *
      * @param {number} size
+     * @returns {this}
      */
     withSize(size: number) {
         this.size = size;
+        return this;
     }
 
     /**
      * Sets the sprite's angle in degrees.
      *
      * @param {number} angle
+     * @returns {this}
      */
     withAngle(angle: number) {
         this.direction = angle;
+        return this;
     }
 
-    /** Sets whether the sprite is draggable. */
+    /** Sets whether the sprite is draggable. 
+     * 
+     * @returns {this}
+    */
     asDraggable() {
         this.draggable = true;
+        return this;
     }
 
     /**
      * Sets the sprite's rotation style.
      *
      * @param {string} rotationStyle
+     * @returns {this}
      */
     withRotationStyle(rotationStyle: string) {
         this.rotationStyle = rotationStyle;
+        return this;
     }
 
-    /** Sets the sprite to be invisible. */
+    /** Sets the sprite to be invisible. 
+     * 
+     * @returns {this}
+    */
     asInvisibleSprite() {
         this.visible = false;
+        return this;
     }
 }

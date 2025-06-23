@@ -40,15 +40,17 @@ test('Constructor assigns values correctly', () => {
 
 test('Set stage state correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.asStage();
+    const returned = sprite.asStage();
     expect(sprite.isStage).toBe(true);
     expect(sprite.layerOrder).toBe(0);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Adding one variable correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withVariable(createVariable('Test variable 1'));
+    const returned = sprite.withVariable(createVariable('Test variable 1'));
     expect(sprite._variables).toStrictEqual([createVariable('Test variable 1')]);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Adding multiple variables correctly', () => {
@@ -60,8 +62,9 @@ test('Adding multiple variables correctly', () => {
 
 test('Adding one list correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withList(createList('Test list 1'));
+    const returned = sprite.withList(createList('Test list 1'));
     expect(sprite._lists).toStrictEqual([createList('Test list 1')]);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Adding multiple lists correctly', () => {
@@ -73,8 +76,9 @@ test('Adding multiple lists correctly', () => {
 
 test('Adding one broadcast correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withBroadcast(createBroadcast('Test broadcast 1'));
+    const returned = sprite.withBroadcast(createBroadcast('Test broadcast 1'));
     expect(sprite._broadcasts).toStrictEqual([createBroadcast('Test broadcast 1')]);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Adding multiple broadcasts correctly', () => {
@@ -90,14 +94,16 @@ test('Adding multiple broadcasts correctly', () => {
 
 test('Setting default costume correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withDefaultCostume(10);
+    const returned = sprite.withDefaultCostume(10);
     expect(sprite.currentCostume).toBe(10);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Adding one costume correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withCostume(createCostume('TestCostume.png'));
+    const returned = sprite.withCostume(createCostume('TestCostume.png'));
     expect(sprite.costumes).toStrictEqual([createCostume('TestCostume.png')]);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Adding multiple costumes correctly', () => {
@@ -111,75 +117,80 @@ test('Adding multiple costumes correctly', () => {
 
 test('Setting volume correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withVolume(10);
+    const returned = sprite.withVolume(10);
     expect(sprite.volume).toBe(10);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting layer order correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withLayerOrder(10);
+    const returned = sprite.withLayerOrder(10);
     expect(sprite.layerOrder).toBe(10);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting tempo correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withTempo(10);
+    const returned = sprite.withTempo(10);
     expect(sprite.tempo).toBe(10);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting video transparency correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withVideoTransparency(10);
+    const returned = sprite.withVideoTransparency(10);
     expect(sprite.videoTransparency).toBe(10);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting video state correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withVideoState('off');
+    const returned = sprite.withVideoState('off');
     expect(sprite.videoState).toBe('off');
+    expect(returned).toStrictEqual(sprite);
 });
 
 //TODO: Test TTS when implemented
 
 test('Setting position correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withPosition(25, 87);
+    const returned = sprite.withPosition(25, 87);
     expect(sprite.x).toBe(25);
     expect(sprite.y).toBe(87);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting size correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withSize(150);
+    const returned = sprite.withSize(150);
     expect(sprite.size).toBe(150);
-});
-
-test('Setting size correctly', () => {
-    const sprite = createSprite('Test sprite');
-    sprite.withSize(150);
-    expect(sprite.size).toBe(150);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting direction correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withAngle(220);
+    const returned = sprite.withAngle(220);
     expect(sprite.direction).toBe(220);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting draggable correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.asDraggable();
+    const returned = sprite.asDraggable();
     expect(sprite.draggable).toBe(true);
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting rotation style correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.withRotationStyle('left-right');
+    const returned = sprite.withRotationStyle('left-right');
     expect(sprite.rotationStyle).toBe('left-right');
+    expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting visible correctly', () => {
     const sprite = createSprite('Test sprite');
-    sprite.asInvisibleSprite();
+    const returned = sprite.asInvisibleSprite();
     expect(sprite.visible).toBe(false);
+    expect(returned).toStrictEqual(sprite);
 });
