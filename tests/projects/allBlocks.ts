@@ -1,21 +1,11 @@
-/**
- * @module createAllBlocksProject
- */
+import { Block } from "../../src/block";
+import { Broadcast } from "../../src/broadcast";
+import { InputFieldType } from "../../src/inputFieldType";
+import { opcodeTable } from "../../src/opcodeTable";
+import { createBlock, createBroadcast, createCostume, createList, createProject, createSprite, createVariable } from "../../src/sb3Generator";
+import { Variable } from "../../src/variable";
 
-import { Block } from "./block";
-import { Broadcast } from "./broadcast";
-import { InputFieldType } from "./inputFieldType";
-import { opcodeTable } from "./opcodeTable";
-import { createBlock, createBroadcast, createCostume, createList, createProject, createSprite, createVariable } from "./sb3Generator";
-import { Variable } from "./variable";
-
-/**
- * Creates a project containing all of the blocks in one sprite.
- *
- * @export
- * @param {string} outputDirectory
- */
-export function createAllBlocksProject(outputDirectory: string) {
+function createAllBlocksProject(outputDirectory: string) {
     let project = createProject('All Blocks Project', outputDirectory)
                     .withSprite(
                         createSprite('Stage')
@@ -119,3 +109,5 @@ export function createAllBlocksProject(outputDirectory: string) {
 
     return project;
 }
+
+createAllBlocksProject("output").build(true);

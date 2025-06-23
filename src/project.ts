@@ -7,7 +7,6 @@ import JSZip from 'jszip';
 import {Sprite} from './sprite';
 import {Metadata} from './metadata';
 import {ToBeImplemented} from './toBeImplemented';
-import {createAllBlocksProject} from './generateAllBlocks';
 
 /**
  * Represents a .sb3 project.
@@ -134,9 +133,6 @@ export class Project {
 
             // Dump the project json file.
             fs.writeFileSync(this.getDebugJsonFilePath(), jsonString);
-
-            // Creates a project containing all of the blocks.
-            if (this.name != 'All Blocks Project') createAllBlocksProject(this.getDebugAllBlocksDirectory()).build(true);
         }
     }
 
