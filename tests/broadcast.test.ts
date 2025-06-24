@@ -1,8 +1,12 @@
 import { Broadcast } from "../src/broadcast";
 import { generateUid } from "../src/sb3Generator";
 
+let broadcast: Broadcast;
+
 beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.0);
+
+    broadcast = new Broadcast('Test Broadcast');
 });
 
 afterEach(() => {
@@ -10,7 +14,6 @@ afterEach(() => {
 });
 
 test('Constructor assigning values correctly', () => {
-    const broadcast = new Broadcast('Test Broadcast');
     expect(broadcast.uid).toBe(generateUid());
     expect(broadcast.name).toBe('Test Broadcast');
 });

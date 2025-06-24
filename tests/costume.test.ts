@@ -2,8 +2,13 @@ import fs from 'fs';
 import { Costume } from "../src/costume";
 import { md5 } from 'js-md5';
 
+let costume: Costume;
+
+beforeEach(() => {
+    costume = new Costume('TestCostume.png');
+});
+
 test('Constructor assigning values correctly', () => {
-    const costume = new Costume('TestCostume.png');
     expect(costume._path).toBe('TestCostume.png');
     expect(costume._data).toStrictEqual(fs.readFileSync('TestCostume.png'));
     expect(costume.name).toBe('TestCostume');
