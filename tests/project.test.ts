@@ -6,7 +6,7 @@ let project: Project;
 beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.0);
 
-    project = new Project('Test project');
+    project = new Project('Test Project');
 });
 
 afterEach(() => {
@@ -14,7 +14,7 @@ afterEach(() => {
 });
 
 test('Constructor assigns values correctly', () => {
-    expect(project.name).toBe('Test project');
+    expect(project.name).toBe('Test Project');
 });
 
 test('Correctly adds sprite', () => {
