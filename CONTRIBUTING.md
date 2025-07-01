@@ -28,7 +28,7 @@ Running this from within the project folder should generate a `.sb3` file in `<P
 ## Running Unit Tests:
 Before you create a pull request you should make sure that all of the unit tests still pass, you can do this by running:
 ```powershell
-npx jest
+npx jest --detectOpenHandles
 ```
 
 ## Regenerating the Documentation:
