@@ -69,7 +69,7 @@ test('Creating block with block input correctly', () => {
         ]
     });
     expect(block1.fields).toStrictEqual({});
-    expect(block2.parentBlock).toStrictEqual(block1);
+    expect(block2._parentBlock).toStrictEqual(block1);
 });
 
 test('Creating block with field correctly', () => {
@@ -150,9 +150,10 @@ test('Correctly getting top of substack with multiple blocks', () => {
 
 test('Creating block with dropdown correctly', () => {
     const block = new Block('motion_goto', ['_mouse_'], []);
-    const dropdownBlock = new Block('motion_goto_menu', [], ['_mouse_']).asShadow();
     
-    expect(block._references).toStrictEqual([dropdownBlock]);
+    expect(block._references.length).toEqual(1);
+    expect(block._references[0].fields['TO']).toStrictEqual(['_mouse_', null]);
+    expect(block._references[0].shadow).toEqual(true);
     expect(block._references[0]._parentBlock).toStrictEqual(block);
 });
 
@@ -433,7 +434,7 @@ test('Setting sprite correctly', () => {
 test('Setting nextBlock correctly', () => {
     const block1 = createBlock('motion_movesteps', ['10']);
     const block2 = createBlock('motion_movesteps', ['20']);
-    block1.nextBlock = block2;
+    block1.withNextBlock(block2);
     expect(block1._nextBlock).toStrictEqual(block2);
     expect(block1.next).toBe(block2._uid);
 });
@@ -441,7 +442,7 @@ test('Setting nextBlock correctly', () => {
 test('Setting parentBlock correctly', () => {
     const block1 = createBlock('motion_movesteps', ['10']);
     const block2 = createBlock('motion_movesteps', ['20']);
-    block1.parentBlock = block2;
+    block1.withParentBlock(block2);
     expect(block1._parentBlock).toStrictEqual(block2);
     expect(block1.parent).toBe(block2._uid);
     expect(block1.topLevel).toBe(false);
