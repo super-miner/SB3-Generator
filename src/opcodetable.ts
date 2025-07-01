@@ -23,7 +23,7 @@ export type FieldData = {
 export const opcodeTable: {[id: string]: FieldData} = {
     'motion_movesteps': {
         inputs: [
-            {name: 'STEPS', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'STEPS', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -31,7 +31,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_turnright': {
         inputs: [
-            {name: 'DEGREES', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'DEGREES', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -39,7 +39,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_turnleft': {
         inputs: [
-            {name: 'DEGREES', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'DEGREES', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -47,7 +47,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_goto': {
         inputs: [
-            {name: 'TO', inputFieldType: InputFieldType.ANY, reference: 'motion_goto_menu', validValues: ['_random_', '_mouse_', '']}
+            {name: 'TO', inputFieldType: InputFieldType.NUMBER, reference: 'motion_goto_menu', validValues: ['_random_', '_mouse_', '']}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -63,8 +63,8 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_gotoxy': {
         inputs: [
-            {name: 'X', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}, 
-            {name: 'Y', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'X', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}, 
+            {name: 'Y', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -72,8 +72,8 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_glideto': {
         inputs: [
-            {name: 'SECS', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}, 
-            {name: 'TO', inputFieldType: InputFieldType.ANY, reference: 'motion_glideto_menu', validValues: ['_random_', '_mouse_', '']}
+            {name: 'SECS', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}, 
+            {name: 'TO', inputFieldType: InputFieldType.NUMBER, reference: 'motion_glideto_menu', validValues: ['_random_', '_mouse_', '']}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -89,9 +89,9 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_glidesecstoxy': {
         inputs: [
-            {name: 'SECS', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}, 
-            {name: 'X', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}, 
-            {name: 'Y', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'SECS', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}, 
+            {name: 'X', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}, 
+            {name: 'Y', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -99,7 +99,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_pointindirection': {
         inputs: [
-            {name: 'DIRECTION', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'DIRECTION', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -107,7 +107,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_pointtowards': {
         inputs: [
-            {name: 'TOWARDS', inputFieldType: InputFieldType.ANY, reference: 'motion_pointtowards_menu', validValues: ['_mouse_', '']}
+            {name: 'TOWARDS', inputFieldType: InputFieldType.NUMBER, reference: 'motion_pointtowards_menu', validValues: ['_mouse_', '']}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -123,7 +123,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_changexby': {
         inputs: [
-            {name: 'DX', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'DX', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -131,7 +131,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_setx': {
         inputs: [
-            {name: 'X', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'X', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -139,7 +139,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_changeyby': {
         inputs: [
-            {name: 'DY', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'DY', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -147,7 +147,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'motion_sety': {
         inputs: [
-            {name: 'Y', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'Y', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ], 
         fields: [],
         mutationType: MutationType.NONE,
@@ -188,7 +188,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     'looks_sayforsecs': {
         inputs: [
             {name: 'MESSAGE', inputFieldType: InputFieldType.STRING, reference: null, validValues: null},
-            {name: 'SECS', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'SECS', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -205,7 +205,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     'looks_thinkforsecs': {
         inputs: [
             {name: 'MESSAGE', inputFieldType: InputFieldType.STRING, reference: null, validValues: null},
-            {name: 'SECS', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'SECS', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -213,7 +213,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'looks_think': {
         inputs: [
-            {name: 'MESSAGE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'MESSAGE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -221,7 +221,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'looks_switchcostumeto': {
         inputs: [
-            {name: 'COSTUME', inputFieldType: InputFieldType.ANY, reference: 'looks_costume', validValues: null}
+            {name: 'COSTUME', inputFieldType: InputFieldType.NUMBER, reference: 'looks_costume', validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -243,7 +243,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'looks_switchbackdropto': {
         inputs: [
-            {name: 'BACKDROP', inputFieldType: InputFieldType.ANY, reference: 'looks_backdrops', validValues: null}
+            {name: 'BACKDROP', inputFieldType: InputFieldType.NUMBER, reference: 'looks_backdrops', validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -265,7 +265,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'looks_changesizeby': {
         inputs: [
-            {name: 'CHANGE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'CHANGE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -273,7 +273,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'looks_setsizeto': {
         inputs: [
-            {name: 'SIZE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'SIZE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -281,7 +281,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'looks_changeeffectby': {
         inputs: [
-            {name: 'CHANGE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'CHANGE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [
             {name: 'EFFECT', validValues: ['COLOR', 'FISHEYE', 'WHIRL', 'PIXELATE', 'MOSAIC', 'BRIGHTNESS', 'GHOST']}
@@ -291,7 +291,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'looks_seteffectto': {
         inputs: [
-            {name: 'VALUE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'VALUE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [
             {name: 'EFFECT', validValues: ['COLOR', 'FISHEYE', 'WHIRL', 'PIXELATE', 'MOSAIC', 'BRIGHTNESS', 'GHOST']}
@@ -327,7 +327,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'looks_goforwardbackwardlayers': {
         inputs: [
-            {name: 'NUM', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
+            {name: 'NUM', inputFieldType: InputFieldType.INDEX, reference: null, validValues: null}
         ],
         fields: [
             {name: 'FORWARD_BACKWARD', validValues: ['forward', 'backward']}
@@ -389,7 +389,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'sound_changeeffectby': {
         inputs: [
-            {name: 'VALUE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'VALUE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [
             {name: 'EFFECT', validValues: ['PITCH', 'PAN']}
@@ -399,7 +399,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'sound_seteffectto': {
         inputs: [
-            {name: 'VALUE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'VALUE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [
             {name: 'EFFECT', validValues: ['PITCH', 'PAN']}
@@ -415,7 +415,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'sound_changevolumeby': {
         inputs: [
-            {name: 'VOLUME', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'VOLUME', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -423,7 +423,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'sound_setvolumeto': {
         inputs: [
-            {name: 'VOLUME', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'VOLUME', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -465,7 +465,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'event_whengreaterthan': {
         inputs: [
-            {name: 'VALUE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'VALUE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [
             {name: 'WHENGREATERTHANMENU', validValues: ['LOUDNESS', 'TIMER']}
@@ -757,8 +757,8 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'operator_add': {
         inputs: [
-            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
-            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'NUM1', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -766,8 +766,8 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'operator_subtract': {
         inputs: [
-            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
-            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'NUM1', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -775,8 +775,8 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'operator_multiply': {
         inputs: [
-            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
-            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'NUM1', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -784,8 +784,8 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'operator_divide': {
         inputs: [
-            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
-            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'NUM1', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -793,8 +793,8 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'operator_random': {
         inputs: [
-            {name: 'FROM', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
-            {name: 'TO', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'FROM', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null},
+            {name: 'TO', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -890,8 +890,8 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'operator_mod': {
         inputs: [
-            {name: 'NUM1', inputFieldType: InputFieldType.ANY, reference: null, validValues: null},
-            {name: 'NUM2', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'NUM1', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null},
+            {name: 'NUM2', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -899,7 +899,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'operator_round': {
         inputs: [
-            {name: 'NUM', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'NUM', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -907,7 +907,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'operator_mathop': {
         inputs: [
-            {name: 'NUM', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'NUM', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [
             {name: 'OPERATOR', validValues: ['abs', 'floor', 'ceiling', 'sqrt', 'sin', 'cos', 'tan', 'acos', 'asin', 'atan', 'ln', 'log', 'e ^', '10 ^']}
@@ -963,7 +963,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'data_deleteoflist': {
         inputs: [
-            {name: 'INDEX', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
+            {name: 'INDEX', inputFieldType: InputFieldType.INDEX, reference: null, validValues: null}
         ],
         fields: [
             {name: 'LIST', validValues: null}
@@ -982,7 +982,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     'data_insertatlist': {
         inputs: [
             {name: 'ITEM', inputFieldType: InputFieldType.STRING, reference: null, validValues: null},
-            {name: 'INDEX', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
+            {name: 'INDEX', inputFieldType: InputFieldType.INDEX, reference: null, validValues: null}
         ],
         fields: [
             {name: 'LIST', validValues: null}
@@ -992,7 +992,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'data_replaceitemoflist': {
         inputs: [
-            {name: 'INDEX', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null},
+            {name: 'INDEX', inputFieldType: InputFieldType.INDEX, reference: null, validValues: null},
             {name: 'ITEM', inputFieldType: InputFieldType.STRING, reference: null, validValues: null}
         ],
         fields: [
@@ -1003,7 +1003,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'data_itemoflist': {
         inputs: [
-            {name: 'INDEX', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
+            {name: 'INDEX', inputFieldType: InputFieldType.INDEX, reference: null, validValues: null}
         ],
         fields: [
             {name: 'LIST', validValues: null}
@@ -1094,7 +1094,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     'music_playDrumForBeats': {
         inputs: [
             {name: 'DRUM', inputFieldType: InputFieldType.MENU, reference: 'music_menu_DRUM', validValues: Array.from(Array(19), (_, i) => i.toString())},
-            {name: 'BEATS', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'BEATS', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1110,7 +1110,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'music_restForBeats': {
         inputs: [
-            {name: 'BEATS', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'BEATS', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1119,7 +1119,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     'music_playNoteForBeats': {
         inputs: [
             {name: 'NOTE', inputFieldType: InputFieldType.MENU, reference: 'note', validValues: Array.from(Array(133), (_, i) => i.toString())},
-            {name: 'BEATS', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'BEATS', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1151,7 +1151,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'music_setTempo': {
         inputs: [
-            {name: 'TEMPO', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'TEMPO', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1159,7 +1159,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'music_changeTempo': {
         inputs: [
-            {name: 'TEMPO', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'TEMPO', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1206,7 +1206,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     'pen_changePenColorParamBy': {
         inputs: [
             {name: 'COLOR_PARAM', inputFieldType: InputFieldType.MENU, reference: 'pen_menu_colorParam', validValues: ['color', 'saturation', 'brightness', 'transparency']},
-            {name: 'VALUE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'VALUE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1223,7 +1223,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     'pen_setPenColorParamTo': {
         inputs: [
             {name: 'COLOR_PARAM', inputFieldType: InputFieldType.MENU, reference: 'pen_menu_colorParam', validValues: ['color', 'saturation', 'brightness', 'transparency']},
-            {name: 'VALUE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'VALUE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1231,7 +1231,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'pen_changePenSizeBy': {
         inputs: [
-            {name: 'SIZE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'SIZE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1239,7 +1239,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'pen_setPenSizeTo': {
         inputs: [
-            {name: 'SIZE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'SIZE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1247,7 +1247,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'videoSensing_whenMotionGreaterThan': {
         inputs: [
-            {name: 'REFERENCE', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'REFERENCE', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
@@ -1296,7 +1296,7 @@ export const opcodeTable: {[id: string]: FieldData} = {
     },
     'videoSensing_setVideoTransparency': {
         inputs: [
-            {name: 'TRANSPARENCY', inputFieldType: InputFieldType.ANY, reference: null, validValues: null}
+            {name: 'TRANSPARENCY', inputFieldType: InputFieldType.NUMBER, reference: null, validValues: null}
         ],
         fields: [],
         mutationType: MutationType.NONE,
