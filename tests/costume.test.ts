@@ -5,12 +5,12 @@ import { md5 } from 'js-md5';
 let costume: Costume;
 
 beforeEach(() => {
-    costume = new Costume('TestCostume.png');
+    costume = new Costume('tests/res/TestCostume.png');
 });
 
 test('Constructor assigning values correctly', () => {
-    expect(costume._path).toBe('TestCostume.png');
-    expect(costume._data).toStrictEqual(fs.readFileSync('TestCostume.png'));
+    expect(costume._path).toBe('tests/res/TestCostume.png');
+    expect(costume._data).toStrictEqual(fs.readFileSync('tests/res/TestCostume.png'));
     expect(costume.name).toBe('TestCostume');
     expect(costume.dataFormat).toBe('png');
     expect(costume.assetId).toBe(md5(costume._data));

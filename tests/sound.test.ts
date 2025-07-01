@@ -5,12 +5,12 @@ import { Sound } from '../src/sound';
 let sound: Sound;
 
 beforeEach(() => {
-    sound = new Sound('TestSound.wav');
+    sound = new Sound('tests/res/TestSound.wav');
 });
 
 test('Constructor assigning values correctly', () => {
-    expect(sound._path).toBe('TestSound.wav');
-    expect(sound._data).toStrictEqual(fs.readFileSync('TestSound.wav'));
+    expect(sound._path).toBe('tests/res/TestSound.wav');
+    expect(sound._data).toStrictEqual(fs.readFileSync('tests/res/TestSound.wav'));
     expect(sound.name).toBe('TestSound');
     expect(sound.dataFormat).toBe('wav');
     expect(sound.assetId).toBe(md5(sound._data));

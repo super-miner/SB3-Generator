@@ -95,15 +95,15 @@ test('Setting default costume correctly', () => {
 });
 
 test('Adding one costume correctly', () => {
-    const returned = sprite.withCostume(createCostume('TestCostume.png'));
-    expect(sprite.costumes).toStrictEqual([createCostume('TestCostume.png')]);
+    const returned = sprite.withCostume(createCostume('tests/res/TestCostume.png'));
+    expect(sprite.costumes).toStrictEqual([createCostume('tests/res/TestCostume.png')]);
     expect(returned).toStrictEqual(sprite);
 });
 
 test('Adding multiple costumes correctly', () => {
-    sprite.withCostume(createCostume('TestCostume.png'));
-    sprite.withCostume(createCostume('TestCostume.png'));
-    expect(sprite.costumes).toStrictEqual([createCostume('TestCostume.png'), createCostume('TestCostume.png')]);
+    sprite.withCostume(createCostume('tests/res/TestCostume.png'));
+    sprite.withCostume(createCostume('tests/res/TestCostume.png'));
+    expect(sprite.costumes).toStrictEqual([createCostume('tests/res/TestCostume.png'), createCostume('tests/res/TestCostume.png')]);
 });
 
 //TODO: Test sounds once they are implemented
