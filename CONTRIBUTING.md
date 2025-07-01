@@ -21,14 +21,14 @@ If you would like to solve an [Issue](https://github.com/super-miner/SB3-Generat
 ## Running the Project:
 Once you have your fork of the project ready you can start by running some of the provided test code.
 ```powershell
-npx tsx tests/project/allBlocks.ts
+npx tsx tests/projects/allBlocks.ts
 ```
 Running this from within the project folder should generate a `.sb3` file in `<ProjectFolder>/output`. To verify that the process worked you can try loading the project in [Scratch](https://scratch.mit.edu).
 
 ## Running Unit Tests:
 Before you create a pull request you should make sure that all of the unit tests still pass, you can do this by running:
 ```powershell
-npx jest
+npx jest --detectOpenHandles
 ```
 
 ## Regenerating the Documentation:

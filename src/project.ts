@@ -115,7 +115,11 @@ export class Project {
                 return undefined;
             }
 
-            return key[0] == '_' ? undefined : value;
+            if (key.startsWith('_')) {
+                return undefined;
+            }
+
+            return value;
         });
 
         zip.file('project.json', jsonString);

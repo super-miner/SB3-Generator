@@ -37,22 +37,6 @@ export class Block {
     _nextBlock: Block|null = null;
 
     /**
-     * Getter for next block.
-     *
-     * @readonly
-     * @type {Block|null}
-     */
-    get nextBlock() {
-        return this._nextBlock;
-    }
-
-    /** Setter for next block. */
-    set nextBlock(block: Block|null) {
-        this._nextBlock = block;
-        this.next = block == null ? null : block._uid;
-    }
-
-    /**
      * The previous block in the sequence.
      *
      * @type {(Block|null)}
@@ -60,43 +44,11 @@ export class Block {
     _previousBlock: Block|null = null;
 
     /**
-     * Getter for previous block.
-     *
-     * @readonly
-     * @type {Block|null}
-     */
-    get previousBlock() {
-        return this._previousBlock;
-    }
-
-    /** Setter for previous block. */
-    set previousBlock(block: Block|null) {
-        this._previousBlock = block;
-    }
-
-    /**
      * This block's parent in block form.
      *
      * @type {(Block|null)}
      */
     _parentBlock: Block|null = null;
-
-    /**
-     * Getter for parent block.
-     *
-     * @readonly
-     * @type {Block}
-     */
-    get parentBlock() {
-        return this._parentBlock;
-    }
-
-    /** Setter for parent block. */
-    set parentBlock(block: (Block|null)) {
-        this._parentBlock = block;
-        this.parent = block == null ? null : block._uid;
-        this.topLevel = false;
-    }
 
     /**
      * This block's referenced blocks.
@@ -243,10 +195,10 @@ export class Block {
      *
      * @constructor
      * @param {string} opcode
-     * @param {Array<(string|Variable|Block|null)>} inputs
+     * @param {Array<(string|Broadcast|Variable|Block|null)>} inputs
      * @param {Array<(string|Broadcast|Varaible|List)>} fields
      */
-    constructor(opcode: string, inputs: (string|Variable|Block|null)[], fields: (string|Broadcast|Variable|List)[]) {
+    constructor(opcode: string, inputs: (string|Broadcast|Variable|Block|null)[], fields: (string|Broadcast|Variable|List)[]) {
         this.opcode = opcode;
         this.fieldData = opcodeTable[opcode];
         this._fieldData = this.fieldData; // Needed to make vscode happy.
@@ -274,9 +226,10 @@ export class Block {
      * @returns {Block}
      */
     withNextBlock(block: Block) {
-        this.nextBlock = block;
-        block.previousBlock = this;
-        block.parentBlock = this;
+        this._nextBlock = block;
+        this.next = block == null ? null : block._uid;
+        block.withPreviousBlock(this);
+        block.withParentBlock(this);
 
         if (this._sprite != null) {
             block.sprite = this._sprite;
@@ -289,14 +242,38 @@ export class Block {
         return block;
     }
 
+    /** Sets previous block. 
+     * 
+     * @param {Block|null}
+     * @returns {Block|null}
+    */
+    withPreviousBlock(block: Block|null) {
+        this._previousBlock = block;
+
+        return block;
+    }
+
+    /** Sets the parent block. 
+     * 
+     * @param {Block|null}
+     * @returns {Block|null}
+    */
+    withParentBlock(block: Block|null) {
+        this._parentBlock = block;
+        this.parent = block == null ? null : block._uid;
+        this.topLevel = false;
+
+        return block;
+    }
+
     /**
      * Gets the block at the top of this block's substack.
      *
      * @returns {Block}
      */
     substackTop() : Block {
-        if (this.previousBlock != null && this.parentBlock) {
-            return this.parentBlock.substackTop();
+        if (this._previousBlock != null && this._parentBlock) {
+            return this._parentBlock.substackTop();
         }
         else {
             return this;
@@ -306,10 +283,10 @@ export class Block {
     /**
      * Sets the inputs for this block.
      *
-     * @param {Array<(string|Variable|Block|null)>} inputs
+     * @param {Array<(string|Broadcast|Variable|Block|null)>} inputs
      * @private
      */
-    setInputs(inputs: (string|Variable|Block|null)[]) {
+    setInputs(inputs: (string|Broadcast|Variable|Block|null)[]) {
         if (this.mutation instanceof Procedure) {
             if (this._fieldData.mutationType == MutationType.PROCEDURE_CALL) {
                 if (inputs.length == 0) {
@@ -369,7 +346,7 @@ export class Block {
 
                     if (input instanceof Block) {
                         input.asShadow();
-                        input.parentBlock = this;
+                        input.withParentBlock(this);
                         
                         const blockInput: Input = {
                             name: this.mutation._argumentids[this.mutation._argumentids.length - 1],
@@ -394,6 +371,7 @@ export class Block {
 
                 if (inputField.reference != null) {
                     let referencedBlock = createBlock(inputField.reference, [], [typeof input == 'string' ? input : '']);
+                    referencedBlock.withParentBlock(this);
                     referencedBlock.asShadow();
 
                     this.setInput(inputField, typeof input == 'string' ? null : input, referencedBlock);
@@ -428,11 +406,11 @@ export class Block {
      * Sets the value of an input.
      *
      * @param {Input} input
-     * @param {(string|Variable|Block|null)} to
+     * @param {(string|Broadcast|Variable|Block|null)} to
      * @param {(Block|null)} block
      * @private
      */
-    setInput(input: Input, to: (string|Variable|Block|null), block: (Block|null)) {
+    setInput(input: Input, to: (string|Broadcast|Variable|Block|null), block: (Block|null)) {
         if (to == null) {
             this.inputs[input.name] = [];
         }
@@ -442,6 +420,16 @@ export class Block {
                 [
                     input.inputFieldType as number,
                     to
+                ]
+            ];
+        }
+        else if (to instanceof Broadcast) {
+            this.inputs[input.name] = [
+                InputType.INCLUDES_LITERAL,
+                [
+                    input.inputFieldType as number,
+                    to.name,
+                    to.uid
                 ]
             ];
         }
@@ -481,7 +469,7 @@ export class Block {
                 );
             }
 
-            substackTop.parentBlock = this;
+            substackTop.withParentBlock(this);
             this._references.push(to);
         }
 

@@ -37,7 +37,7 @@ function createAllBlocksProject(outputDirectory: string) {
             let block = opcodeTable[key];
             const finalY = y;
 
-            const inputs: (string|Variable|Block|null)[] = [];
+            const inputs: (string|Broadcast|Variable|Block|null)[] = [];
             const fields: (string|Broadcast|Variable)[] = [];
 
             block.inputs.forEach(input => {
@@ -56,6 +56,9 @@ function createAllBlocksProject(outputDirectory: string) {
                 }
                 else if (input.inputFieldType == InputFieldType.COLOR) {
                     inputs.push('#000000');
+                }
+                else if (input.inputFieldType == InputFieldType.BROADCAST) {
+                    inputs.push(broadcast);
                 }
                 else {
                     inputs.push(input.validValues && input.validValues != null ? input.validValues[0] : '');
