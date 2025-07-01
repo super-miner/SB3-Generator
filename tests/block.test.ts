@@ -153,6 +153,7 @@ test('Creating block with dropdown correctly', () => {
     const dropdownBlock = new Block('motion_goto_menu', [], ['_mouse_']).asShadow();
     
     expect(block._references).toStrictEqual([dropdownBlock]);
+    expect(block._references[0]._parentBlock).toStrictEqual(block);
 });
 
 test('Creating block with string input field correctly', () => {
