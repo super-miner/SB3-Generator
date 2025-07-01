@@ -9,7 +9,7 @@ createProject('Simple Project')
                     .withValue(10)
             )
             .withCostume(
-                createCostume('TestCostume.png')
+                createCostume('tests/res/TestCostume.png')
             )
             .withBlock(
                 createBlock('motion_movesteps', ['10'])

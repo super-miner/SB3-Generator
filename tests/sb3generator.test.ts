@@ -28,11 +28,11 @@ test('Creates variable correctly', () => {
 });
 
 test('Creates costume correctly', () => {
-    expect(createCostume('TestCostume.png')).toEqual(new Costume('TestCostume.png'));
+    expect(createCostume('tests/res/TestCostume.png')).toEqual(new Costume('tests/res/TestCostume.png'));
 });
 
 test('Creates sound correctly', () => {
-    expect(createSound('TestSound.wav')).toEqual(new Sound('TestSound.wav'));
+    expect(createSound('tests/res/TestSound.wav')).toEqual(new Sound('tests/res/TestSound.wav'));
 });
 
 test('Creates block correctly', () => {
