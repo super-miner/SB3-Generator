@@ -195,10 +195,10 @@ export class Block {
      *
      * @constructor
      * @param {string} opcode
-     * @param {Array<(string|Variable|Block|null)>} inputs
+     * @param {Array<(string|Broadcast|Variable|Block|null)>} inputs
      * @param {Array<(string|Broadcast|Varaible|List)>} fields
      */
-    constructor(opcode: string, inputs: (string|Variable|Block|null)[], fields: (string|Broadcast|Variable|List)[]) {
+    constructor(opcode: string, inputs: (string|Broadcast|Variable|Block|null)[], fields: (string|Broadcast|Variable|List)[]) {
         this.opcode = opcode;
         this.fieldData = opcodeTable[opcode];
         this._fieldData = this.fieldData; // Needed to make vscode happy.
@@ -283,10 +283,10 @@ export class Block {
     /**
      * Sets the inputs for this block.
      *
-     * @param {Array<(string|Variable|Block|null)>} inputs
+     * @param {Array<(string|Broadcast|Variable|Block|null)>} inputs
      * @private
      */
-    setInputs(inputs: (string|Variable|Block|null)[]) {
+    setInputs(inputs: (string|Broadcast|Variable|Block|null)[]) {
         if (this.mutation instanceof Procedure) {
             if (this._fieldData.mutationType == MutationType.PROCEDURE_CALL) {
                 if (inputs.length == 0) {
@@ -406,11 +406,11 @@ export class Block {
      * Sets the value of an input.
      *
      * @param {Input} input
-     * @param {(string|Variable|Block|null)} to
+     * @param {(string|Broadcast|Variable|Block|null)} to
      * @param {(Block|null)} block
      * @private
      */
-    setInput(input: Input, to: (string|Variable|Block|null), block: (Block|null)) {
+    setInput(input: Input, to: (string|Broadcast|Variable|Block|null), block: (Block|null)) {
         if (to == null) {
             this.inputs[input.name] = [];
         }
@@ -420,6 +420,16 @@ export class Block {
                 [
                     input.inputFieldType as number,
                     to
+                ]
+            ];
+        }
+        else if (to instanceof Broadcast) {
+            this.inputs[input.name] = [
+                InputType.INCLUDES_LITERAL,
+                [
+                    input.inputFieldType as number,
+                    to.name,
+                    to.uid
                 ]
             ];
         }

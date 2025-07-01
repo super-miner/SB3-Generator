@@ -178,6 +178,22 @@ test('Creating block with string input field correctly', () => {
     });
 });
 
+test('Creating block with string input field containing broadcast correctly', () => {
+    const broadcast = createBroadcast('test broadcast');
+    const block = new Block('event_broadcast', [broadcast], []);
+    
+    expect(block.inputs).toStrictEqual({
+        'BROADCAST_INPUT': [
+            1,
+            [
+                11,
+                'test broadcast',
+                broadcast.uid
+            ]
+        ]
+    });
+});
+
 test('Creating block with string input field containing variable correctly', () => {
     const variable = createVariable('test variable').withValue(124);
     const block = new Block('looks_sayforsecs', [variable, '1'], []);
