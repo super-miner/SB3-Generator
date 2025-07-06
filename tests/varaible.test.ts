@@ -16,15 +16,25 @@ afterEach(() => {
 test('Constructor assigning values correctly', () => {
     expect(variable.uid).toBe(generateUid());
     expect(variable.name).toBe('Test Variable');
-    expect(variable.value).toBe(0);
-});
-
-test('Adding single number value correctly', () => {
-    variable.withValue(10);
-    expect(variable.value).toBe(10);
+    expect(variable.value).toBe('');
 });
 
 test('Adding single string value correctly', () => {
     variable.withValue('test');
     expect(variable.value).toBe('test');
+});
+
+test('Adding single number value correctly', () => {
+    variable.withValue(10);
+    expect(variable.value).toBe('10');
+});
+
+test('Adding single true boolean value correctly', () => {
+    variable.withValue(true);
+    expect(variable.value).toBe('true');
+});
+
+test('Adding single false boolean value correctly', () => {
+    variable.withValue(false);
+    expect(variable.value).toBe('false');
 });
