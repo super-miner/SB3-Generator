@@ -414,21 +414,12 @@ export class Block {
         if (to == null) {
             this.inputs[input.name] = [];
         }
-        else if (typeof to == 'number' || typeof to == 'boolean') {
+        else if (typeof to == 'string' || typeof to == 'number' || typeof to == 'boolean') {
             this.inputs[input.name] = [
                 InputType.INCLUDES_LITERAL,
                 [
                     input.inputFieldType as number,
                     to.toString()
-                ]
-            ];
-        }
-        else if (typeof to == 'string') {
-            this.inputs[input.name] = [
-                InputType.INCLUDES_LITERAL,
-                [
-                    input.inputFieldType as number,
-                    to
                 ]
             ];
         }
