@@ -29,9 +29,9 @@ export class List {
     /**
      * The values in the list.
      *
-     * @type {Array<number|string|boolean>}
+     * @type {Array<string>}
      */
-    values: (number|string|boolean)[] = [];
+    values: string[] = [];
 
     /**
      * Creates an instance of List.
@@ -47,24 +47,25 @@ export class List {
     /**
      * Adds a value to the list.
      *
-     * @param {(number|string|boolean)} value
+     * @param {string|number|boolean} value
      * @returns {this}
      */
-    withValue(value: (number|string|boolean)) {
-        this.values.push(value);
+    withValue(value: string|number|boolean) {
+        this.values.push(value.toString());
         return this;
     }
 
     /**
      * Adds multiple values to a list.
      *
-     * @param {Array.<number|string|boolean>} values
+     * @param {Array.<string|number|boolean>} values
      * @returns {this}
      */
-    withValues(values: (number|string|boolean)[]) {
+    withValues(values: (string|number|boolean)[]) {
         values.forEach(value => {
             this.withValue(value);
         });
+        
         return this;
     }
 }

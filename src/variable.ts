@@ -36,9 +36,9 @@ export class Variable {
     /**
      * The variable's value.
      *
-     * @type {(number|string|boolean)}
+     * @type {string}
      */
-    value: (number|string|boolean) = 0;
+    value: string = '';
 
     /**
      * Creates an instance of Variable.
@@ -54,11 +54,11 @@ export class Variable {
     /**
      * Sets the variable's value.
      *
-     * @param {(number|string)} value
+     * @param {string|number|boolean} value
      * @returns {this}
      */
-    withValue(value: (number|string)) {
-        this.value = value;
+    withValue(value: string|number|boolean) {
+        this.value = value.toString();
         return this;
     }
 }

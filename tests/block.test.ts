@@ -178,6 +178,48 @@ test('Creating block with string input field correctly', () => {
     });
 });
 
+test('Creating block with number input field correctly', () => {
+    const block = new Block('motion_movesteps', [100], []);
+    
+    expect(block.inputs).toStrictEqual({
+        'STEPS': [
+            1,
+            [
+                4,
+                '100'
+            ]
+        ]
+    });
+});
+
+test('Creating block with true boolean input field correctly', () => {
+    const block = new Block('looks_say', [true], []);
+    
+    expect(block.inputs).toStrictEqual({
+        'MESSAGE': [
+            1,
+            [
+                10,
+                'true'
+            ]
+        ]
+    });
+});
+
+test('Creating block with false boolean input field correctly', () => {
+    const block = new Block('looks_say', [false], []);
+    
+    expect(block.inputs).toStrictEqual({
+        'MESSAGE': [
+            1,
+            [
+                10,
+                'false'
+            ]
+        ]
+    });
+});
+
 test('Creating block with string input field containing broadcast correctly', () => {
     const broadcast = createBroadcast('test broadcast');
     const block = new Block('event_broadcast', [broadcast], []);
