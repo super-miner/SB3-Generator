@@ -6,6 +6,7 @@ import { createBlock, createComment, createCostume, createProject, createSound, 
 import { Sound } from "../src/sound";
 import { Sprite } from "../src/sprite";
 import { Variable } from "../src/variable";
+import { Comment } from "../src/comment";
 
 beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.0);
