@@ -1,4 +1,4 @@
-import { createBroadcast, createCostume, createList, createSprite, createVariable } from "../src/sb3Generator";
+import { createBroadcast, createComment, createCostume, createList, createSprite, createVariable } from "../src/sb3Generator";
 import { Sprite } from "../src/sprite";
 
 let sprite: Sprite;
@@ -20,7 +20,7 @@ test('Constructor assigns values correctly', () => {
     expect(sprite._lists).toStrictEqual([]);
     expect(sprite._broadcasts).toStrictEqual([]);
     expect(sprite._blocks).toStrictEqual([]);
-    //TODO: Test comments
+    expect(sprite.comments).toStrictEqual({});
     expect(sprite.currentCostume).toBe(0);
     expect(sprite.costumes).toStrictEqual([]);
     expect(sprite.sounds).toStrictEqual([]);
@@ -86,7 +86,26 @@ test('Adding multiple broadcasts correctly', () => {
 
 //TODO: Test blocks once they are implemented
 
-//TODO: Test comments once they are implemented
+test('Adding one comment correctly', () => {
+    const comment = createComment('Test Comment', 125, 125);
+
+    const returned = sprite.withComment(comment);
+
+    expect(sprite.comments[comment._uid]).toStrictEqual(comment);
+    expect(returned).toStrictEqual(sprite);
+});
+
+test('Adding multiple comments correctly', () => {
+    const comment1 = createComment('Test Comment 1', 100, 100);
+    jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
+    const comment2 = createComment('Test Comment 2', 200, 200);
+
+    sprite.withComment(comment1);
+    sprite.withComment(comment2);
+
+    expect(sprite.comments[comment1._uid]).toStrictEqual(comment1);
+    expect(sprite.comments[comment2._uid]).toStrictEqual(comment2);
+});
 
 test('Setting default costume correctly', () => {
     const returned = sprite.withDefaultCostume(10);

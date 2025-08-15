@@ -315,6 +315,12 @@ export class Sprite {
         return this;
     }
 
+    /**
+     * Adds a comment to the sprite.
+     * 
+     * @param {Comment} comment
+     * @returns {this}
+     */
     withComment(comment: Comment) {
         this.comments[comment._uid] = comment;
         return this;
