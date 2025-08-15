@@ -66,16 +66,20 @@ export class Comment {
      *
      * @type {string}
      */
-    text: string = "";
+    text: string = '';
 
     /**
      * Creates an instance of Comment.
      *
      * @constructor
      * @param {string} text
+     * @param {number} width
+     * @param {number} height
      */
-    constructor(text: string) {
+    constructor(text: string, width: number, height: number) {
         this.text = text;
+        this.width = width;
+        this.height = height;
     }
 
     /**

@@ -2,7 +2,7 @@ import { Block } from "../src/block";
 import { Costume } from "../src/costume";
 import { Mutation } from "../src/mutation";
 import { Project } from "../src/project";
-import { createBlock, createCostume, createProject, createSound, createSprite, createVariable, generateUid } from "../src/sb3Generator";
+import { createBlock, createComment, createCostume, createProject, createSound, createSprite, createVariable, generateUid } from "../src/sb3Generator";
 import { Sound } from "../src/sound";
 import { Sprite } from "../src/sprite";
 import { Variable } from "../src/variable";
@@ -37,6 +37,10 @@ test('Creates sound correctly', () => {
 
 test('Creates block correctly', () => {
     expect(createBlock('motion_movesteps', ['15'], [])).toStrictEqual(new Block('motion_movesteps', ['15'], []));
+});
+
+test('Creates comment correctly', () => {
+    expect(createComment('Test Comment', 200, 200)).toStrictEqual(new Comment('Test Comment', 200, 200));
 });
 
 test('Generates Uid correctly', () => {

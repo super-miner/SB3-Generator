@@ -115,10 +115,12 @@ export function createBlock(opcode: string, inputs: (string|Broadcast|Variable|B
  * 
  * @export
  * @param {stirng} text 
+ * @param {number} width
+ * @param {number} height
  * @returns {Comment}
  */
-export function createComment(text: string) {
-    return new Comment(text);
+export function createComment(text: string, width: number, height: number) {
+    return new Comment(text, width, height);
 }
 
 /**
