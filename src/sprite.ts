@@ -7,7 +7,7 @@ import {Variable} from './variable';
 import {List} from './list';
 import {Broadcast} from './broadcast';
 import {Block} from './block';
-import {BlockComment} from './blockComment';
+import {Comment} from './comment';
 import {Costume} from './costume';
 import {Sound} from './sound';
 import { Project } from './project';
@@ -93,9 +93,9 @@ export class Sprite {
     /**
      * The sprite's comments.
      *
-     * @type {Object.<string, BlockComment>}
+     * @type {Object.<string, Comment>}
      */
-    comments: {[id: string]: BlockComment} = {}; // TODO: Implement comments
+    comments: {[id: string]: Comment} = {}; // TODO: Implement comments
     
     /**
      * The selected costume.
@@ -315,7 +315,7 @@ export class Sprite {
         return this;
     }
 
-    /*withComment(comment: BlockComment) {
+    /*withComment(comment: Comment) {
         this.comments[comment.uid] = comment;
         return this;
     }*/

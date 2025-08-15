@@ -11,7 +11,7 @@ import { List } from './list';
 import { Broadcast } from './broadcast';
 import { Block } from './block';
 import { Mutation } from './mutation';
-import { BlockComment } from './blockComment';
+import { Comment } from './comment';
 
 /**
  * The characters used to generate uids.
@@ -115,10 +115,10 @@ export function createBlock(opcode: string, inputs: (string|Broadcast|Variable|B
  * 
  * @export
  * @param {stirng} text 
- * @returns {BlockComment}
+ * @returns {Comment}
  */
-export function createBlockComment(text: string) {
-    return new BlockComment(text);
+export function createComment(text: string) {
+    return new Comment(text);
 }
 
 /**

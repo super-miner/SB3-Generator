@@ -1,5 +1,5 @@
 /**
- * @module blockComment
+ * @module comment
  */
 
 import { Block } from "./block";
@@ -8,10 +8,10 @@ import { Block } from "./block";
  * Represents a comment.
  *
  * @export
- * @class BlockComment
- * @typedef {BlockComment}
+ * @class Comment
+ * @typedef {Comment}
  */
-export class BlockComment {
+export class Comment {
     /**
      * The block that this comment is attached to, null for no attachment.
      *
@@ -69,7 +69,7 @@ export class BlockComment {
     text: string = "";
 
     /**
-     * Creates an instance of BlockComment.
+     * Creates an instance of Comment.
      *
      * @constructor
      * @param {string} text
