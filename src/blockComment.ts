@@ -69,6 +69,16 @@ export class BlockComment {
     text: string = "";
 
     /**
+     * Creates an instance of BlockComment.
+     *
+     * @constructor
+     * @param {string} text
+     */
+    constructor(text: string) {
+        this.text = text;
+    }
+
+    /**
      * Attaches a block to the comment.
      * 
      * @param {Block|null} block 

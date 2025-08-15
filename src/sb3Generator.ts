@@ -11,6 +11,7 @@ import { List } from './list';
 import { Broadcast } from './broadcast';
 import { Block } from './block';
 import { Mutation } from './mutation';
+import { BlockComment } from './blockComment';
 
 /**
  * The characters used to generate uids.
@@ -107,6 +108,17 @@ export function createSound(path: string) {
  */
 export function createBlock(opcode: string, inputs: (string|Broadcast|Variable|Block|null)[] = [], fields: (string|Broadcast|Variable|List)[] = []) {
     return new Block(opcode, inputs, fields);
+}
+
+/**
+ * Creates a comment.
+ * 
+ * @export
+ * @param {stirng} text 
+ * @returns {BlockComment}
+ */
+export function createBlockComment(text: string) {
+    return new BlockComment(text);
 }
 
 /**
