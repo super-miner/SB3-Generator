@@ -315,10 +315,10 @@ export class Sprite {
         return this;
     }
 
-    /*withComment(comment: Comment) {
+    withComment(comment: Comment) {
         this.comments[comment.uid] = comment;
         return this;
-    }*/
+    }
 
     /**
      * Sets the current costume.
