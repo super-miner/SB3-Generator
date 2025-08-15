@@ -175,6 +175,18 @@ test('Setting minimized multiple times correctly', () => {
     expect(comment.minimized).toBe(true);
 });
 
+test('Directly setting minimized to true correctly', () => {
+    comment.setMinimized(true);
+
+    expect(comment.minimized).toBe(true);
+});
+
+test('Directly setting minimized to false correctly', () => {
+    comment.setMinimized(false);
+
+    expect(comment.minimized).toBe(false);
+});
+
 test('Setting text correctly', () => {
     comment.withText('New Text');
 
