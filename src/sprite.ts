@@ -315,10 +315,16 @@ export class Sprite {
         return this;
     }
 
-    /*withComment(comment: Comment) {
-        this.comments[comment.uid] = comment;
+    /**
+     * Adds a comment to the sprite.
+     * 
+     * @param {Comment} comment
+     * @returns {this}
+     */
+    withComment(comment: Comment) {
+        this.comments[comment._uid] = comment;
         return this;
-    }*/
+    }
 
     /**
      * Sets the current costume.

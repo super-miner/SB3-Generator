@@ -3,6 +3,7 @@
  */
 
 import { Block } from "./block";
+import { generateUid } from "./sb3Generator";
 
 /**
  * Represents a comment.
@@ -12,6 +13,13 @@ import { Block } from "./block";
  * @typedef {Comment}
  */
 export class Comment {
+    /**
+     * The comment's uid.
+     *
+     * @type {string}
+     */
+    _uid: string;
+
     /**
      * The block that this comment is attached to, null for no attachment.
      *
@@ -77,6 +85,7 @@ export class Comment {
      * @param {number} height
      */
     constructor(text: string, width: number, height: number) {
+        this._uid = generateUid();
         this.text = text;
         this.width = width;
         this.height = height;

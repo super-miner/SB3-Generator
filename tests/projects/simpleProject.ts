@@ -1,4 +1,4 @@
-import {createBlock, createCostume, createProject, createSprite, createVariable} from '../../src/sb3Generator.ts';
+import {createBlock, createComment, createCostume, createProject, createSprite, createVariable} from '../../src/sb3Generator.ts';
 
 createProject('Simple Project')
     .withSprite(
@@ -13,6 +13,9 @@ createProject('Simple Project')
             )
             .withBlock(
                 createBlock('motion_movesteps', ['10'])
+            )
+            .withComment(
+                createComment('Hello, this is a test comment!', 200, 200)
             )
     )
     .build();
