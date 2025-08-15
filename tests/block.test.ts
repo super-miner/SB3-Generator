@@ -558,3 +558,70 @@ test('Directly setting top level to false correctly', () => {
     expect(block.topLevel).toBe(false);
     expect(block.shadow).toBe(false);
 });
+
+test('Setting x position correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.withX(10101);
+
+    expect(block.x).toBe(10101);
+    expect(block.y).toBe(0);
+});
+
+test('Setting x position correctly multiple times', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.withX(69);
+    block.withX(10203);
+
+    expect(block.x).toBe(10203);
+    expect(block.y).toBe(0);
+});
+
+test('Setting y position correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.withY(10);
+
+    expect(block.y).toBe(10);
+    expect(block.x).toBe(0);
+});
+
+test('Setting y position correctly multiple times', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.withY(690);
+    block.withY(100);
+
+    expect(block.y).toBe(100);
+    expect(block.x).toBe(0);
+});
+
+test('Setting position correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.withPosition(10, 11);
+
+    expect(block.x).toBe(10);
+    expect(block.y).toBe(11);
+});
+
+test('Changing position correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.withPosition(10, 11);
+    block.withPosition(50, 75);
+
+    expect(block.x).toBe(50);
+    expect(block.y).toBe(75);
+});
+
+test('Changing one position value correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.withPosition(10, 12);
+    block.withPosition(10, 50);
+
+    expect(block.x).toBe(10);
+    expect(block.y).toBe(50);
+});
