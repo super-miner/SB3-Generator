@@ -192,6 +192,59 @@ test('Setting video state correctly', () => {
 
 //TODO: Test TTS when implemented
 
+test('Setting x position correctly', () => {
+    sprite.withX(10101);
+
+    expect(sprite.x).toBe(10101);
+    expect(sprite.y).toBe(0);
+});
+
+test('Setting x position correctly multiple times', () => {
+    sprite.withX(69);
+    sprite.withX(10203);
+
+    expect(sprite.x).toBe(10203);
+    expect(sprite.y).toBe(0);
+});
+
+test('Setting y position correctly', () => {
+    sprite.withY(10);
+
+    expect(sprite.y).toBe(10);
+    expect(sprite.x).toBe(0);
+});
+
+test('Setting y position correctly multiple times', () => {
+    sprite.withY(690);
+    sprite.withY(100);
+
+    expect(sprite.y).toBe(100);
+    expect(sprite.x).toBe(0);
+});
+
+test('Setting position correctly', () => {
+    sprite.withPosition(10, 11);
+
+    expect(sprite.x).toBe(10);
+    expect(sprite.y).toBe(11);
+});
+
+test('Changing position correctly', () => {
+    sprite.withPosition(10, 11);
+    sprite.withPosition(50, 75);
+
+    expect(sprite.x).toBe(50);
+    expect(sprite.y).toBe(75);
+});
+
+test('Changing one position value correctly', () => {
+    sprite.withPosition(10, 12);
+    sprite.withPosition(10, 50);
+
+    expect(sprite.x).toBe(10);
+    expect(sprite.y).toBe(50);
+});
+
 test('Setting position correctly', () => {
     const returned = sprite.withPosition(25, 87);
     expect(sprite.x).toBe(25);
