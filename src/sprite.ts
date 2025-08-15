@@ -261,8 +261,24 @@ export class Sprite {
      * @returns {this}
      */
     asStage() {
-        this.isStage = true;
-        this.layerOrder = 0;
+        this.setStage(true);
+
+        return this;
+    }
+
+    /**
+     * Sets whether this sprite is a stage.
+     * 
+     * @param {boolean} stage 
+     * @returns {this}
+     */
+    setStage(stage: boolean) {
+        this.isStage = stage;
+
+        if (stage) {
+            this.layerOrder = 0;
+        }
+
         return this;
     }
 
@@ -464,12 +480,26 @@ export class Sprite {
         return this;
     }
 
-    /** Sets whether the sprite is draggable. 
+    /** 
+     * Sets the sprite to be draggable. 
      * 
      * @returns {this}
     */
     asDraggable() {
-        this.draggable = true;
+        this.setDraggable(true);
+
+        return this;
+    }
+
+    /**
+     * Sets whether the sprite is draggable. 
+     * 
+     * @param {boolean} draggable 
+     * @returns {this}
+     */
+    setDraggable(draggable: boolean) {
+        this.draggable = draggable;
+
         return this;
     }
 
@@ -484,12 +514,26 @@ export class Sprite {
         return this;
     }
 
-    /** Sets the sprite to be invisible. 
+    /** 
+     * Sets the sprite to be invisible. 
      * 
      * @returns {this}
     */
     asInvisibleSprite() {
-        this.visible = false;
+        this.setVisible(false);
+
+        return this;
+    }
+
+    /**
+     * Sets whether the sprite is visible.
+     * 
+     * @param {boolean} invisible 
+     * @returns {this}
+     */
+    setVisible(visible: boolean) {
+        this.visible = visible;
+
         return this;
     }
 }
