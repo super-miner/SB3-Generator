@@ -244,6 +244,44 @@ export class Block {
     }
 
     /**
+     * Sets the x position of this block.
+     * 
+     * @param {number} x
+     * @returns {this}
+     */
+    withX(x: number) {
+        this.x = x;
+
+        return this;
+    }
+
+    /**
+     * Sets the y position of this block.
+     * 
+     * @param {number} y
+     * @returns {this}
+     */
+    withY(y: number) {
+        this.y = y;
+
+        return this;
+    }
+
+    /**
+     * Sets the position of this block.
+     * 
+     * @param {number} x
+     * @param {number} y
+     * @returns {this}
+     */
+    withPosition(x: number, y: number) {
+        this.withX(x);
+        this.withY(y);
+
+        return this;
+    }
+
+    /**
      * Adds a block as a child of this block (returns the added block).
      *
      * @param {Block} block

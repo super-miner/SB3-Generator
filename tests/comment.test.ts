@@ -57,30 +57,30 @@ test('Overwriting block correctly', () => {
 });
 
 test('Setting x position correctly', () => {
-    comment.withXPosition(10101);
+    comment.withX(10101);
 
     expect(comment.x).toBe(10101);
     expect(comment.y).toBe(0);
 });
 
 test('Setting x position correctly multiple times', () => {
-    comment.withXPosition(69);
-    comment.withXPosition(10203);
+    comment.withX(69);
+    comment.withX(10203);
 
     expect(comment.x).toBe(10203);
     expect(comment.y).toBe(0);
 });
 
 test('Setting y position correctly', () => {
-    comment.withYPosition(10);
+    comment.withY(10);
 
     expect(comment.y).toBe(10);
     expect(comment.x).toBe(0);
 });
 
 test('Setting y position correctly multiple times', () => {
-    comment.withYPosition(690);
-    comment.withYPosition(100);
+    comment.withY(690);
+    comment.withY(100);
 
     expect(comment.y).toBe(100);
     expect(comment.x).toBe(0);

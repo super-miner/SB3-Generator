@@ -110,7 +110,7 @@ export class Comment {
      * @param {number} x
      * @returns {this}
      */
-    withXPosition(x: number) {
+    withX(x: number) {
         this.x = x;
 
         return this;
@@ -122,7 +122,7 @@ export class Comment {
      * @param {number} y
      * @returns {this}
      */
-    withYPosition(y: number) {
+    withY(y: number) {
         this.y = y;
 
         return this;
@@ -136,8 +136,8 @@ export class Comment {
      * @returns {this}
      */
     withPosition(x: number, y: number) {
-        this.withXPosition(x);
-        this.withYPosition(y);
+        this.withX(x);
+        this.withY(y);
 
         return this;
     }

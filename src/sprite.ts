@@ -446,7 +446,31 @@ export class Sprite {
     }
 
     /**
-     * Sets the sprite's coordinates.
+     * Sets the x position of this sprite.
+     * 
+     * @param {number} x
+     * @returns {this}
+     */
+    withX(x: number) {
+        this.x = x;
+
+        return this;
+    }
+
+    /**
+     * Sets the y position of this sprite.
+     * 
+     * @param {number} y
+     * @returns {this}
+     */
+    withY(y: number) {
+        this.y = y;
+
+        return this;
+    }
+
+    /**
+     * Sets the position of this sprite.
      *
      * @param {number} x
      * @param {number} y
@@ -455,6 +479,7 @@ export class Sprite {
     withPosition(x: number, y: number) {
         this.x = x;
         this.y = y;
+        
         return this;
     }
 
