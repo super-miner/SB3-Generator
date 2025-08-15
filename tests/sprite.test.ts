@@ -43,9 +43,42 @@ test('Constructor assigns values correctly', () => {
 
 test('Set stage state correctly', () => {
     const returned = sprite.asStage();
+
     expect(sprite.isStage).toBe(true);
     expect(sprite.layerOrder).toBe(0);
     expect(returned).toStrictEqual(sprite);
+});
+
+test('Set stage state multiple times correctly', () => {
+    sprite.asStage();
+    sprite.asStage();
+
+    expect(sprite.isStage).toBe(true);
+    expect(sprite.layerOrder).toBe(0);
+});
+
+test('Directly set stage state to false correctly', () => {
+    const returned = sprite.setStage(false);
+
+    expect(sprite.isStage).toBe(false);
+    expect(sprite.layerOrder).toBe(1);
+    expect(returned).toStrictEqual(sprite);
+});
+
+test('Directly set stage state to true correctly', () => {
+    const returned = sprite.setStage(true);
+
+    expect(sprite.isStage).toBe(true);
+    expect(sprite.layerOrder).toBe(0);
+    expect(returned).toStrictEqual(sprite);
+});
+
+test('Directly set stage state to true then false correctly', () => {
+    sprite.setStage(true);
+    sprite.setStage(false);
+
+    expect(sprite.isStage).toBe(false);
+    expect(sprite.layerOrder).toBe(0);
 });
 
 test('Adding one variable correctly', () => {
@@ -180,7 +213,29 @@ test('Setting direction correctly', () => {
 
 test('Setting draggable correctly', () => {
     const returned = sprite.asDraggable();
+
     expect(sprite.draggable).toBe(true);
+    expect(returned).toStrictEqual(sprite);
+});
+
+test('Setting draggable multiple times correctly', () => {
+    sprite.asDraggable();
+    sprite.asDraggable();
+    
+    expect(sprite.draggable).toBe(true);
+});
+
+test('Directly setting draggable to true correctly', () => {
+    const returned = sprite.setDraggable(true);
+
+    expect(sprite.draggable).toBe(true);
+    expect(returned).toStrictEqual(sprite);
+});
+
+test('Directly setting draggable to false correctly', () => {
+    const returned = sprite.setDraggable(false);
+
+    expect(sprite.draggable).toBe(false);
     expect(returned).toStrictEqual(sprite);
 });
 
@@ -192,6 +247,28 @@ test('Setting rotation style correctly', () => {
 
 test('Setting visible correctly', () => {
     const returned = sprite.asInvisibleSprite();
+
+    expect(sprite.visible).toBe(false);
+    expect(returned).toStrictEqual(sprite);
+});
+
+test('Setting visible multiple times correctly', () => {
+    sprite.asInvisibleSprite();
+    sprite.asInvisibleSprite();
+
+    expect(sprite.visible).toBe(false);
+});
+
+test('Directly setting visible to true correctly', () => {
+    const returned = sprite.setVisible(true);
+
+    expect(sprite.visible).toBe(true);
+    expect(returned).toStrictEqual(sprite);
+});
+
+test('Directly setting visible to false correctly', () => {
+    const returned = sprite.setVisible(false);
+
     expect(sprite.visible).toBe(false);
     expect(returned).toStrictEqual(sprite);
 });
