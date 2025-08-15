@@ -186,7 +186,19 @@ export class Comment {
      * @returns {this}
      */
     asMinimized() {
-        this.minimized = true;
+        this.setMinimized(true);
+
+        return this;
+    }
+
+    /**
+     * Sets whether this comment is minimized.
+     * 
+     * @param {boolean} minimized 
+     * @returns {this}
+     */
+    setMinimized(minimized: boolean) {
+        this.minimized = minimized;
 
         return this;
     }

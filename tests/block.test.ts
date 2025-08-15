@@ -505,3 +505,56 @@ test('Setting parentBlock correctly', () => {
     expect(block1.parent).toBe(block2._uid);
     expect(block1.topLevel).toBe(false);
 });
+
+test('Setting shadow correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.asShadow();
+
+    expect(block.shadow).toBe(true);
+});
+
+test('Setting shadow multiple times correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.asShadow();
+    block.asShadow();
+
+    expect(block.shadow).toBe(true);
+});
+
+test('Directly setting shadow to true correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.setShadow(true);
+
+    expect(block.shadow).toBe(true);
+    expect(block.topLevel).toBe(true);
+});
+
+test('Directly setting shadow to false correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.setShadow(false);
+
+    expect(block.shadow).toBe(false);
+    expect(block.topLevel).toBe(true);
+});
+
+test('Directly setting top level to true correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.setTopLevel(true);
+
+    expect(block.topLevel).toBe(true);
+    expect(block.shadow).toBe(false);
+});
+
+test('Directly setting top level to false correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    block.setTopLevel(false);
+
+    expect(block.topLevel).toBe(false);
+    expect(block.shadow).toBe(false);
+});
