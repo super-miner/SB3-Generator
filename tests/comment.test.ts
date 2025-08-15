@@ -1,13 +1,21 @@
 import { Block } from "../src/block";
 import { Comment } from "../src/comment";
+import { generateUid } from "../src/sb3Generator";
 
 let comment: Comment;
 
 beforeEach(() => {
+    jest.spyOn(global.Math, 'random').mockReturnValue(0.0);
+
     comment = new Comment('Test Comment', 200, 500);
 });
 
+afterEach(() => {
+    jest.spyOn(global.Math, 'random').mockRestore();
+});
+
 test('Constructor assigning values correctly', () => {
+    expect(comment._uid).toBe(generateUid());
     expect(comment._block).toBe(null);
     expect(comment.blockId).toBe(null);
     expect(comment.x).toBe(0);

@@ -316,7 +316,7 @@ export class Sprite {
     }
 
     withComment(comment: Comment) {
-        this.comments[comment.uid] = comment;
+        this.comments[comment._uid] = comment;
         return this;
     }
 
