@@ -213,8 +213,32 @@ export class Block {
      * @returns {this}
      */
     asShadow() {
-        this.shadow = true;
-        this.topLevel = false;
+        this.setShadow(true);
+        this.setTopLevel(false);
+
+        return this;
+    }
+
+    /**
+     * Sets whether the block is a shadow, does not set topLevel, use asShadow if you want that functionality baked in.
+     * 
+     * @param {boolean} shadow
+     * @returns {this}
+     */
+    setShadow(shadow: boolean) {
+        this.shadow = shadow;
+
+        return this;
+    }
+
+    /**
+     * Sets whether the block is top level, this is done automatically by asShadow().
+     * 
+     * @param {boolean} topLevel
+     * @returns {this}
+     */
+    setTopLevel(topLevel: boolean) {
+        this.topLevel = topLevel;
 
         return this;
     }
