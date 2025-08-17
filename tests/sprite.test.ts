@@ -1,4 +1,4 @@
-import { createBroadcast, createComment, createCostume, createList, createSprite, createVariable } from "../src/sb3Generator";
+import { createBlock, createBroadcast, createComment, createCostume, createList, createSprite, createVariable } from "../src/sb3Generator";
 import { Sprite } from "../src/sprite";
 
 let sprite: Sprite;
@@ -29,7 +29,7 @@ test('Constructor assigns values correctly', () => {
     expect(sprite.tempo).toBe(60);
     expect(sprite.videoTransparency).toBe(50);
     expect(sprite.videoState).toBe('on');
-    //TODO: Test TTS language
+    expect(sprite.textToSpeechLanguage).toBe('en');
     expect(sprite.x).toBe(0);
     expect(sprite.y).toBe(0);
     expect(sprite.size).toBe(100);
@@ -83,6 +83,7 @@ test('Directly set stage state to true then false correctly', () => {
 
 test('Adding one variable correctly', () => {
     const returned = sprite.withVariable(createVariable('Test variable 1'));
+
     expect(sprite._variables).toStrictEqual([createVariable('Test variable 1')]);
     expect(returned).toStrictEqual(sprite);
 });
@@ -90,11 +91,13 @@ test('Adding one variable correctly', () => {
 test('Adding multiple variables correctly', () => {
     sprite.withVariable(createVariable('Test variable 1'));
     sprite.withVariable(createVariable('Test variable 2'));
+
     expect(sprite._variables).toStrictEqual([createVariable('Test variable 1'), createVariable('Test variable 2')]);
 });
 
 test('Adding one list correctly', () => {
     const returned = sprite.withList(createList('Test list 1'));
+
     expect(sprite._lists).toStrictEqual([createList('Test list 1')]);
     expect(returned).toStrictEqual(sprite);
 });
@@ -102,11 +105,13 @@ test('Adding one list correctly', () => {
 test('Adding multiple lists correctly', () => {
     sprite.withList(createList('Test list 1'));
     sprite.withList(createList('Test list 2'));
+
     expect(sprite._lists).toStrictEqual([createList('Test list 1'), createList('Test list 2')]);
 });
 
 test('Adding one broadcast correctly', () => {
     const returned = sprite.withBroadcast(createBroadcast('Test broadcast 1'));
+
     expect(sprite._broadcasts).toStrictEqual([createBroadcast('Test broadcast 1')]);
     expect(returned).toStrictEqual(sprite);
 });
@@ -114,10 +119,29 @@ test('Adding one broadcast correctly', () => {
 test('Adding multiple broadcasts correctly', () => {
     sprite.withBroadcast(createBroadcast('Test broadcast 1'));
     sprite.withBroadcast(createBroadcast('Test broadcast 2'));
+
     expect(sprite._broadcasts).toStrictEqual([createBroadcast('Test broadcast 1'), createBroadcast('Test broadcast 2')]);
 });
 
-//TODO: Test blocks once they are implemented
+test('Adding one block correctly', () => {
+    const block = createBlock('event_whenflagclicked', []);
+
+    const returned = sprite.withBlock(block);
+
+    expect(sprite._blocks[0]).toStrictEqual(block);
+    expect(returned).toStrictEqual(sprite);
+});
+
+test('Adding multiple blocks correctly', () => {
+    const block1 = createBlock('event_whenflagclicked', []);
+    const block2 = createBlock('event_whenthisspriteclicked', []);
+
+    sprite.withBlock(block1);
+    sprite.withBlock(block2);
+
+    expect(sprite._blocks.includes(block1)).toBe(true);
+    expect(sprite._blocks.includes(block2)).toBe(true);
+});
 
 test('Adding one comment correctly', () => {
     const comment = createComment('Test Comment', 125, 125);
@@ -142,12 +166,14 @@ test('Adding multiple comments correctly', () => {
 
 test('Setting default costume correctly', () => {
     const returned = sprite.withDefaultCostume(10);
+
     expect(sprite.currentCostume).toBe(10);
     expect(returned).toStrictEqual(sprite);
 });
 
 test('Adding one costume correctly', () => {
     const returned = sprite.withCostume(createCostume('tests/res/TestCostume.png'));
+
     expect(sprite.costumes).toStrictEqual([createCostume('tests/res/TestCostume.png')]);
     expect(returned).toStrictEqual(sprite);
 });
@@ -155,42 +181,51 @@ test('Adding one costume correctly', () => {
 test('Adding multiple costumes correctly', () => {
     sprite.withCostume(createCostume('tests/res/TestCostume.png'));
     sprite.withCostume(createCostume('tests/res/TestCostume.png'));
+
     expect(sprite.costumes).toStrictEqual([createCostume('tests/res/TestCostume.png'), createCostume('tests/res/TestCostume.png')]);
 });
 
-//TODO: Test sounds once they are implemented
-
 test('Setting volume correctly', () => {
     const returned = sprite.withVolume(10);
+
     expect(sprite.volume).toBe(10);
     expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting layer order correctly', () => {
     const returned = sprite.withLayerOrder(10);
+
     expect(sprite.layerOrder).toBe(10);
     expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting tempo correctly', () => {
     const returned = sprite.withTempo(10);
+
     expect(sprite.tempo).toBe(10);
     expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting video transparency correctly', () => {
     const returned = sprite.withVideoTransparency(10);
+
     expect(sprite.videoTransparency).toBe(10);
     expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting video state correctly', () => {
     const returned = sprite.withVideoState('off');
+
     expect(sprite.videoState).toBe('off');
     expect(returned).toStrictEqual(sprite);
 });
 
-//TODO: Test TTS when implemented
+test('Setting TTS language correctly', () => {
+    const returned = sprite.withTextToSpeechLanguage('fr');
+
+    expect(sprite.textToSpeechLanguage).toBe('fr');
+    expect(returned).toStrictEqual(sprite);
+});
 
 test('Setting x position correctly', () => {
     sprite.withX(10101);
@@ -247,6 +282,7 @@ test('Changing one position value correctly', () => {
 
 test('Setting position correctly', () => {
     const returned = sprite.withPosition(25, 87);
+
     expect(sprite.x).toBe(25);
     expect(sprite.y).toBe(87);
     expect(returned).toStrictEqual(sprite);
@@ -254,12 +290,14 @@ test('Setting position correctly', () => {
 
 test('Setting size correctly', () => {
     const returned = sprite.withSize(150);
+
     expect(sprite.size).toBe(150);
     expect(returned).toStrictEqual(sprite);
 });
 
 test('Setting direction correctly', () => {
     const returned = sprite.withAngle(220);
+
     expect(sprite.direction).toBe(220);
     expect(returned).toStrictEqual(sprite);
 });

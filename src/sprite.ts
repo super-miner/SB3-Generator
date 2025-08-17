@@ -95,7 +95,7 @@ export class Sprite {
      *
      * @type {Object.<string, Comment>}
      */
-    comments: {[id: string]: Comment} = {}; // TODO: Implement comments
+    comments: {[id: string]: Comment} = {};
     
     /**
      * The selected costume.
