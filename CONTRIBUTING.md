@@ -28,11 +28,11 @@ Running this from within the project folder should generate a `.sb3` file in `<P
 ## Running Unit Tests:
 Before you create a pull request you should make sure that all of the unit tests still pass, you can do this by running:
 ```powershell
-npx jest --detectOpenHandles
+npm run test
 ```
 
 ## Regenerating the Documentation:
 Another thing you should do before a pull request is regenerate the documentation if you have changed, added, or removed any of it. This can be done using the following command:
 ```powershell
-npx jsdoc2md --configure jsdoc2md.json "src/**/*.ts" > DOCS.md
+npm run docs
 ```
