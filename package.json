@@ -1,4 +1,6 @@
 {
+  "main": "dist/sb3Generator.js",
+  "types": "dist/sb3Generator.d.ts",
   "type": "module",
   "dependencies": {
     "archiver": "^7.0.1",
@@ -22,6 +24,7 @@
     "typescript": "^5.6.3"
   },
   "scripts": {
+    "build": "tsc",
     "docs": "jsdoc2md --files ./src/*.ts --configure ./jsdoc2md.json > ./DOCS.md",
     "test": "jest --detectOpenHandles --forceExit",
     "example": "tsx src/example"
