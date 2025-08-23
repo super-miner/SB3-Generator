@@ -21,9 +21,15 @@ If you would like to solve an [Issue](https://github.com/super-miner/SB3-Generat
 ## Running the Project:
 Once you have your fork of the project ready you can start by running some of the provided test code.
 ```powershell
-npx tsx tests/projects/allBlocks.ts
+npm run sample
 ```
+
 Running this from within the project folder should generate a `.sb3` file in `<ProjectFolder>/output`. To verify that the process worked you can try loading the project in [Scratch](https://scratch.mit.edu).
+
+You can also generate a project containing all of the possible blocks by running:
+```powershell
+npm run allBlocks
+```
 
 ## Running Unit Tests:
 Before you create a pull request you should make sure that all of the unit tests still pass, you can do this by running:
@@ -36,3 +42,11 @@ Another thing you should do before a pull request is regenerate the documentatio
 ```powershell
 npm run docs
 ```
+
+## Building the Project:
+If you find you self needing to create a build of the typescript code you can use the following command:
+```powershell
+npm run build
+```
+
+The built scripts will go into the `dist` folder, which will be generated once you run the command.
