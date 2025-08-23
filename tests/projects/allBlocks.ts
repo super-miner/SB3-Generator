@@ -11,13 +11,13 @@ function createAllBlocksProject(outputDirectory: string) {
                         createSprite('Stage')
                             .asStage()
                             .withCostume(
-                                createCostume('TestCostume.png')
+                                createCostume('tests/res/TestCostume.png')
                             )
                         );
     
     let sprite = createSprite('All Blocks Sprite')
                     .withCostume(
-                        createCostume('TestCostume.png')
+                        createCostume('tests/res/TestCostume.png')
                     );
 
     const conditionBlock = createBlock('operator_equals', ['', '']);
@@ -113,4 +113,4 @@ function createAllBlocksProject(outputDirectory: string) {
     return project;
 }
 
-createAllBlocksProject("output").build(true);
+createAllBlocksProject('output/All Blocks').build(true);

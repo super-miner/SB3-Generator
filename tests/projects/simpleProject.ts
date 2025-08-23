@@ -1,6 +1,6 @@
 import {createBlock, createComment, createCostume, createProject, createSprite, createVariable} from '../../src/sb3Generator.ts';
 
-createProject('Simple Project')
+createProject('Simple Project', 'output/Simple Project')
     .withSprite(
         createSprite('Stage')
             .asStage()

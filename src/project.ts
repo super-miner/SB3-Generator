@@ -101,7 +101,7 @@ export class Project {
      */
     build(debug: boolean = false) {
         if (!fs.existsSync(this.getOutputDirectoryPath())) {
-            fs.mkdirSync(this.getOutputDirectoryPath());
+            fs.mkdirSync(this.getOutputDirectoryPath(), {recursive: true});
         }
 
         let zip: JSZip = new JSZip();
