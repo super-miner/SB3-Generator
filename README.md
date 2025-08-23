@@ -1,6 +1,11 @@
 # SB3 Generator
 SB3 Generator is a node library that generates `.sb3` ([Scratch 3](https://scratch.mit.edu)) project files.
 
+## Installation:
+```powershell
+npm i sb3-generator
+```
+
 ## Example:
 Here is an example of how you can use this library to generate a simple project.
 ```js
