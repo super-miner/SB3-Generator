@@ -27,6 +27,7 @@
     "build": "tsc",
     "docs": "jsdoc2md --files ./src/*.ts --configure ./jsdoc2md.json > ./DOCS.md",
     "test": "jest --detectOpenHandles --forceExit",
-    "example": "tsx src/example"
+    "simpleProject": "tsx tests/projects/simpleProject.ts",
+    "allBlocks": "tsx tests/projects/allBlocks.ts"
   }
 }
