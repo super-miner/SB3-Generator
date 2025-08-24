@@ -1,4 +1,7 @@
 {
+  "name": "sb3-generator",
+  "version": "1.0.0",
+  "description": "A package that generates .sb3 project files.",
   "main": "dist/sb3Generator.js",
   "types": "dist/sb3Generator.d.ts",
   "type": "module",
