@@ -84,4 +84,14 @@ export class Sound {
         this.name = getFileNameFromPath(path);
         this.md5ext = this.assetId + '.' + this.dataFormat;
     }
+
+    /**
+     * Sets the name for this sound.
+     * 
+     * @param {string} name 
+     * @returns {this}
+     */
+    withName(name: string) {
+        this.name = name;
+    }
 }
